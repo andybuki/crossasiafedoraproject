@@ -1,34 +1,40 @@
 package org.crossasia.model.solr;
 import com.google.gson.Gson;
 import org.apache.solr.client.solrj.beans.Field;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import static com.google.gson.internal.bind.util.ISO8601Utils.format;
 
 public class Product {
 
     @Field
-    private int books_id;
+    private String id;
+
+    @Field
+    private String hasModel;
+
+    @Field
+    private int book_id;
 
     @Field
     private String title;
 
     @Field
-    private String title_transcription;
+    private String []author;
 
     @Field
-    private String series_titles;
+    private String [] title_transcription;
 
     @Field
-    private String creator;
+    private String series_title;
 
     @Field
-    private String creator_transcription;
+    private String [] creator_transcription;
 
     @Field
-    private String physical_description;
+    private String[] medium;
 
     @Field
     private String issued;
@@ -69,6 +75,15 @@ public class Product {
     @Field
     private String language;
 
+
+    public String getSeries_title() {
+        return series_title;
+    }
+
+    public void setSeries_title(String series_title) {
+        this.series_title = series_title;
+    }
+
     @Field
     private String url;
 
@@ -78,13 +93,30 @@ public class Product {
     @Field
     private String comment;
 
-
-    public int getBooks_id() {
-        return books_id;
+    public String getHasModel() {
+        return hasModel;
     }
 
-    public void setBooks_id(int books_id) {
-        this.books_id = books_id;
+    public void setHasModel(String hasModel) {
+        this.hasModel = hasModel;
+    }
+
+    public String[] getTitle_transcription() {
+        return title_transcription;
+    }
+
+    public void setTitle_transcription(String[] title_transcription) {
+        this.title_transcription = title_transcription;
+    }
+
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -95,44 +127,37 @@ public class Product {
         this.title = title;
     }
 
-    public String getTitle_transcription() {
-        return title_transcription;
+
+    public int getBook_id() {
+        return book_id;
     }
 
-    public void setTitle_transcription(String title_transcription) {
-        this.title_transcription = title_transcription;
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 
-    public String getSeries_titles() {
-        return series_titles;
-    }
-
-    public void setSeries_titles(String series_titles) {
-        this.series_titles = series_titles;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-
-    public String getCreator_transcription() {
+    public String [] getCreator_transcription() {
         return creator_transcription;
     }
 
-    public void setCreator_transcription(String creator_transcription) {
+    public void setCreator_transcription(String []creator_transcription) {
         this.creator_transcription = creator_transcription;
     }
 
-    public String getPhysical_description() {
-        return physical_description;
+    public String[] getAuthor() {
+        return author;
     }
 
-    public void setPhysical_description(String physical_description) {
-        this.physical_description = physical_description;
+    public void setAuthor(String[] author) {
+        this.author = author;
+    }
+
+    public String[] getMedium() {
+        return medium;
+    }
+
+    public void setMedium(String[] medium) {
+        this.medium = medium;
     }
 
     public String getIssued() {
@@ -263,38 +288,38 @@ public class Product {
         this.comment = comment;
     }
 
-
-
     @Override
     public String toString() {
-
         final StringBuilder sb = new StringBuilder("Product{");
+        if (sb.toString().equals("")) {
+            sb.append("id='").append(id).append('\'');
+            sb.append(", title='").append(title).append('\'');
+            sb.append(", hasModel='").append("Book").append('\'');
+            sb.append(", title_transcription='").append(title_transcription).append('\'');
+            sb.append(", series_title='").append(series_title).append('\'');
+            sb.append(", book_id='").append(book_id).append('\'');
+            sb.append(", author='").append(author).append('\'');
+            sb.append(", creator_transcription='").append(creator_transcription).append('\'');
+            sb.append(", medium='").append(medium).append('\'');
+            sb.append(", date='").append(date).append('\'');
+            sb.append(", issued='").append(issued).append('\'');
+            sb.append(", edition='").append(edition).append('\'');
+            sb.append(", temporal='").append(temporal).append('\'');
+            sb.append(", admin_level_1='").append(admin_level_1).append('\'');
+            sb.append(", admin_level_2='").append(admin_level_2).append('\'');
+            sb.append(", admin_type='").append(admin_type).append('\'');
+            sb.append(", spatial='").append(spatial).append('\'');
+            sb.append(", tgaz_api='").append(tgaz_api).append('\'');
+            sb.append(", chgis='").append(chgis).append('\'');
+            sb.append(", latitude='").append(longitude).append('\'');
+            sb.append(", longitude='").append(longitude).append('\'');
+            sb.append(", language='").append(language).append('\'');
+            sb.append(", url='").append(url).append('\'');
+            sb.append(", responsibility='").append(responsibility).append('\'');
+            sb.append(", comment='").append(comment).append('\'');
 
-        sb.append("books_id='").append(books_id).append('\'');
-        sb.append(", title='").append(title).append('\'');
-        sb.append(", title_transcription='").append(title_transcription).append('\'');
-        sb.append(", series_titles='").append(series_titles).append('\'');
-        sb.append(", creator='").append(creator).append(",").append('\'');
-        sb.append(", creator_transcription='").append(creator_transcription).append('\'');
-        sb.append(", physical_description='").append(physical_description).append('\'');
-        sb.append(", date='").append(date).append('\'');
-        sb.append(", issued='").append(issued).append('\'');
-        sb.append(", edition='").append(edition).append('\'');
-        sb.append(", temporal='").append(temporal).append('\'');
-        sb.append(", admin_level_1='").append(admin_level_1).append('\'');
-        sb.append(", admin_level_2='").append(admin_level_2).append('\'');
-        sb.append(", admin_type='").append(admin_type).append('\'');
-        sb.append(", spatial='").append(spatial).append('\'');
-        sb.append(", tgaz_api='").append(tgaz_api).append('\'');
-        sb.append(", chgis='").append(chgis).append('\'');
-        sb.append(", latitude='").append(longitude).append('\'');
-        sb.append(", longitude='").append(longitude).append('\'');
-        sb.append(", language='").append(language).append('\'');
-        sb.append(", url='").append(url).append('\'');
-        sb.append(", responsibility='").append(responsibility).append('\'');
-        sb.append(", comment='").append(comment).append('\'');
-
-        sb.append('}');
+            sb.append('}');
+        }
         return sb.toString();
     }
 }

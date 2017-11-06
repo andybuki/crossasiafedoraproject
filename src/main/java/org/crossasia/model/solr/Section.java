@@ -5,86 +5,110 @@ import org.apache.solr.client.solrj.beans.Field;
 public class Section {
 
     @Field
-    private int id;
+    private String id;
 
     @Field
-    private String name;
+    private int chapter_id;
 
     @Field
-    private String books_id;
+    private String title;
 
     @Field
-    private int start_page;
+    private String hasModel;
 
     @Field
-    private int end_page;
+    private int book_id;
 
     @Field
-    private int level;
+    private int pageStart;
 
-    public int getId() {
+    @Field
+    private int pageEnd;
+
+    @Field
+    private int value;
+
+
+
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getChapter_id() {
+        return chapter_id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setChapter_id(int chapter_id) {
+        this.chapter_id = chapter_id;
     }
 
-    public String getBooks_id() {
-        return books_id;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBooks_id(String books_id) {
-        this.books_id = books_id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public int getStart_page() {
-        return start_page;
+    public String getHasModel() {
+        return hasModel;
     }
 
-    public void setStart_page(int start_page) {
-        this.start_page = start_page;
+    public void setHasModel(String hasModel) {
+        this.hasModel = hasModel;
     }
 
-    public int getEnd_page() {
-        return end_page;
+
+
+    public int getPageStart() {
+        return pageStart;
     }
 
-    public void setEnd_page(int end_page) {
-        this.end_page = end_page;
+    public void setPageStart(int pageStart) {
+        this.pageStart = pageStart;
     }
 
-    public int getLevel() {
-        return level;
+    public int getPageEnd() {
+        return pageEnd;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setPageEnd(int pageEnd) {
+        this.pageEnd = pageEnd;
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 
     @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder("Section{");
-
         sb.append("id='").append(id).append('\'');
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", books_id='").append(books_id).append('\'');
-        sb.append(", start_page='").append(start_page).append('\'');
-        sb.append(", end_page='").append(end_page).append('\'');
-        sb.append(", level='").append(level).append('\'');
-
+        sb.append("chapter_id='").append(chapter_id).append('\'');
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", hasModel='").append("Chapter").append('\'');
+        sb.append(", book_id='").append(book_id).append('\'');
+        sb.append(", pageStart='").append(pageStart).append('\'');
+        sb.append(", pageEnd='").append(pageEnd).append('\'');
+        sb.append(", value='").append(value).append('\'');
         sb.append('}');
-
         return sb.toString();
     }
 

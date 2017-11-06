@@ -18,7 +18,7 @@ request.body = JSON.stringify({
           "series_titles": p.seriesTitle,
           "creator": p.creator +' '+ p.creator1 +' '+ p.creator2,
           "creator_transcription": p.creatorTranscription+' '+p.creatorTranscription1+' '+p.creatorTranscription2+' '+p.creatorTranscription3+' '+p.creatorTranscription4,
-          "physical_description": p.physicalDescription+' '+p.physicalDescription,
+          "physical_description": p.physicalDescription+' '+p.physicalDescription1,
           "issued": p.issued,
           "date": p.date,
           "edition": p.edition,

@@ -1,59 +1,90 @@
 package org.crossasia;
 
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.ShutdownRunningTask;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.builder.xml.XPathBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;
+import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.component.solr.SolrConstants;
 import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.jsonpath.JsonPathExpression;
 import org.crossasia.model.solr.Products;
-import org.crossasia.model.solr.Sections;
 import org.crossasia.utils.Utils;
-import org.fcrepo.camel.processor.SparqlUpdateProcessor;
-import org.springframework.jms.support.JmsHeaders;
+import org.fcrepo.client.FcrepoClient;
+import org.fcrepo.client.FedoraHeaderConstants;
 
-
+import javax.jms.ConnectionFactory;
 
 /**
  * A Camel Application
  */
 public class MainApp {
+    private static final String INDEXING_URI = "CamelIndexingUri";
 
+    private String userID = "bypassAdmin";
     /**
      * A main() so we can easily run these routing rules in our IDE
      */
     public static void main( String[] args ) throws Exception
     {
         CamelContext context = new DefaultCamelContext();
+        FcrepoClient client = FcrepoClient.client().build();
 
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
+
         gsonDataFormat.setUnmarshalType(Products.class);
         XPathBuilder xpath = new XPathBuilder("/rdf:RDF/rdf:Description/rdf:type[@rdf:resource='http://fedora.info/definitions/v4/indexing#Indexable']");
         xpath.namespace("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
         context.setTracing(true);
-        context.addComponent("activemq", ActiveMQComponent.activeMQComponent("tcp://127.0.0.1:37384"));
-        //context.getShutdownStrategy().setLogInflightExchangesOnTimeout(false);
-        context.getShutdownStrategy().setTimeout(200000);
+        context.addComponent("activemq", ActiveMQComponent.activeMQComponent("tcp://10.46.3.100:61616"));
+        context.getShutdownStrategy().setLogInflightExchangesOnTimeout(true);
+        context.getShutdownStrategy().setTimeout(120000);
+
+        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+                "tcp://localhost:61616");
+        context.addComponent("jms",
+                JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
+        context.stopRoute("nonAuto");
 
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception
             {
                 from("file:data/solr?noop=true")
-                        .process(Utils.javascript("convert.js"))
-                        .to("file:data2");
+                        .process(Utils.javascript("convertBooks.js"))
+                        .to("file:data/solr2");
 
-                from("direct:data2")
-                        .unmarshal(gsonDataFormat)
+                from("file:data2")
+                       .unmarshal(gsonDataFormat)
                         .setBody().simple("${body.products}")
-                        .split().body()
+                        .split(body())
                         .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
-                        //.to("solrCloud://10.46.3.100:8983/solr/loc_gaz?zkHost=10.46.3.100:9983&collection=loc_gaz");
-                        //.to("solr://10.46.3.100:8983/solr/gaz5");
-                        .filter(xpath)
-                .to("fcrepo:10.46.3.100:8080/fcrepo-webapp-4.7.4/rest?transform=default");
+                        .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
+                        .to("solr://10.46.3.100:8980/solr/loc_gaz");
+
+                from("file:data2?noop=true")
+                .split(new JsonPathExpression("$.@context")).process(new Processor() {
+                    public void process(Exchange exchange) throws Exception {
+
+                        String s = exchange.getIn().getBody(String.class);
+                        System.out.println(s);
+                    }
+                })
+                .to("jms:queue:activemq/queue");
+
+                from("file:data2")
+                        .setHeader(INDEXING_URI).simple("${header.CamelFcrepoUri}")
+                        .setHeader(Exchange.HTTP_METHOD, constant("POST"))
+                        .setHeader(Exchange.CONTENT_TYPE, constant("application/ld+json"))
+                        .setHeader(Exchange.HTTP_URI, constant(FedoraHeaderConstants.CONTENT_TYPE))
+                        .shutdownRunningTask(ShutdownRunningTask.CompleteAllTasks)
+                        .delay(1000)
+                        .to("fcrepo:10.46.3.100:8080/fcrepo/rest/test");
 
             }
         });

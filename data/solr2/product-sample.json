@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "sku": 1319418,
+      "productId": 1219052607961,
+      "name": "Geek Squad - Add On: Basic Audio Setup"
+    },
+    {
+      "sku": 1402108,
+      "productId": 1219051118053,
+      "name": "Geek Squad - Steering Wheel Control Installation"
+    },
+    {
+      "sku": 1414789,
+      "productId": 1218391207946,
+      "name": "Geek Squad® - Tablet Shield Installation (In-Store)"
+    },
+    {
+      "sku": 1421088,
+      "productId": 1218257756528,
+      "name": "  - Gears of War 2: All Fronts Collection (Downloadable Content)"
+    },
+    {
+      "sku": 1455002,
+      "productId": 1219052008998,
+      "name": "Geek Squad - Remote Start Installation with T-Harness"
+    },
+    {
+      "sku": 1560491,
+      "productId": 1219061320478,
+      "name": "Specialty - Replacement Over-the-Range Microwave Installation"
+    },
+    {
+      "sku": 1560507,
+      "productId": 1219061320416,
+      "name": "Specialty - Over-the-Range Microwave Installation Replacing Range Hood"
+    },
+    {
+      "sku": 2055289,
+      "productId": 1218878172747,
+      "name": "Geek Squad - Add On: Projector Basic Mounting"
+    },
+    {
+      "sku": 2055298,
+      "productId": 1219249044236,
+      "name": "Geek Squad - Add On: Projection Screen Basic Installation"
+    }
+  ]
+}

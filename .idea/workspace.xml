@@ -1,8 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65b4c602-f465-40b1-8d23-d152e8625d47" name="Default" comment="">
+    <list default="true" id="65b4c602-f465-40b1-8d23-d152e8625d47" name="Default" comment="some changes in libs">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_4_0.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_accessors_smart_1_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_minidev_json_smart_2_2_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_jackson_2_19_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_mustache_2_19_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_script_2_19_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_solr_2_19_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_spring_2_19_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_stream_2_19_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_test_2_19_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_test_spring_2_19_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20170516.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/solr/books-ld.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data2/.camel/book3.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data2/.camel/section_half.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data2/.camel/smal_books_ld.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data2/.camel/test_section.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data3/.camel/test.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data3/section.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/AiritiJson.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/AiritiSolr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/JsonLdActiveMQFedora.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/JsonLd_Fedora.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/JsonSplitter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Airiti.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/convertAiriti.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/convertPages.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/convertSections.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_jackson_2_19_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_script_2_19_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_solr_2_19_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_spring_2_19_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_stream_2_19_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_test_2_19_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/data2/books.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Contents.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Sections.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/convert - final.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/convert-books.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/org/crossasia/model/solr/Product1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/org/crossasia/model/solr/Product2.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsonld_java_jsonld_java_0_8_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jsonld_java_jsonld_java_0_11_0.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_broker_5_14_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_broker_5_15_0.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_client_5_14_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_client_5_15_0.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_jms_pool_5_14_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_jms_pool_5_15_0.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_pool_5_14_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_activemq_activemq_pool_5_15_0.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_blueprint_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_blueprint_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_core_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_gson_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_core_osgi_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_core_osgi_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_core_xml_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_jsonpath_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_ftp_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_jms_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_gson_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_http_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_http4_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_http4_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_http_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_core_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_http_common_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_http_common_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_jms_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_ftp_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_mustache_2_19_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_camel_camel_core_xml_2_19_3.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_fusesource_hawtbuf_hawtbuf_1_9.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_fusesource_hawtbuf_hawtbuf_1_11.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_7.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_25.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/data/solr/books.json" afterPath="$PROJECT_DIR$/data/solr3/books.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/data/solr3/product-sample.json" afterPath="$PROJECT_DIR$/data/solr2/product-sample.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/convert.js" afterPath="$PROJECT_DIR$/src/main/resources/convertBooks.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/crossasia/MainApp$1.class" afterPath="$PROJECT_DIR$/target/classes/org/crossasia/MainApp$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/crossasia/MainApp.class" afterPath="$PROJECT_DIR$/target/classes/org/crossasia/MainApp.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/crossasia-fedora-project-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/crossasia-fedora-project-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crossasiafedoraproject.iml" afterPath="$PROJECT_DIR$/crossasiafedoraproject.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Content.java" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Content.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product.java" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Section.java" afterPath="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Section.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/convert.js" afterPath="$PROJECT_DIR$/target/classes/convert.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,67 +93,12 @@
       <file leaf-file-name="MainApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="55" column="90" lean-forward="false" selection-start-line="55" selection-start-column="90" selection-end-line="55" selection-end-column="90" />
+            <state relative-caret-position="1020">
+              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="137" column="16" lean-forward="false" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Content.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Content.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#508#509#0" expanded="true" />
-                <element signature="e#548#549#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Product.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2992">
-              <caret line="270" column="61" lean-forward="false" selection-start-line="270" selection-start-column="51" selection-end-line="270" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Section.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Section.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Products.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Products.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="12" column="45" lean-forward="false" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-              <folding>
-                <element signature="e#266#267#0" expanded="true" />
-                <element signature="e#306#307#0" expanded="true" />
+                <element signature="e#2224#3976#0" expanded="true" />
+                <element signature="e#3975#3976#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,28 +115,43 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>http</find>
-      <find>zk</find>
-      <find>admin_level</find>
-      <find>identifier</find>
-      <find>identifiert</find>
-      <find>{&quot;books&quot;:[{&quot;sku&quot;:1319418,&quot;productId&quot;:1219052607961,&quot;name&quot;:&quot;Geek Squad - Add On: Basic Audio Setup&quot;},{&quot;sku&quot;:1402108,&quot;productId&quot;:1219051118053,&quot;name&quot;:&quot;Geek Squad - Steering Wheel Control Installation&quot;},{&quot;sku&quot;:1414789,&quot;productId&quot;:1218391207946,&quot;name&quot;:&quot;Geek Squad® - Tablet Shield Installation (In-Store)&quot;},{&quot;sku&quot;:1421088,&quot;productId&quot;:1218257756528,&quot;name&quot;:&quot;  - Gears of War 2: All Fronts Collection (Downloadable Content)&quot;},{&quot;sku&quot;:1455002,&quot;productId&quot;:1219052008998,&quot;name&quot;:&quot;Geek Squad - Remote Start Installation with T-Harness&quot;},{&quot;sku&quot;:1560491,&quot;productId&quot;:1219061320478,&quot;name&quot;:&quot;Specialty - Replacement Over-the-Range Microwave Installation&quot;},{&quot;sku&quot;:1560507,&quot;productId&quot;:1219061320416,&quot;name&quot;:&quot;Specialty - Over-the-Range Microwave Installation Replacing Range Hood&quot;},{&quot;sku&quot;:2055289,&quot;productId&quot;:1218878172747,&quot;name&quot;:&quot;Geek Squad - Add On: Projector Basic Mounting&quot;},{&quot;sku&quot;:2055298,&quot;productId&quot;:1219249044236,&quot;name&quot;:&quot;Geek Squad - Add On: Projection Screen Basic Installation&quot;}],&quot;&quot;:[]}</find>
-      <find>adresse</find>
-      <find>einheit</find>
-      <find>36789</find>
+      <find>camel-jsonpath</find>
+      <find>fed</find>
+      <find>jsonld-java</find>
+      <find>jsonld</find>
+      <find>json</find>
+      <find>subject</find>
       <find>&quot;comment&quot;: null</find>
-      <find>book_id</find>
-      <find>conten</find>
-      <find>content</find>
-      <find>lo</find>
-      <find>log4j-slf4j</find>
-      <find>fcrepo-ldpath</find>
-      <find>fcrepo-webapp</find>
-      <find>to</find>
-      <find>fcrepo</find>
+      <find>activemq-p</find>
+      <find>spring</find>
+      <find>jsonpa</find>
+      <find>camel-js</find>
+      <find>&quot;@type&quot;:&quot;WebPage&quot;,</find>
+      <find>type</find>
+      <find>&quot;@type&quot;:&quot;Page&quot;</find>
+      <find>toke</find>
+      <find>pages</find>
+      <find>activemq</find>
+      <find>file:data</find>
+      <find>camel-jms</find>
+      <find>books</find>
+      <find>con</find>
+      <find>split</find>
+      <find>com.jayway.jsonpath</find>
+      <find>activemq-ca</find>
+      <find>JsonPath</find>
+      <find>H</find>
+      <find>&quot;dc:identifier&quot;</find>
+      <find>&quot;fedora:hasModel&quot;:&quot;Book&quot;</find>
+      <find>jsonpath</find>
+      <find>JsonA</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;comment&quot;: &quot;&quot;</replace>
+      <replace>&quot;@type&quot;:&quot;Book&quot;</replace>
+      <replace>&quot;fedora:hasModel&quot;:&quot;Book&quot;,&quot;dc:identifier&quot;</replace>
+      <replace>&quot;fedora:hasModel&quot;:&quot;Page&quot;</replace>
+      <replace>&quot;fedora:hasModel&quot;:&quot;Page&quot;,&quot;dc:identifier&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -130,34 +165,56 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/Products.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/Product.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/MyRouteBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j2.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/SolrMetaData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/SolrList.java" />
-        <option value="$PROJECT_DIR$/data/solr/books2.json" />
-        <option value="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.7/gson-2.7.jar!/com/google/gson/internal/bind/DateTypeAdapter.class" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/utils/Utils.java" />
-        <option value="$PROJECT_DIR$/data2/product-sample.json" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product2.java" />
-        <option value="$PROJECT_DIR$/dest/books2.json" />
-        <option value="$PROJECT_DIR$/data/solr/codebeautify.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/convert.js" />
-        <option value="$PROJECT_DIR$/data2/books.json" />
-        <option value="$PROJECT_DIR$/data/solr2/convertjson.json" />
         <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Contents.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Sections.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Section.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product1.java" />
         <option value="$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions" />
         <option value="$PROJECT_DIR$/src/main/resources/convert-books.js" />
         <option value="$PROJECT_DIR$/contentsmall/content_small.json" />
-        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Content.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Products.java" />
         <option value="$PROJECT_DIR$/data/solr/books.json" />
+        <option value="$PROJECT_DIR$/data2/books2.json" />
+        <option value="$PROJECT_DIR$/data2/book3.json" />
+        <option value="$PROJECT_DIR$/data2/.camel/book3.json" />
+        <option value="$PROJECT_DIR$/data2/person.json" />
+        <option value="$PROJECT_DIR$/data2/person2.json" />
+        <option value="$PROJECT_DIR$/data2/.camel/test.json" />
+        <option value="$PROJECT_DIR$/data2/book2.json" />
+        <option value="$PROJECT_DIR$/data/solr/books-ld.json" />
+        <option value="$PROJECT_DIR$/src/main/resources/convert.js" />
+        <option value="$PROJECT_DIR$/data/solr2/books-ld.json" />
+        <option value="$PROJECT_DIR$/data2/test.json" />
+        <option value="$PROJECT_DIR$/data2/contest_first_test.json" />
+        <option value="$PROJECT_DIR$/data2/test_section.json" />
+        <option value="$PROJECT_DIR$/data2/.camel/section_half.json" />
+        <option value="$PROJECT_DIR$/data2/.camel/section_half_1_1.json" />
+        <option value="$PROJECT_DIR$/data2/section_half_1_1.json" />
+        <option value="$PROJECT_DIR$/src/main/java/JsonArraySplitter.java" />
+        <option value="$PROJECT_DIR$/data3/.camel/test.json" />
+        <option value="$PROJECT_DIR$/data3/test.json" />
+        <option value="$PROJECT_DIR$/data2/smal_books_ld.json" />
+        <option value="$PROJECT_DIR$/data2/.camel/smal_books_ld.json" />
+        <option value="$PROJECT_DIR$/data2/first_books.json" />
+        <option value="$PROJECT_DIR$/data2/.camel/first_books.json" />
+        <option value="$PROJECT_DIR$/data3/book_content.json" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/data/solr3/books.json" />
+        <option value="$PROJECT_DIR$/data2/.camel/books.json" />
+        <option value="$PROJECT_DIR$/data2/books.json" />
+        <option value="$PROJECT_DIR$/data2/205_content.json" />
+        <option value="$PROJECT_DIR$/data2/204_205_content.json" />
+        <option value="$PROJECT_DIR$/data2/204_content.json" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/JsonArraySplitter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/JsonSplitter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Content.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Section.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/AiritiSolr.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/AiritiJson.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/App.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/JsonLd_Fedora.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/JsonLdActiveMQFedora.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/crossasia/MainApp2.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java" />
       </list>
     </option>
@@ -207,7 +264,9 @@
     <option name="width" value="1936" />
     <option name="height" value="1176" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -223,6 +282,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,37 +291,89 @@
               <item name="crossasiafedoraproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="crossasiafedoraproject" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="crossasiafedoraproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crossasiafedoraproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crossasiafedoraproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crossasiafedoraproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crossasiafedoraproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crossasiafedoraproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crossasiafedoraproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crossasiafedoraproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="crossasia" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crossasiafedoraproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crossasiafedoraproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crossasiafedoraproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crossasiafedoraproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crossasiafedoraproject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crossasiafedoraproject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\dest" />
+      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data2" />
+      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data2\.camel" />
+      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data3" />
+      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data3\.camel" />
       <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data\solr2" />
-      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data\solr" />
-      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\src\data" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.crossasia" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.crossasia" />
       <recent name="org.crossasia.model.solr" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\src\main\resources" />
+      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data2" />
+      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\src\main\java" />
       <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\src\data" />
       <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data\solr3" />
-      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\src\main\resources" />
-      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data\solr2" />
-      <recent name="C:\Users\b-ab107\IdeaProjects\crossasiafedoraproject\data\solr" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -404,46 +517,75 @@
       <workItem from="1505990831765" duration="35179000" />
       <workItem from="1506348000977" duration="2193000" />
       <workItem from="1506414050296" duration="11206000" />
-      <workItem from="1506502621531" duration="4397000" />
+      <workItem from="1506502621531" duration="42472000" />
+      <workItem from="1506938106904" duration="14472000" />
+      <workItem from="1507107119685" duration="21078000" />
+      <workItem from="1507212613394" duration="30351000" />
+      <workItem from="1507550462993" duration="62406000" />
+      <workItem from="1507805855913" duration="5220000" />
+      <workItem from="1507814908500" duration="10013000" />
+      <workItem from="1508143723353" duration="1987000" />
+      <workItem from="1508331871877" duration="18853000" />
+      <workItem from="1508764761542" duration="25000" />
+      <workItem from="1508768270307" duration="1388000" />
+      <workItem from="1509109132797" duration="1044000" />
+      <workItem from="1509963667303" duration="2697000" />
     </task>
+    <task id="LOCAL-00001" summary="some changes in libs">
+      <created>1506511637881</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1506511637881</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145314000" />
+    <option name="totallyTimeSpent" value="352923000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17803837" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30488974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21215352" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38255033" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32981783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19402985" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20095949" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18983701" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3988495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45158198" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -484,345 +626,333 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="some changes in libs" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes in libs" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java</url>
-          <line>62</line>
-          <properties />
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java</url>
-          <line>60</line>
-          <properties />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java</url>
-          <line>30</line>
-          <properties />
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java</url>
-          <line>31</line>
-          <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java</url>
-          <line>61</line>
-          <properties />
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="23" />
+      <option name="time" value="106" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="args" />
+        <watch expression="xpath" />
+        <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)jsonObject).entrySet().toArray()[0]).getValue()" custom="java.util.LinkedHashMap.Entry,java.util.LinkedHashMap" />
+        <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)jsonObject).entrySet().toArray()[0]).getValue()" custom="java.util.LinkedHashMap.Entry,java.util.LinkedHashMap" />
+        <watch expression="context2" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/MyRouteBuilder.java" />
-    <entry file="file://$PROJECT_DIR$/dest/product-sample.json">
+    <entry file="file://$PROJECT_DIR$/data2/.camel/smal_books_ld.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        <state relative-caret-position="-1054">
+          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/Products2.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/Product.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.7/gson-2.7.jar!/com/google/gson/internal/bind/DateTypeAdapter.class">
+    <entry file="file://$PROJECT_DIR$/data2/first_books.json" />
+    <entry file="file://$PROJECT_DIR$/data2/.camel/book2.json" />
+    <entry file="file://$PROJECT_DIR$/data2/.camel/smal_books_ld.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/solr/books2.json.camelLock" />
-    <entry file="file://$PROJECT_DIR$/data/solr/books.json.camelLock" />
-    <entry file="file://$PROJECT_DIR$/data2/message-koeln.json" />
-    <entry file="file://$PROJECT_DIR$/data/solr2/message-koeln.json" />
-    <entry file="file://$PROJECT_DIR$/dest/message-tuebingen.json">
+    <entry file="file://$PROJECT_DIR$/data2/first_books.json" />
+    <entry file="file://$PROJECT_DIR$/data2/first_books.json" />
+    <entry file="file://$PROJECT_DIR$/data/solr/books-ld.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+        <state relative-caret-position="85">
+          <caret line="5" column="9" lean-forward="false" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dest/product-sample.json">
+    <entry file="file://$PROJECT_DIR$/data2/.camel/contest_first_test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="11" lean-forward="true" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data3/book_content.json" />
+    <entry file="file://$PROJECT_DIR$/data/solr2/books-ld.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="6" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="46" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/.camel/first_books.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/solr2/product-sample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/.camel/smal_books_ld.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1600">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/section_half_1_1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="16" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="16" />
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data2/message-tuebingen.json" />
-    <entry file="file://$PROJECT_DIR$/dest/message-tuebingen.json">
+    <entry file="file://$PROJECT_DIR$/data3/.camel/test.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="1" lean-forward="true" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+        <state relative-caret-position="1904">
+          <caret line="112" column="22" lean-forward="false" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jvm-npm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/moment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/underscore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dest/message-koeln.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data2/product-sample.json" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/data2/test.json" />
+    <entry file="file://$PROJECT_DIR$/data3/section.json">
+      <provider selected="true" editor-type-id="LargeFileEditor">
         <state relative-caret-position="68">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/solr3/books.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/.camel/book3.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data2/books.json" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/camel/camel-gson/2.19.2/camel-gson-2.19.2.jar!/org/apache/camel/component/gson/GsonDataFormat.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/convert - final.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="46" lean-forward="true" selection-start-line="21" selection-start-column="46" selection-end-line="21" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data2/convertjson.json" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/camel/camel-core/2.19.2/camel-core-2.19.2.jar!/org/apache/camel/builder/ExpressionClause.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="44" column="38" lean-forward="false" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/message-tuebingen.json">
+    <entry file="file://$PROJECT_DIR$/data2/.camel/book3.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Sections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/section/section.json.camelLock" />
-    <entry file="file://$PROJECT_DIR$/section/section.json">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Contents.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#223#224#0" expanded="false" />
-            <element signature="e#253#254#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crossasiafedoraproject.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="46" lean-forward="false" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dest/product-sample.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/solr3/product-sample.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/solr2/convertjson.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="130" column="21" lean-forward="false" selection-start-line="130" selection-start-column="21" selection-end-line="130" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/convert-books.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="40" column="30" lean-forward="false" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/convert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="41" column="60" lean-forward="false" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content/contents1Part.json" />
-    <entry file="file://$PROJECT_DIR$/contentsmall/content_small.json" />
-    <entry file="file://$PROJECT_DIR$/dest/books2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dest/books.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2992">
-          <caret line="270" column="61" lean-forward="false" selection-start-line="270" selection-start-column="51" selection-end-line="270" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/content4/contents2_2Part.json">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="867">
-          <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/solr/books.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24140">
-          <caret line="1420" column="5" lean-forward="false" selection-start-line="1420" selection-start-column="5" selection-end-line="1420" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/books.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Section.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Products.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="45" lean-forward="false" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-          <folding>
-            <element signature="e#266#267#0" expanded="true" />
-            <element signature="e#306#307#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Content.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#508#509#0" expanded="true" />
-            <element signature="e#548#549#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="137" column="16" lean-forward="false" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="16" />
+        <state relative-caret-position="559">
+          <caret line="96" column="75" lean-forward="false" selection-start-line="96" selection-start-column="64" selection-end-line="96" selection-end-column="75" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/books.json" />
+    <entry file="file://$PROJECT_DIR$/data2/204_205_content.json" />
+    <entry file="file://$PROJECT_DIR$/data2/204_content.json" />
+    <entry file="file://$PROJECT_DIR$/data2/204_205_content.json" />
+    <entry file="file://$PROJECT_DIR$/data2/.camel/204_205_content.json" />
+    <entry file="file://$PROJECT_DIR$/data2/204_content.json" />
+    <entry file="file://$PROJECT_DIR$/data2/books.json" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Contents.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Content.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="958">
+          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/AiritiSolr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="32" column="51" lean-forward="false" selection-start-line="32" selection-start-column="51" selection-end-line="32" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Section.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="958">
+          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+          <folding>
+            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#737#738#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Products.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2998">
+          <caret line="325" column="0" lean-forward="false" selection-start-line="325" selection-start-column="0" selection-end-line="325" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/model/solr/Airiti.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/convertAiriti.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/JsonSplitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-266">
+          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/AiritiJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/JsonLdActiveMQFedora.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="63" column="65" lean-forward="false" selection-start-line="63" selection-start-column="65" selection-end-line="63" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1914#2792#0" expanded="true" />
+            <element signature="e#2791#2792#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="74" column="74" lean-forward="false" selection-start-line="74" selection-start-column="74" selection-end-line="74" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/MainApp2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="25" column="46" lean-forward="false" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/.camel/books2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/.camel/books.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/.camel/204_content.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/.camel/fedora_test2.json">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data2/.camel/fedora_test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data3/.camel/book_content.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data3/.camel/books-ld.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="958">
+          <caret line="112" column="23" lean-forward="false" selection-start-line="112" selection-start-column="23" selection-end-line="112" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/JsonLd_Fedora.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="30" column="57" lean-forward="true" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1233#1944#0" expanded="true" />
+            <element signature="e#1943#1944#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/crossasia/MainApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="55" column="90" lean-forward="false" selection-start-line="55" selection-start-column="90" selection-end-line="55" selection-end-column="90" />
+        <state relative-caret-position="1020">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2224#3976#0" expanded="true" />
+            <element signature="e#3975#3976#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -830,9 +960,82 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>lib</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>crossasiafedoraproject</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
