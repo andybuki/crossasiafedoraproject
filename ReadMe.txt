@@ -1,4 +1,4 @@
-Camel Java Router Project
+Fedora Solr Camel Java Router Project
 =========================
 
 To build this project use
