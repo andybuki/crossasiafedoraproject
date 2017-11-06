@@ -1,6 +1,12 @@
 Fedora Solr Camel Java Router Project
 =========================
 
+### Prerequisites ###
+  * Java 1.7 or higher
+  * Solr
+  * ActiveMQ
+
+
 To build this project use
 
     mvn install
