@@ -1,10 +1,14 @@
-Fedora Solr Camel Java Router Project
-=========================
+#Fedora Solr Camel Java Router Project
+
+## Introduction ##
+
+Project to extract data from different sources and save it in Fedora and Solr
 
 ### Prerequisites ###
   * Java 1.7 or higher
   * Solr
   * ActiveMQ
+  * Fedora
 
 
 To build this project use
