@@ -5,7 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.component.solr.SolrConstants;
 import org.apache.camel.impl.DefaultCamelContext;
-import org.crossasia.model.solr.Products;
+import org.crossasia.domain.Products;
 
 /**
  * A Camel Application

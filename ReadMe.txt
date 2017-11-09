@@ -2,7 +2,8 @@
 
 ## Introduction ##
 
-Project to extract data from different sources and save it in Fedora and Solr
+Project to extract data from different sources and save it in Fedora and Solr.
+Apache Camel used to send data
 
 ### Prerequisites ###
   * Java 1.7 or higher
@@ -11,13 +12,8 @@ Project to extract data from different sources and save it in Fedora and Solr
   * Fedora
 
 
-To build this project use
 
-    mvn install
 
-To run this project from within Maven use
-
-    mvn exec:java
 
 For more help see the Apache Camel documentation
 

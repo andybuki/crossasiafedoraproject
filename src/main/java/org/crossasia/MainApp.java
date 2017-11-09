@@ -13,7 +13,7 @@ import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.component.solr.SolrConstants;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.jsonpath.JsonPathExpression;
-import org.crossasia.model.solr.Products;
+import org.crossasia.domain.Products;
 import org.crossasia.utils.Utils;
 import org.fcrepo.client.FcrepoClient;
 import org.fcrepo.client.FedoraHeaderConstants;

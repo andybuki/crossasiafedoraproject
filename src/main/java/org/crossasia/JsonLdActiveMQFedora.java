@@ -6,13 +6,10 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.ShutdownRunningTask;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.builder.xml.XPathBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.component.jms.JmsComponent;
-import org.apache.camel.component.solr.SolrConstants;
 import org.apache.camel.impl.DefaultCamelContext;
-import org.crossasia.model.solr.Products;
-import org.crossasia.utils.Utils;
+import org.crossasia.domain.Products;
 import org.fcrepo.client.FcrepoClient;
 import org.fcrepo.client.FedoraHeaderConstants;
 
