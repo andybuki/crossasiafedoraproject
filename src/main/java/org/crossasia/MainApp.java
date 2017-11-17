@@ -1,5 +1,6 @@
 package org.crossasia;
 
+import com.sun.jndi.toolkit.url.Uri;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
@@ -16,9 +17,13 @@ import org.apache.camel.jsonpath.JsonPathExpression;
 import org.crossasia.domain.Products;
 import org.crossasia.utils.Utils;
 import org.fcrepo.client.FcrepoClient;
+import org.fcrepo.client.FcrepoResponse;
 import org.fcrepo.client.FedoraHeaderConstants;
+import org.fcrepo.client.PostBuilder;
 
 import javax.jms.ConnectionFactory;
+import java.io.File;
+import java.net.URI;
 
 /**
  * A Camel Application
@@ -34,6 +39,16 @@ public class MainApp {
     {
         CamelContext context = new DefaultCamelContext();
         FcrepoClient client = FcrepoClient.client().build();
+        URI uri = URI.create("http://10.46.3.100:8080/fcrepo/rest/book4");
+
+        File turtleFile =new File ("C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data2\\test.ttl") ;
+        try (FcrepoResponse response = new PostBuilder(uri, client)
+                .body(turtleFile, "text/turtle")
+                .perform()) {
+            URI location = response.getLocation();
+            //logger.debug("Container creation status and location: {}, {}", response.getStatusCode(), location);
+        }
+        
 
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
 
@@ -55,7 +70,7 @@ public class MainApp {
             @Override
             public void configure() throws Exception
             {
-                from("file:data/solr?noop=true")
+                /*from("file:data/solr?noop=true")
                         .process(Utils.javascript("convertBooks.js"))
                         .to("file:data/solr2");
 
@@ -75,16 +90,27 @@ public class MainApp {
                         System.out.println(s);
                     }
                 })
-                .to("jms:queue:activemq/queue");
+                .to("jms:queue:activemq/queue");*/
 
                 from("file:data2")
-                        .setHeader(INDEXING_URI).simple("${header.CamelFcrepoUri}")
+
+                        /*.setHeader(INDEXING_URI).simple("${header.CamelFcrepoUri}")
                         .setHeader(Exchange.HTTP_METHOD, constant("POST"))
+
                         .setHeader(Exchange.CONTENT_TYPE, constant("application/ld+json"))
                         .setHeader(Exchange.HTTP_URI, constant(FedoraHeaderConstants.CONTENT_TYPE))
                         .shutdownRunningTask(ShutdownRunningTask.CompleteAllTasks)
+                        .transacted()
                         .delay(1000)
-                        .to("fcrepo:10.46.3.100:8080/fcrepo/rest/test");
+                        .to("fcrepo:10.46.3.100:8080/fcrepo/rest/test");*/
+
+                        .setHeader(Exchange.HTTP_METHOD, constant("POST"))
+                        .setHeader(Exchange.CONTENT_TYPE, constant("application/rdf+xml"))
+                        .setHeader("Content-Disposition", constant("container"))
+                        //.setHeader("Slug", constant("book"))
+
+                        .delay(10000)
+                        .to("fcrepo:10.46.3.100:8080/fcrepo/rest/book");
 
             }
         });

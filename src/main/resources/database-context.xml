@@ -31,6 +31,11 @@
         <jdbc:script location="classpath:db-schema.sql" />
     </jdbc:initialize-database>-->
 
+    <bean id="fcrepo" class="org.fcrepo.camel.FcrepoComponent">
+        <property name="authHost" value="${fcrepo.authHost}"/>
+        <property name="baseUrl" value="${fcrepo.baseUrl}"/>
+    </bean>
+
     <bean id="sqlComponent" class="org.apache.camel.component.sql.SqlComponent">
         <property name="dataSource" ref="dataSource" />
     </bean>

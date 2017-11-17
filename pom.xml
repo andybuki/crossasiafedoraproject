@@ -257,7 +257,7 @@
     <dependency>
       <groupId>org.fcrepo.client</groupId>
       <artifactId>fcrepo-java-client</artifactId>
-      <version>0.2.1</version>
+      <version>0.3.0</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->

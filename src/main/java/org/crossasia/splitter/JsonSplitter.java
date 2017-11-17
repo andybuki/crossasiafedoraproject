@@ -1,4 +1,4 @@
-package org.crossasia;
+package org.crossasia.splitter;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Handler;
@@ -25,7 +25,7 @@ public class JsonSplitter {
         String msg = message.getBody(String.class);
 
         JSONObject jsonObject = new JSONObject(msg);
-        JSONArray booksJsonArray = jsonObject.getJSONArray("fedora");
+        JSONArray booksJsonArray = jsonObject.getJSONArray("books");
 
         JSONObject contextJsonArray = (JSONObject) jsonObject.get("@context");
         //JSONObject fedoraModel = (JSONObject) jsonObject.get("fedora-model:hasModel");
@@ -38,7 +38,7 @@ public class JsonSplitter {
         //String jsonFedoraIsMember = "{" + quote + "fedora:isMemberOfCollection" + quote + ":" + fedoraIsMember.toString() + ",";
 
         String jsonBookReplace = "";
-        int arrayBlock = 1000;
+        int arrayBlock = 1;
         int arrayLength = booksJsonArray.length();
         int arrayMod = arrayLength % arrayBlock;
 

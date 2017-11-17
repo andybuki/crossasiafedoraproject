@@ -37,7 +37,7 @@ public class JsonLdActiveMQFedora {
         context.getShutdownStrategy().setTimeout(120000);
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
-                "tcp://localhost:61616");
+                "tcp://10.46.3.100:61616");
         context.addComponent("jms",
                 JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
         context.stopRoute("nonAuto");
@@ -46,19 +46,26 @@ public class JsonLdActiveMQFedora {
             @Override
             public void configure() throws Exception
             {
-                from("file:data3")
+
+
+
+                /*from("file:data/solr3")
                         .shutdownRunningTask(ShutdownRunningTask.CompleteAllTasks)
                         .delay(10)
                         .split(method(JsonSplitter.class))
-                        .to("jms:queue/fedora");
+                        //.split().tokenize("},", 1)
+                        .to("jms:queue/fedora2");*/
 
-                from("jms:queue/fedora")
+                from("jms:queue/fedora2")
+                        .to("file:data/solr4?fileName=${header.books_id}");
+
+                /*from("jms:queue/fedora")
                       .setHeader(Exchange.HTTP_METHOD, constant("POST"))
                       .setHeader(Exchange.CONTENT_TYPE, constant("application/ld+json"))
                       .setHeader(Exchange.HTTP_URI, constant(FedoraHeaderConstants.CONTENT_TYPE))
                       .shutdownRunningTask(ShutdownRunningTask.CompleteAllTasks)
                       .delay(100)
-                      .to("fcrepo:10.46.3.100:8080/fcrepo/rest");
+                      .to("fcrepo:10.46.3.100:8080/fcrepo/rest");*/
 
             }
         });
