@@ -25,6 +25,7 @@ Die Daten müssen in Fedora und Solr nach eine Transformation gespeichert werden
 In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:  
   
   * Apache Camel
+  
     - Aus http://lucene.apache.org/solr herunterladen
     - 
   * Apache Solr
