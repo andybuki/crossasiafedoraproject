@@ -99,11 +99,12 @@ In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:
            JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.dynamic.jms.port=53525"
            JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.dynamic.stomp.port=53523" 
 
-  4. Dfcrepo.home=/etc/fedora - ist ein Speicherort, wo Fedora gespeichert wird 
-  5. Nachdem Neustart es ist möglich Fedora unter folgende Adresse aufrufen: http://host:8080/fcrepo/rest/
-  ![fedora](documentation/fedora.PNG)            
-  6. Andere Möglichkeit, die Arbeit von Fedora beschleunigen kann, ist Posgres Datenbank als Fedora Speicherort 
-  im Vergleich zu Filesystem. Das kann sehr aktuell sein, besonderes bei großeren Datenbeständen
+  4. Dfcrepo.home=/etc/fedora - ist ein Speicherort, wo Fedora gespeichert wird.
+  ![fedora](src/main/resources/documentation/fedora.PNG)  
+  5. Nach Neustart es ist möglich Fedora unter folgende Adresse aufrufen: http://host:8080/fcrepo/rest/
+  ![Main View fedora](src/main/resources/documentation/fedora2.PNG)              
+  6. Die Arbeit der Fedora beschleunigen zu können, ist Posgres Datenbank als Fedora Speicherort 
+  im Vergleich zu Filesystem zu nutzen. Das kann sehr aktuell sein, besonderes bei großeren Datenmengen.
     
   
 <a name="4"></a>
