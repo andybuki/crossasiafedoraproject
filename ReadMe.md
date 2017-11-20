@@ -61,6 +61,13 @@ In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:
    Fedora 4 ist ein robustes und modulares Open-Source-Repository für Speicherung, Verwaltung und Verbreitung
    digitaler Inhalte. Es eignet sich besonders für digitale Bibliotheken und Archive, sowohl für den Zugriff als auch für die Archivierung.  
    
+   
+   * Apache Activemq
+   Install Apache Activemq
+   1. Aus http://activemq.apache.org/download.html letzte Version herunterladen. 
+   2. In passende Stelle auspacken
+   3. Mit bin/activemq start - Starten Sie den Activemq. 
+   
    Install Fedora 4
    
    1. Aus http://fedorarepository.org/download letzte Version herunterladen.  
@@ -93,9 +100,12 @@ In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:
            JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.dynamic.stomp.port=53523" 
 
   4. Dfcrepo.home=/etc/fedora - ist ein Speicherort, wo Fedora gespeichert wird 
-  5. Nachdem Neustart es ist möglich Fedora unter folgende Adresse aufrufen: http://host:8080/fcrepo/rest/ 
-
-
+  5. Nachdem Neustart es ist möglich Fedora unter folgende Adresse aufrufen: http://host:8080/fcrepo/rest/
+  ![fedora](documentation/fedora.PNG)            
+  6. Andere Möglichkeit, die Arbeit von Fedora beschleunigen kann, ist Posgres Datenbank als Fedora Speicherort 
+  im Vergleich zu Filesystem. Das kann sehr aktuell sein, besonderes bei großeren Datenbeständen
+    
+  
 <a name="4"></a>
 ## 4. Java Aplication ##
 In diesem Projekt wird Java verwendet um die Daten nach Solr und Fedora anzupassen und migriren. Das Projekt ist

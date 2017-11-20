@@ -1,4 +1,4 @@
-package org.crossasia;
+package org.crossasia.sqlsolr;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;

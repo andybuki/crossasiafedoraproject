@@ -1,4 +1,4 @@
-package org.crossasia;
+package org.crossasia.collections.adammethew;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.component.solr.SolrConstants;
