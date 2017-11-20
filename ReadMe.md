@@ -24,11 +24,22 @@ Die Daten müssen in Fedora und Solr nach eine Transformation gespeichert werden
 ## 3. Instalation ##
 In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:  
   
-  * Apache Camel
-  
-    - Aus http://lucene.apache.org/solr herunterladen
-    - 
   * Apache Solr
+    1. Aus http://lucene.apache.org/solr letzte Version herunterladen. 
+    2. In passende Stelle auspacken
+    3. Mit bin/solr start - Starten Sie den Solr. 
+   Es wird als default auf folgende Adresse gestartet: host:8980/solr.
+   Es ist möglich mit folgende Kommando zu starten und den Port zselbst einlegen:
+   bin/solr start -p 8980
+    4. solr create -c myCollection - Erstellen von neue Kollektion
+    5. Solr Konfiguration befindet sich unter ../server/solr/collection_Name/conf
+    6. Um neue Felder einzulegen muss man schema.xml erweitern.
+   
+   
+     <field name="book_id" type="int" indexed="true" stored="true" multiValued="false" required="false" />
+     <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />
+  
+  * Apache Camel
   * Fedora
    
   Apache Camel bietet ideale Mecanismus um die Daten aus unterschiedlichen Formaten
