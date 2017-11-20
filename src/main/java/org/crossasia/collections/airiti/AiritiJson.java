@@ -1,4 +1,4 @@
-package org.crossasia;
+package org.crossasia.collections.airiti;
 
 import java.io.*;
 

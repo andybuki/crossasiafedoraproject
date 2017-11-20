@@ -1,4 +1,4 @@
-Fedora Solr Camel Documentation
+Fedora Solr Camel Dokumentation
 ====
 
 **Inhalt:**
@@ -8,6 +8,8 @@ Fedora Solr Camel Documentation
 [2. Voraussetzungen](#2)
 
 [3. Instalation](#3)
+
+[4. Java Aplication](#4)
 
 <a name="1"></a>
 ## 1. Einführung und Ziele ##
@@ -23,7 +25,8 @@ Die Daten müssen in Fedora und Solr nach eine Transformation gespeichert werden
   * Apache ActiveMQ (http://activemq.apache.org/)
   * Fedora (http://fedorarepository.org/)
   * Apache Camel (http://camel.apache.org/)
-
+  
+<a name="3"></a>
 ## 3. Instalation ##
 In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:  
   
@@ -91,3 +94,12 @@ In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:
 
   4. Dfcrepo.home=/etc/fedora - ist ein Speicherort, wo Fedora gespeichert wird 
   5. Nachdem Neustart es ist möglich Fedora unter folgende Adresse aufrufen: http://host:8080/fcrepo/rest/ 
+
+
+<a name="4"></a>
+## 4. Java Aplication ##
+In diesem Projekt wird Java verwendet um die Daten nach Solr und Fedora anzupassen und migriren. Das Projekt ist
+Maven Projekt gebaut. 
+- Aus Datenbank nach Solr
+
+- Aus Datenbank nach Fedora

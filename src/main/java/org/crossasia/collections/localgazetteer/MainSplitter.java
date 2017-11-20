@@ -1,4 +1,4 @@
-package org.crossasia;
+package org.crossasia.collections.localgazetteer;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;

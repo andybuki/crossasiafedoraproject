@@ -1,4 +1,4 @@
-package org.crossasia;
+package org.crossasia.collections.localgazetteer;
 
 import com.sun.jndi.toolkit.url.Uri;
 import org.apache.activemq.ActiveMQConnectionFactory;

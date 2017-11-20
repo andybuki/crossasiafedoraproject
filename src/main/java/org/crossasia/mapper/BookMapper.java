@@ -24,10 +24,8 @@ public class BookMapper {
         for (Map<String, String> data : dataList) {
 
             Book book = new Book();
-
             book.setId(data.get("id"));
             book.setName(data.get("name"));
-
             books.add(book);
         }
 

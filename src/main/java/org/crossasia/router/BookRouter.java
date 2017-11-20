@@ -6,7 +6,6 @@ public class BookRouter extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-
         from("direct:select").to("sqlComponent:{{sql.getAllBooks}}")
             .beanRef("bookMapper", "readBooks").log("${body}")
                 //from("sqlComponent:{{sql.getAllBooks}}")
