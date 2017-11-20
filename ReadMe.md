@@ -37,10 +37,9 @@ In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:
     4. Erstellen von neue Kollektion - solr create -c myCollection
     5. Solr Konfiguration befindet sich unter ../server/solr/collection_Name/conf
     6. Um neue Felder einzulegen muss man schema.xml erweitern.
-   
-      
-     <field name="book_id" type="int" indexed="true" stored="true" multiValued="false" required="false" />
-     <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />
+     
+             <field name="book_id" type="int" indexed="true" stored="true" multiValued="false" required="false" />
+             <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />
   
   * Apache Camel Instalation
   
