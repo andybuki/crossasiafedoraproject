@@ -9,9 +9,9 @@ Fedora Solr Camel Dokumentation
 
 [3. Instalation](#3)
 
-[4. Java Aplication](#4)
+[4. Datenbank und andere Quellen](#4)
 
-[5. Datenbank und andere Quellen](#5)
+[5. Java Aplication](#5)
 
 <a name="1"></a>
 ## 1. Einführung und Ziele ##
@@ -140,9 +140,16 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
    * In repository.json die Datenbankname muss übereinstimmen        
   
 <a name="4"></a>
-## 4. Java Aplication ##
-In diesem Projekt wird Java verwendet um die Daten nach Solr und Fedora anzupassen und migriren. Das Projekt ist
-Maven Projekt gebaut. 
-- Aus Datenbank nach Solr
+## 4. Datenbank und andere Quellen ##
+* Localer Gazetteer
+  
+  Diese Quelle ist ein MySQL Datenbank, die aus 3 Tabellen besteht: Bücher, Kapitel und Seiten. 
+  Die Datenbank hat 4000 Bücher und mehr als 500_0000 Seiten. 
 
-- Aus Datenbank nach Fedora
+<a name="5"></a>
+## 5. Java Aplication ##
+Das Projekt ist als Maven Projekt gebaut.
+ 
+* Aus Datenbank nach Solr
+
+* Aus Datenbank nach Fedora
