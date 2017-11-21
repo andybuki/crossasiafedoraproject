@@ -11,6 +11,8 @@ Fedora Solr Camel Dokumentation
 
 [4. Java Aplication](#4)
 
+[5. Datenbank und andere Quellen](#5)
+
 <a name="1"></a>
 ## 1. Einführung und Ziele ##
 
@@ -110,10 +112,10 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
    * Nach Neustart es ist möglich Fedora unter folgende Adresse aufrufen: http://host:8080/fcrepo/rest/
   ![Main View fedora](src/main/resources/documentation/fedora2.PNG)              
    * Es ist möglich Posgres Datenbank als Fedora Speicherort zu nutzen. Das kann sehr aktuell sein, besonderes bei großeren Datenmengen.
-   * Postgresql installieren:
+   * Postgresql installieren, Datenbank und User anlegen:
   
-       
-        ``sudo apt-get update
+  
+        sudo apt-get update
         sudo apt-get install postgresql postgresql-contrib
         $ sudo -u postgres psql
         > create database fcrepo;
@@ -121,17 +123,21 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
         > alter user user1 password 'fedora';
         > grant all privileges on database fcrepo to fedora;
         > \q
-        ``
+        
   
-
-  Nach dem Instalation von Postgres muss noch pg_hba.conf in /etc/postgresql/version/main eingestellt werden:
-  host    fedora     fcrepo        127.0.0.1/32            md5
-  
+   * Nach dem Instalation von Postgres muss noch pg_hba.conf in /etc/postgresql/version/main eingestellt werden:
+   
+   ``host    fedora     fcrepo        127.0.0.1/32            md5``
+   
+   * setenv.sh muss angepasst werden:  
+   
           JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json"
           JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.postgresql.username=<username>"
           JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.postgresql.password=<password>"
           JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.postgresql.host=<default=localhost>"
           JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.postgresql.port=<default=5432>"
+   
+   * In repository.json die Datenbankname muss übereinstimmen        
   
 <a name="4"></a>
 ## 4. Java Aplication ##
