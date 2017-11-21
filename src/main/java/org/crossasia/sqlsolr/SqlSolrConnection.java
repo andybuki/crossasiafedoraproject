@@ -14,6 +14,7 @@ import org.apache.camel.component.jms.JmsComponent;
 import javax.jms.ConnectionFactory;
 import java.util.List;
 
+
 public class SqlSolrConnection {
     public static void main(String[] args) throws Exception {
         ApplicationContext springCtx = new ClassPathXmlApplicationContext("database-context.xml");

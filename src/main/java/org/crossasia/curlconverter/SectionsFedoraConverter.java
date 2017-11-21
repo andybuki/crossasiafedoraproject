@@ -19,13 +19,13 @@ public class SectionsFedoraConverter {
         BufferedWriter out = null;
         BufferedWriter out2 = null;
         try {
-            String absolutePath = "H:\\fedora\\section\\data3";
+            String absolutePath = "C:\\TEMP\\fedora\\data3";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"\\sections.txt"));
-            out2 = new BufferedWriter(new FileWriter("H:\\fedora\\section\\find.txt"));
+            out = new BufferedWriter(new FileWriter(absolutePath+"\\sections.sh"));
+            //out2 = new BufferedWriter(new FileWriter("C:\\TEMP\\fedora\\data3\\"find.txt"));
             String cURLink = "";
 
             for (File file : filesInDir) {
@@ -33,7 +33,7 @@ public class SectionsFedoraConverter {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"\\sections.txt")) {
+                if (fileName.equals(absolutePath+"\\sections.sh")) {
                     System.out.println("text file");
                 } else {
                     Object obj = parser.parse(new FileReader(file));
@@ -58,11 +58,11 @@ public class SectionsFedoraConverter {
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
                     //file.renameTo(new File(newPath));
-                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8081/fcrepo/rest/Local_gazetteer/" + book_id + "book" + "/" + sections_id + "section";
+                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8080/fcrepo/rest/Local_gazetteer/" + book_id + "book" + "/" + sections_id + "section";
                     out.write(cURLink + "\r\n");
 
                     System.out.println(name + " changed to " + newName);
-                    out2.write(name + " changed to " + newName + "\r\n");
+                    //out2.write(name + " changed to " + newName + "\r\n");
                 }
             }
 
@@ -72,7 +72,7 @@ public class SectionsFedoraConverter {
 
         } finally {
             out.close();
-            out2.close();
+            //out2.close();
         }
     }
 }

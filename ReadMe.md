@@ -14,10 +14,7 @@ Fedora Solr Camel Dokumentation
 <a name="1"></a>
 ## 1. Einführung und Ziele ##
 
-Das Ziel des Projektes ist die Datentransformation und Datenübertragung aus unterschiedlichen
-Quellen und Formaten, wie Xml, Pdf, Text, Datenbank mit Hilfe von Apache Camel nach Solr und Fedora.
-Die Idee ist - möglichst versuchen in eine Sprache die komplete Datenübertragung und Datenspeicherung zu realisieren.
-Die Daten müssen in Fedora und Solr nach eine Transformation gespeichert werden. 
+Das Ziel des Projektes ist die Datentransformation und Datenübertragung aus verschiedenen Quellen und Formaten, wie Xml, Pdf, Text, Datenbank mit Hilfe von Apache Camel nach Solr und Fedora. Die Idee ist in einer Sprache die komplette Datenübertragung und Datenspeicherung zu realisieren. Die Daten müssen in Fedora und Solr nach einer Transformation gespeichert werden.
 <a name="2"></a>
 ## 2. Voraussetzungen ##
   * Java 1.8
@@ -28,33 +25,47 @@ Die Daten müssen in Fedora und Solr nach eine Transformation gespeichert werden
   
 <a name="3"></a>
 ## 3. Instalation ##
-In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:  
-  
-  * Apache Solr Instalation
-    1. Aus http://lucene.apache.org/solr letzte Version herunterladen. 
-    2. In passende Stelle auspacken
-    3. Mit bin/solr start - Starten Sie den Solr. 
-   Es wird als default auf folgende Adresse gestartet: host:8983/solr.
-   Es ist möglich mit folgende Kommando zu starten und den Port selbst einlegen zu können:
-   bin/solr start -p 8980
-    4. Erstellen von neue Kollektion - solr create -c myCollection
-    5. Solr Konfiguration befindet sich unter ../server/solr/collection_Name/conf
-    6. Um neue Felder einzulegen muss man schema.xml erweitern.
-     
+In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben: 
+* Apache Solr Instalation
+    * Aus http://lucene.apache.org/solr letzte Version herunterladen. 
+    * In passende Stelle auspacken
+    * Mit Kommando ./solr start - Starten Sie den Solr. Als default wird auf folgende Adresse gestartet: [Solr Staradresse](host:8983/solr).
+    * Mit folgende Kommando ist es möglich den Port selbst einlegen zu können: ./solr start -p 8980
+    * Erstellen von neuer Kollektion - solr create -c myCollection
+    * Solr Konfiguration befindet sich unter ../server/solr/collection_Name/conf
+    * Um neue Felder einzulegen muss man schema.xml erweitern.
+    ![solr](src/main/resources/documentation/solr.PNG)  
+        
              <field name="book_id" type="int" indexed="true" stored="true" multiValued="false" required="false" />
              <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />
+ 
   
   * Apache Camel Instalation
-  
-   Apache Camel bietet Übertragungsmecanismus. Die Daten aus den MySql und anderen Formaten (PDF, XML, Text) werden nach 
-   Solr übertragen. Apache Camel wird benutzt um die Daten für die Fedora entsprechend vorbereiten.  
-   1. In unseren Fall Apache Camel wird als dependency in Maven Projekt verwendet 
+    
+    Apache Camel bietet Übertragungsmecanismus. Die Daten aus den MySql und anderen Formaten (PDF, XML, Text) werden nach 
+    Solr übertragen. Apache Camel wird benutzt um die Daten für die Fedora entsprechend vorbereiten.  
+     
+    * In unseren Fall Apache Camel wird als dependency verwendet: 
    
            <dependency>
              <groupId>org.apache.camel</groupId>
              <artifactId>camel-core</artifactId>
              <version>2.20.1</version>
            </dependency>
+    * Genaue Nutzung von Apache Camel wird in Java Application beschrieben   
+   
+   
+  * Apache Activemq
+   Hier wird kurz die Nutzung von Apache Activemq beschriben. Am Anfang sollte es die Datei erstmal in Activemq gesplitet und gespeichert werden und dann aus Activemq nach Solr und Fedora übertragen werden. Später in der Produktion wird es nicht benutzt, aber die Dokumentation kann
+       sehr hilfsreich für die spätere Nutzung sein.
+      Install Apache Activemq
+      * Aus http://activemq.apache.org/download.html letzte Version herunterladen. 
+      * In passende Stelle auspacken
+      * Mit bin/activemq start - Starten Sie den Activemq.
+      * Als default wird Activemq auf Port 8161 gestartet 
+   ![activemq](src/main/resources/documentation/activemq.PNG)  
+      * Die Nutzung von ActiveMQ in Camel Verbindung wird in Java Application beschrieben 
+   
    2.   
   * Fedora
   
@@ -62,11 +73,7 @@ In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:
    digitaler Inhalte. Es eignet sich besonders für digitale Bibliotheken und Archive, sowohl für den Zugriff als auch für die Archivierung.  
    
    
-   * Apache Activemq
-   Install Apache Activemq
-   1. Aus http://activemq.apache.org/download.html letzte Version herunterladen. 
-   2. In passende Stelle auspacken
-   3. Mit bin/activemq start - Starten Sie den Activemq. 
+  
    
    Install Fedora 4
    
