@@ -52,6 +52,7 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
              <artifactId>camel-core</artifactId>
              <version>2.20.1</version>
            </dependency>
+           
    * Genaue Nutzung von Apache Camel wird in Java Application beschrieben   
    
    
