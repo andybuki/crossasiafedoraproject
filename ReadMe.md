@@ -47,7 +47,7 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
      
    * In unseren Fall Apache Camel wird als dependency verwendet: 
    
-           <dependency>
+          <dependency>
              <groupId>org.apache.camel</groupId>
              <artifactId>camel-core</artifactId>
              <version>2.20.1</version>
@@ -57,6 +57,7 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
    
    
 * Apache Activemq
+
    Hier wird kurz die Nutzung von Apache Activemq beschriben. Am Anfang sollte es die Datei erstmal in Activemq gesplitet und gespeichert werden und dann aus Activemq nach Solr und Fedora übertragen werden. Später in der Produktion wird es nicht benutzt, aber die Dokumentation kann
        sehr hilfsreich für die spätere Nutzung sein.
       Install Apache Activemq
