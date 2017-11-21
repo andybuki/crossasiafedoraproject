@@ -40,34 +40,34 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
              <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />
  
   
-  * Apache Camel Instalation
+* Apache Camel Instalation
     
     Apache Camel bietet Übertragungsmecanismus. Die Daten aus den MySql und anderen Formaten (PDF, XML, Text) werden nach 
     Solr übertragen. Apache Camel wird benutzt um die Daten für die Fedora entsprechend vorbereiten.  
      
-    * In unseren Fall Apache Camel wird als dependency verwendet: 
+   * In unseren Fall Apache Camel wird als dependency verwendet: 
    
            <dependency>
              <groupId>org.apache.camel</groupId>
              <artifactId>camel-core</artifactId>
              <version>2.20.1</version>
            </dependency>
-    * Genaue Nutzung von Apache Camel wird in Java Application beschrieben   
+   * Genaue Nutzung von Apache Camel wird in Java Application beschrieben   
    
    
-  * Apache Activemq
+* Apache Activemq
    Hier wird kurz die Nutzung von Apache Activemq beschriben. Am Anfang sollte es die Datei erstmal in Activemq gesplitet und gespeichert werden und dann aus Activemq nach Solr und Fedora übertragen werden. Später in der Produktion wird es nicht benutzt, aber die Dokumentation kann
        sehr hilfsreich für die spätere Nutzung sein.
       Install Apache Activemq
-      * Aus http://activemq.apache.org/download.html letzte Version herunterladen. 
-      * In passende Stelle auspacken
-      * Mit bin/activemq start - Starten Sie den Activemq.
-      * Als default wird Activemq auf Port 8161 gestartet 
+   * Aus http://activemq.apache.org/download.html letzte Version herunterladen. 
+   * In passende Stelle auspacken
+   * Mit bin/activemq start - Starten Sie den Activemq.
+   * Als default wird Activemq auf Port 8161 gestartet 
    ![activemq](src/main/resources/documentation/activemq.PNG)  
-      * Die Nutzung von ActiveMQ in Camel Verbindung wird in Java Application beschrieben 
+   * Die Nutzung von ActiveMQ in Camel Verbindung wird in Java Application beschrieben 
    
-   2.   
-  * Fedora
+     
+* Fedora
   
    Fedora 4 ist ein robustes und modulares Open-Source-Repository für Speicherung, Verwaltung und Verbreitung
    digitaler Inhalte. Es eignet sich besonders für digitale Bibliotheken und Archive, sowohl für den Zugriff als auch für die Archivierung.  
