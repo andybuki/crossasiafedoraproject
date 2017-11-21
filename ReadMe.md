@@ -144,12 +144,116 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
 * Localer Gazetteer
   
   Diese Quelle ist ein MySQL Datenbank, die aus 3 Tabellen besteht: Bücher, Kapitel und Seiten. 
-  Die Datenbank hat 4000 Bücher und mehr als 500_0000 Seiten. 
+  Die Datenbank hat 4000 Bücher und mehr als 500_0000 Seiten. Datenbank wird verwendet um nötige Felder,
+  die nicht in Datenbank sind einlegen.
+      
+        SELECT 
+        concat(con.`dc:identifier`,'page') as id,
+        concat ('')as `@id`,
+        concat ('pcdm:Object')as `@type`,
+        con.`dc:identifier`,
+        concat ('Page')as hasModel,
+        con.isPartOf as book_id,
+        con.position,
+        con.text,
+        group_concat(sec.`dc:identifier`) as chapter_id
+        FROM 
+            gazetteer.contentnew as con,
+            gazetteer.sectionsnew as sec
+        WHERE 
+        
+        con.position>=sec.pageStart and
+        con.position<=sec.pageEnd and
+        con.isPartOf = sec.isPartOf and 
+        con.`dc:identifier` between 500000 and 700000
+        GROUP BY con.`dc:identifier`
+        order by con.`dc:identifier` desc
+    
 
 <a name="5"></a>
 ## 5. Java Aplication ##
-Das Projekt ist als Maven Projekt gebaut.
+Das Projekt ist als Maven Projekt gebaut. 
  
 * Aus Datenbank nach Solr
 
+   * Die Daten müssen erstmal in json umgewandelt werden. Die Seite sieht so aus:
+    
+            {"id":"726page",
+                    "page_id":726,
+                    "hasModel":"Page",
+                    "book_id":201,
+                    "position":726,
+                    "text":["   立國以孝弟忠信禮義廉恥爲人道大經政體雖更民彝"],
+                    "chapter_id":[43,
+                      44]
+                      }
+                      
+   *  Wenn die Daten noch ein Umwandlungsprocess benötigen, wird passende Javascript verwendet.
+      Das kann nötige Felder oder Split Funktionen Beinhalten.
+   
+   *  In Domain sind passende Klassen für Übertragung nach Solr.
+   
+   *  Das Hauptcodeteil sieht so aus:
+   
+            context.addRoutes(new RouteBuilder() {
+                        @Override
+                        public void configure() throws Exception
+                        {
+                            from("file:data2/solr/contents?noop=true")
+                                    .unmarshal(gsonDataFormat)
+                                    .setBody().simple("${body.products}")
+                                    .split().body()
+                                    .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
+                                    .to("solr://10.46.3.100:8980/solr/local_gazetteer");
+                        }
+                    });
+            
+                    context.start();
+                    Thread.sleep(10000);
+                    context.stop();   
+                    
+        Hier ist wichtig "from" - aus welchem Punkt kommen die Daten und "to", wo 
+        werden die Daten nach Transformation eingelandet. In setBody wird nach Domain Model die Umwandlung 
+        durchgeführt. 
+        Die Datenübertragung ist schnell 2_500_000 Seiten können inerhalb ein Tag übertragen werden.                
+
 * Aus Datenbank nach Fedora
+  Die Datenindexierung mit [fcrepo-camel](https://github.com/fcrepo4-exts/fcrepo-camel) Plugin laut crossasia Aufgaben 
+  ist nicht möglich. Es wird dann curl verwendet um die Daten nach Fedora zu schieben.
+  
+  Json Datei wird in json-ld umgewandelt, nach dem Umwandlung ein Kapitel sieht so aus:
+  
+        {
+          "@context": {
+            "fedora": "http://fedora.info/definitions/v4/2016/10/18/repository#",
+            "pcdm": "http://pcdm.org/models#",
+            "book_id": "http://schema.org/identifier",
+            "position": "http://schema.org/position",
+            "text": "http://schema.org/text",
+            "chapter_id": "http://schema.org/serialNumber",
+            "dc": "http://purl.org/dc/elements/1.1/"
+          },
+          "@id": "urn:x-arq:DefaultGraphNode",
+          "@graph": [
+            {
+              "fedora:hasModel": "Page",
+              "@type": "pcdm:Object",
+              "id": "250002page",
+              "@id": "",
+              "book_id": 570,
+              "position": 1310,
+              "text": "   董于王 字贊廷二十七年  陳 珂 字可玉三十七年           ",
+              "chapter_id": [
+                "22075",
+                "22076",
+                "22078"
+              ],
+              "dc:identifier": 250002
+            }
+          ]
+        }
+  
+   Das Context beinhaltet Linked Data Information. Danach wird ein größen Datei nach Kapitel gesplietet.
+   Parallel dazu wird ein Shellscript Datei erstellt. Das wird nach Server kopiert und dort gestartet
+   
+        curl -i -X PUT -H"Content-Type: application/ld+json" --data-binary @420814page.json http://10.46.3.100:8080/fcrepo/rest/Local_gazetteer/827book/5191909section/420814page  
