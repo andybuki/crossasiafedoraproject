@@ -46,19 +46,18 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
     Solr übertragen. Apache Camel wird benutzt um die Daten für die Fedora entsprechend vorbereiten.  
      
    * In unseren Fall Apache Camel wird als dependency verwendet: 
-   
-          <dependency>
+        ``<dependency>
              <groupId>org.apache.camel</groupId>
              <artifactId>camel-core</artifactId>
              <version>2.20.1</version>
-           </dependency>
+         </dependency>``
            
    * Genaue Nutzung von Apache Camel wird in Java Application beschrieben   
    
    
 * Apache Activemq
 
-   Hier wird kurz die Nutzung von Apache Activemq beschriben. Am Anfang sollte es die Datei erstmal in Activemq gesplitet und gespeichert werden und dann aus Activemq nach Solr und Fedora übertragen werden. Später in der Produktion wird es nicht benutzt, aber die Dokumentation kann
+    Hier wird kurz die Nutzung von Apache Activemq beschriben. Am Anfang sollte es die Datei erstmal in Activemq gesplitet und gespeichert werden und dann aus Activemq nach Solr und Fedora übertragen werden. Später in der Produktion wird es nicht benutzt, aber die Dokumentation kann
        sehr hilfsreich für die spätere Nutzung sein.
       Install Apache Activemq
    * Aus http://activemq.apache.org/download.html letzte Version herunterladen. 
