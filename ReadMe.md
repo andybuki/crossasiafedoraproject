@@ -36,8 +36,8 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
     * Um neue Felder einzulegen muss man schema.xml erweitern.
     ![solr](src/main/resources/documentation/solr.PNG)  
         
-             ``<field name="book_id" type="int" indexed="true" stored="true" multiValued="false" required="false" />
-             <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />``
+         ``<field name="book_id" type="int" indexed="true" stored="true" multiValued="false" required="false" />
+           <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />``
  
   
 * Apache Camel Instalation
@@ -74,14 +74,11 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
    Fedora 4 ist ein robustes und modulares Open-Source-Repository für Speicherung, Verwaltung und Verbreitung
    digitaler Inhalte. Es eignet sich besonders für digitale Bibliotheken und Archive, sowohl für den Zugriff als auch für die Archivierung.  
    
-   
-  
-   
    Install Fedora 4
    
-   1. Aus http://fedorarepository.org/download letzte Version herunterladen.  
-   2. Ich habe Fedora als Web Application in Tomcat installiert 
-   3. Um Fedora zu starten muss man in tomcat/bin Verzeichnis setenv.sh Datei einlegen:
+   * Aus http://fedorarepository.org/download letzte Version herunterladen.  
+   * Ich habe Fedora als Web Application - *.war in Tomcat installiert 
+   * Um Fedora zu starten muss man in entsprechenden Tomcat/bin Verzeichnis setenv.sh Datei einlegen:
    
            #!/bin/sh
            
@@ -108,37 +105,24 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
            JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.dynamic.jms.port=53525"
            JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.dynamic.stomp.port=53523" 
 
-  4. Dfcrepo.home=/etc/fedora - ist ein Speicherort, wo Fedora gespeichert wird.
+   * Dfcrepo.home=/etc/fedora - ist ein Speicherort, wo Fedora gespeichert wird.
   ![fedora](src/main/resources/documentation/fedora.PNG)  
-  5. Nach Neustart es ist möglich Fedora unter folgende Adresse aufrufen: http://host:8080/fcrepo/rest/
+   * Nach Neustart es ist möglich Fedora unter folgende Adresse aufrufen: http://host:8080/fcrepo/rest/
   ![Main View fedora](src/main/resources/documentation/fedora2.PNG)              
-  6. Die Arbeit der Fedora beschleunigen zu können, ist Posgres Datenbank als Fedora Speicherort 
-  im Vergleich zu Filesystem zu nutzen. Das kann sehr aktuell sein, besonderes bei großeren Datenmengen.
+   * Es ist möglich Posgres Datenbank als Fedora Speicherort zu nutzen. Das kann sehr aktuell sein, besonderes bei großeren Datenmengen.
+   * Postgresql installieren:
   
-  Postgres Installieren:
-  Update apt
-  sudo apt-get update
-  Install Postgres  
-  sudo apt-get install postgresql postgresql-contrib
+       
+        ``sudo apt-get update
+        sudo apt-get install postgresql postgresql-contrib
+        $ sudo -u postgres psql
+        > create database fcrepo;
+        > create user fedora;
+        > alter user user1 password 'fedora';
+        > grant all privileges on database fcrepo to fedora;
+        > \q
+        ``
   
-  User erstellen  
-  sudo -u postgres createuser --interactive
-  fedora createuser
-  psql# CREATE USER fedora WITH PASSWORD 'fedora';
-  
-  PostgreSQL DB erstellen 
-  createdb fedora
-  create database andreys_fedora;
-  create user fedora;
-  alter user fedora password 'fedora';
-  grant all privileges on database andreys_fedora to fedora;
-  
-  $ sudo -u postgres psql
-  > create database fcrepo;
-  > create user user1;
-  > alter user user1 password 'xyz';
-  > grant all privileges on database fcrepo to user1;
-  > \q
 
   Nach dem Instalation von Postgres muss noch pg_hba.conf in /etc/postgresql/version/main eingestellt werden:
   host    fedora     fcrepo        127.0.0.1/32            md5
