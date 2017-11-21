@@ -105,7 +105,40 @@ In diesem Abschnitt wird die nötige Instalationsschritte beschrieben:
   ![Main View fedora](src/main/resources/documentation/fedora2.PNG)              
   6. Die Arbeit der Fedora beschleunigen zu können, ist Posgres Datenbank als Fedora Speicherort 
   im Vergleich zu Filesystem zu nutzen. Das kann sehr aktuell sein, besonderes bei großeren Datenmengen.
-    
+  
+  Postgres Installieren:
+  Update apt
+  sudo apt-get update
+  Install Postgres  
+  sudo apt-get install postgresql postgresql-contrib
+  
+  User erstellen  
+  sudo -u postgres createuser --interactive
+  fedora createuser
+  psql# CREATE USER fedora WITH PASSWORD 'fedora';
+  
+  PostgreSQL DB erstellen 
+  createdb fedora
+  create database andreys_fedora;
+  create user fedora;
+  alter user fedora password 'fedora';
+  grant all privileges on database andreys_fedora to fedora;
+  
+  $ sudo -u postgres psql
+  > create database fcrepo;
+  > create user user1;
+  > alter user user1 password 'xyz';
+  > grant all privileges on database fcrepo to user1;
+  > \q
+
+  Nach dem Instalation von Postgres muss noch pg_hba.conf in /etc/postgresql/version/main eingestellt werden:
+  host    fedora     fcrepo        127.0.0.1/32            md5
+  
+          JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json"
+          JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.postgresql.username=<username>"
+          JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.postgresql.password=<password>"
+          JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.postgresql.host=<default=localhost>"
+          JAVA_OPTS="${JAVA_OPTS} -Dfcrepo.postgresql.port=<default=5432>"
   
 <a name="4"></a>
 ## 4. Java Aplication ##
