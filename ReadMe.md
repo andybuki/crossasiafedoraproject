@@ -214,7 +214,7 @@ Das Projekt ist als Maven Projekt gebaut.
                     
         Hier ist wichtig "from" - aus welchem Punkt kommen die Daten und "to", wo 
         werden die Daten nach Transformation eingelandet. In setBody wird nach Domain Model die Umwandlung 
-        durchgeführt. 
+        durchgeführt. Abhängig von Typ, ob es eine Seite, ein Buch oder Kapietel ist wird mit passenden Klasse verbunden. 
         Die Datenübertragung ist schnell 2_500_000 Seiten können inerhalb ein Tag übertragen werden.                
 
 * Aus Datenbank nach Fedora
