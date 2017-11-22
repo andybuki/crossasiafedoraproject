@@ -38,8 +38,8 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
     * Um neue Felder einzulegen muss man schema.xml erweitern.
     ![solr](src/main/resources/documentation/solr.PNG)  
         
-         ``<field name="book_id" type="int" indexed="true" stored="true" multiValued="false" required="false" />
-           <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />``
+             <field name="book_id" type="int" indexed="true" stored="true" multiValued="false" required="false" />
+             <field name="chapter_id" type="int" indexed="true" stored="true" multiValued="true" required="false" />
  
   
 * Apache Camel Instalation
