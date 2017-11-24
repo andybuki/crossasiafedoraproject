@@ -28,12 +28,13 @@ public class AiritiSolr {
             @Override
             public void configure() throws Exception
             {
-                from("file:data2/solr/contents?noop=true")
+                from("file:H:\\airiti\\finalairiti?noop=true")
                         .unmarshal(gsonDataFormat)
                         .setBody().simple("${body.products}")
                         .split().body()
                         .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
-                        .to("solr://10.46.3.100:8980/solr/airiti");
+                        //.to("solr://10.46.3.100:8980/solr/airiti2");
+                .to("solr://b-app66.sbb.spk-berlin.de:8985/solr/rep-airiti");
             }
         });
 

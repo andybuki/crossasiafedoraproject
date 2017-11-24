@@ -1,4 +1,4 @@
-package org.crossasia.domain;
+package org.crossasia.domain.localgazeetter;
 import com.google.gson.Gson;
 import org.apache.solr.client.solrj.beans.Field;
 import java.text.SimpleDateFormat;

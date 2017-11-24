@@ -1,4 +1,4 @@
-package org.crossasia.domain;
+package org.crossasia.domain.adammatthews;
 
 import org.apache.solr.client.solrj.beans.Field;
 
