@@ -189,7 +189,14 @@ Das Projekt ist als Maven Projekt gebaut.
                       }
                       
    *  Wenn die Daten noch ein Umwandlungsprocess benötigen, wird passende Javascript verwendet.
-      Das kann nötige Felder oder Split Funktionen Beinhalten.
+      Das kann nötige Felder oder Split Funktionen Beinhalten. Für jede JSON Typ wird ein neue Javascript Datei erstellt.
+      Javascript Datei wird in Camel eingesetzt. In convertAdamMethewSolrImages.js Datei:
+      
+            var pages = _.filter(b.dataExport.document.images.image, function(page) {
+                return page;
+            });
+      
+      Mit sehr wenig Code kann man sehr komplexe Json Strukturen parsen.      
    
    *  In Domain sind passende Klassen für Übertragung nach Solr.
    

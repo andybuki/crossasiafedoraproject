@@ -33,11 +33,13 @@ public class ConvertXmlToJson {
     private String userID = "bypassAdmin";
 
     public static void main(String[] args) throws Exception {
-        try {
-            File folder = new File("H:\\fedora\\FO China\\FO China\\Data\\json\\");
+        /*try {
+            String filePathFolder = "H:\\fedora\\FO China\\FO China\\Data\\json\\";
+            String directoryPath = "H:\\fedora\\FO China\\FO China\\Data\\Default";
+            File folder = new File(filePathFolder);
             folder.mkdir();
-            String absolutePath = "H:\\fedora\\FO China\\FO China\\Data\\json\\";
-            File dir = new File("H:\\fedora\\FO China\\FO China\\Data\\Default");
+            String absolutePath = filePathFolder;
+            File dir = new File(directoryPath);
             FileFilter filter = (File file) -> file.isFile() && file.getName().endsWith(".xml");
 
             File[] paths = dir.listFiles(filter);
@@ -45,7 +47,7 @@ public class ConvertXmlToJson {
             for (File path : paths) {
                 filePath = path.toString();
                 JSONObject jsonObject = XML.toJSONObject(new String(Files.readAllBytes(Paths.get(filePath))));
-                String fileName = filePath.replace("H:\\fedora\\FO China\\FO China\\Data\\Default\\", "").replace(".xml", "");
+                String fileName = filePath.replace(directoryPath, "").replace(".xml", "");
                 //out = new BufferedWriter(new FileWriter(folder+"\\"+fileName+".json"));
                 String jsonString = jsonObject.toString();
                 //out.write(jsonString);
@@ -67,7 +69,7 @@ public class ConvertXmlToJson {
             e.printStackTrace();
 
         }
-
+*/
         CamelContext context = new DefaultCamelContext();
 
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
@@ -90,17 +92,17 @@ public class ConvertXmlToJson {
             @Override
             public void configure() throws Exception {
                 //from("direct:json?noop=true")
-                from("file:H:\\fedora\\FO China\\FO China\\Data\\json")
-                        .process(Utils.javascript("convertAdamMethewSolr.js"))
-                        .to("file:data/solr");
+                from("file:H:\\fedora\\FO China\\FO China\\Data\\json2")
+                        .process(Utils.javascript("convertAdamMethewSolrImages.js"))
+                        .to("file:data/solr3");
 
-                                  /*from("file:data/json")
+                                  /*from("file:data/solr")
                                           .unmarshal(gsonDataFormat)
                                           .setBody().simple("${body.products}")
                                           .split(body())
                                           .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                                           .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                                          .to("solr://10.46.3.100:8980/solr/adammethew");*/
+                                          .to("solr://10.46.3.100:8980/solr/AD");*/
             }
         });
 
