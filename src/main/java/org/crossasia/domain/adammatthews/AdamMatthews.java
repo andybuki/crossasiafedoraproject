@@ -13,22 +13,29 @@ public class AdamMatthews {
     private String hasModel;
 
     @Field
-    private int nodeId;
-
-    @Field
-    private int ID;
-
-    @Field
     private String identifier;
 
     @Field
     private String title;
 
     @Field
+    private int nodeId;
+
+    @Field
+    private int book_id;
+
+
+    @Field
     private int date;
 
     @Field
     private String[] publication_name;
+
+    @Field
+    private String publication_place;
+
+    @Field
+    private String[] edition;
 
     @Field
     private String [] description;
@@ -40,13 +47,41 @@ public class AdamMatthews {
     private String [] subject;
 
     @Field
-    private String [] keywords;
+    private String  organization;
+
+    @Field
+    private String  keywords;
+
+    @Field
+    private String author;
+
+    @Field
+    private String source;
 
     @Field
     private String [] series_title;
 
     @Field
+    private String person;
+
+    @Field
+    private String spatial;
+
+    @Field
     private String publisher;
+
+    @Field
+    private String language;
+
+    @Field
+    private String volume_number;
+
+    @Field
+    private String issue_number;
+
+    @Field
+    private String publication_volume;
+
 
     public String getId() {
         return id;
@@ -62,22 +97,6 @@ public class AdamMatthews {
 
     public void setHasModel(String hasModel) {
         this.hasModel = hasModel;
-    }
-
-    public int getNodeId() {
-        return nodeId;
-    }
-
-    public void setNodeId(int nodeId) {
-        this.nodeId = nodeId;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public String getIdentifier() {
@@ -96,6 +115,22 @@ public class AdamMatthews {
         this.title = title;
     }
 
+    public int getNodeId() {
+        return nodeId;
+    }
+
+    public void setNodeId(int nodeId) {
+        this.nodeId = nodeId;
+    }
+
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
+
     public int getDate() {
         return date;
     }
@@ -110,6 +145,22 @@ public class AdamMatthews {
 
     public void setPublication_name(String[] publication_name) {
         this.publication_name = publication_name;
+    }
+
+    public String getPublication_place() {
+        return publication_place;
+    }
+
+    public void setPublication_place(String publication_place) {
+        this.publication_place = publication_place;
+    }
+
+    public String[] getEdition() {
+        return edition;
+    }
+
+    public void setEdition(String[] edition) {
+        this.edition = edition;
     }
 
     public String[] getDescription() {
@@ -136,12 +187,36 @@ public class AdamMatthews {
         this.subject = subject;
     }
 
-    public String[] getKeywords() {
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(String[] keywords) {
+    public void setKeywords(String keywords) {
         this.keywords = keywords;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String[] getSeries_title() {
@@ -152,12 +227,60 @@ public class AdamMatthews {
         this.series_title = series_title;
     }
 
+    public String getPerson() {
+        return person;
+    }
+
+    public void setPerson(String person) {
+        this.person = person;
+    }
+
+    public String getSpatial() {
+        return spatial;
+    }
+
+    public void setSpatial(String spatial) {
+        this.spatial = spatial;
+    }
+
     public String getPublisher() {
         return publisher;
     }
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getVolume_number() {
+        return volume_number;
+    }
+
+    public void setVolume_number(String volume_number) {
+        this.volume_number = volume_number;
+    }
+
+    public String getIssue_number() {
+        return issue_number;
+    }
+
+    public void setIssue_number(String issue_number) {
+        this.issue_number = issue_number;
+    }
+
+    public String getPublication_volume() {
+        return publication_volume;
+    }
+
+    public void setPublication_volume(String publication_volume) {
+        this.publication_volume = publication_volume;
     }
 
     @Override
@@ -167,17 +290,28 @@ public class AdamMatthews {
 
         sb.append("id='").append(id).append('\'');
         sb.append(",  hasModel='").append(hasModel).append('\'');
+        sb.append(",  language='").append(language).append('\'');
         sb.append(",   nodeId='").append(nodeId).append('\'');
-        sb.append(",  ID='").append(ID).append('\'');
+        sb.append(",  book_id='").append(book_id).append('\'');
+        sb.append(",  person='").append(person).append('\'');
         sb.append(", identifier='").append(identifier).append('\'');
+        sb.append(", spatial='").append(spatial).append('\'');
         sb.append(", title='").append(title).append('\'');
+        sb.append(", volume_number='").append(volume_number).append('\'');
+        sb.append(", issue_number='").append(issue_number).append('\'');
+        sb.append(", source='").append(source).append('\'');
+        sb.append(", organization='").append(organization).append('\'');
+        sb.append(", author='").append(author).append('\'');
         sb.append(", date='").append(date).append('\'');
         sb.append(", publication_name='").append(publication_name).append('\'');
+        sb.append(", publication_place='").append(publication_place).append('\'');
         sb.append(", description='").append(description).append('\'');
         sb.append(", medium='").append(medium).append('\'');
+        sb.append(", edition='").append(edition).append('\'');
         sb.append(", subject='").append(subject).append('\'');
         sb.append(", keywords='").append(keywords).append('\'');
         sb.append(", series_title='").append(series_title).append('\'');
+        sb.append(", publication_volume='").append(publication_volume).append('\'');
         sb.append(", publisher='").append(publisher).append('\'');
 
         sb.append('}');

@@ -1,4 +1,4 @@
-package org.crossasia.splitter;
+package org.crossasia.splitter.localgazetteer;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Handler;

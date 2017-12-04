@@ -1,5 +1,11 @@
 package org.crossasia.domain;
 
+/*
+*
+* Bau wird benötigt direct from Mysql in Solr
+*
+* */
+
 public class Book {
 
     private String id;

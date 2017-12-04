@@ -49,12 +49,12 @@ public class ConvertXmlToJson {
                 JSONObject jsonObject = XML.toJSONObject(new String(Files.readAllBytes(Paths.get(filePath))));
                 String fileName = filePath.replace(directoryPath, "").replace(".xml", "");
                 //out = new BufferedWriter(new FileWriter(folder+"\\"+fileName+".json"));
-                String jsonString = jsonObject.toString();
+                String jsonString = jsonObject.toString().replace(",\"name\":\"AD\"", "");
                 //out.write(jsonString);
 
                 FileWriter fileWriter = new FileWriter(folder + "\\" + fileName + ".json");
                 try {
-                    fileWriter.write(jsonObject.toString());
+                    fileWriter.write(jsonString);
                 } catch (IOException e) {
                     e.printStackTrace();
 
@@ -68,8 +68,8 @@ public class ConvertXmlToJson {
         }   catch (IOException e) {
             e.printStackTrace();
 
-        }
-*/
+        }*/
+
         CamelContext context = new DefaultCamelContext();
 
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
@@ -91,18 +91,18 @@ public class ConvertXmlToJson {
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                //from("direct:json?noop=true")
-                from("file:H:\\fedora\\FO China\\FO China\\Data\\json2")
-                        .process(Utils.javascript("convertAdamMethewSolrImages.js"))
-                        .to("file:data/solr3");
 
-                                  /*from("file:data/solr")
+                                /*from("file:H:\\fedora\\FO China\\FO China\\Data\\json")
+                                        .process(Utils.javascript("convertAdamMethewSolr.js"))
+                                        .to("file:data/solr");*/
+
+                                  from("file:data/solr2")
                                           .unmarshal(gsonDataFormat)
                                           .setBody().simple("${body.products}")
                                           .split(body())
                                           .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                                           .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                                          .to("solr://10.46.3.100:8980/solr/AD");*/
+                                          .to("solr://10.46.3.100:8980/solr/AD");
             }
         });
 

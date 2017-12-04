@@ -12,10 +12,13 @@ request.body = JSON.stringify({
     "images": _.map(pages, function(page) {
 
         return {
-            "id": page.id,
-            "image_text":page.imageText,
+            "id": page.id+"page",
+            "position":page.id,
+            "hasModel":"Page",
+            "image_text":page.imageText.replace(/(\r\n|\n|\r)/gm," "),
             "image_file":page.imageFile,
-            "image_url":page.imageUrl
+            "image_url":page.imageUrl,
+            "book_id":page.imageUrl.replace("http://www.archivesdirect.amdigital.co.uk/Documents/Images/","").split('/')[0]
 
         }
 
