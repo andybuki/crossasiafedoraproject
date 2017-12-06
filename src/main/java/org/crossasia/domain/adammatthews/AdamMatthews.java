@@ -50,7 +50,7 @@ public class AdamMatthews {
     private String  organization;
 
     @Field
-    private String  keywords;
+    private String [] keywords;
 
     @Field
     private String author;
@@ -62,10 +62,10 @@ public class AdamMatthews {
     private String [] series_title;
 
     @Field
-    private String person;
+    private String [] person;
 
     @Field
-    private String spatial;
+    private String [] spatial;
 
     @Field
     private String publisher;
@@ -195,14 +195,6 @@ public class AdamMatthews {
         this.organization = organization;
     }
 
-    public String getKeywords() {
-        return keywords;
-    }
-
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
-    }
-
     public String getAuthor() {
         return author;
     }
@@ -225,22 +217,6 @@ public class AdamMatthews {
 
     public void setSeries_title(String[] series_title) {
         this.series_title = series_title;
-    }
-
-    public String getPerson() {
-        return person;
-    }
-
-    public void setPerson(String person) {
-        this.person = person;
-    }
-
-    public String getSpatial() {
-        return spatial;
-    }
-
-    public void setSpatial(String spatial) {
-        this.spatial = spatial;
     }
 
     public String getPublisher() {
@@ -281,6 +257,31 @@ public class AdamMatthews {
 
     public void setPublication_volume(String publication_volume) {
         this.publication_volume = publication_volume;
+    }
+
+
+    public String[] getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String[] keywords) {
+        this.keywords = keywords;
+    }
+
+    public String[] getPerson() {
+        return person;
+    }
+
+    public void setPerson(String[] person) {
+        this.person = person;
+    }
+
+    public String[] getSpatial() {
+        return spatial;
+    }
+
+    public void setSpatial(String[] spatial) {
+        this.spatial = spatial;
     }
 
     @Override

@@ -173,6 +173,8 @@ In diesem Abschnitt werden die notwendigen Installationsschritte beschrieben:
 <a name="5"></a>
 ## 5. Java Aplication ##
 Das Projekt ist als Maven Projekt gebaut. 
+
+![plan](src/main/resources/documentation/plan.PNG)  
  
 * Aus Datenbank nach Solr
 

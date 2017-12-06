@@ -96,7 +96,7 @@ public class ConvertXmlToJson {
                                         .process(Utils.javascript("convertAdamMethewSolr.js"))
                                         .to("file:data/solr");*/
 
-                                  from("file:data/solr2")
+                                  from("file:data/solr")
                                           .unmarshal(gsonDataFormat)
                                           .setBody().simple("${body.products}")
                                           .split(body())
