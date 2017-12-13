@@ -12,7 +12,7 @@ request.body = JSON.stringify({
     "images": _.map(pages, function(page) {
 
         return {
-            "id": page.id+"page",
+            "id": page.id,
             "position":page.id,
             "hasModel":"Page",
             "image_text":page.imageText.replace(/(\r\n|\n|\r)/gm," "),

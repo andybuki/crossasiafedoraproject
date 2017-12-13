@@ -56,9 +56,13 @@ public class ConvertJsonToFedora {
             @Override
             public void configure() throws Exception {
 
+                from("file:data/solr2")
+                                        .process(Utils.javascript("convertAdamMethewFedoraImages.js"))
+                                        .to("file:data/fedora2");
+
                 from("file:data/solr")
-                                        .process(Utils.javascript("convertAdamMethewFedora.js"))
-                                        .to("file:data/fedora");
+                        .process(Utils.javascript("convertAdamMethewFedora.js"))
+                        .to("file:data/fedora");
 
                 /*from("file:data/solr2")
                         .unmarshal(gsonDataFormat)

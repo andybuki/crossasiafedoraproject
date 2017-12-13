@@ -14,7 +14,7 @@ import java.util.List;
  * Splits a Camel Exchange with a body containing JSON messages in to individual messages
  *
  */
-public class JsonSplitter {
+public class JsonSplitterBooks {
 
     @Handler
     public List<String> processMessage(Exchange exchange) {

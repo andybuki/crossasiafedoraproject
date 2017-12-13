@@ -29,7 +29,6 @@ request.body = JSON.stringify({
           "@type": "pcdm:Object",
           "@id": "",
           "id":p.nodeId+"book",
-
           "book_id": p.book_id,
           "identifier": p.identifier,
           "dc:title": p.title,

@@ -7,7 +7,7 @@ import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.jena.vocabulary.RDF;
 import org.crossasia.domain.Products;
-import org.crossasia.splitter.localgazetteer.JsonFedoraSplitterPages;
+import org.crossasia.splitter.localgazetteer.JsonSplitterPages;
 
 public class MainSplitter
 {
@@ -29,7 +29,7 @@ public class MainSplitter
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
                 from("file:C:\\TEMP\\fedora\\f1\\a")
                         //.delay(10)
-                        .split(method(JsonFedoraSplitterPages.class))
+                        .split(method(JsonSplitterPages.class))
                         .to("file:C:\\TEMP\\fedora\\files8?fileName=${header.books_id}");
 
 

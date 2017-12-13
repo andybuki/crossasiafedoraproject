@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 public class Products {
 
-    private ArrayList<AdamMatthews> products;
+    private ArrayList<AdamMatthewsImages> products;
 
-    public ArrayList<AdamMatthews> getProducts() {
+    public ArrayList<AdamMatthewsImages> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<AdamMatthews> products) {
+    public void setProducts(ArrayList<AdamMatthewsImages> products) {
         this.products = products;
     }
 

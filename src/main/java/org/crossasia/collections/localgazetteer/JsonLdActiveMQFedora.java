@@ -52,7 +52,7 @@ public class JsonLdActiveMQFedora {
                 /*from("file:data/solr3")
                         .shutdownRunningTask(ShutdownRunningTask.CompleteAllTasks)
                         .delay(10)
-                        .split(method(JsonSplitter.class))
+                        .split(method(JsonSplitterBooks.class))
                         //.split().tokenize("},", 1)
                         .to("jms:queue/fedora2");*/
 

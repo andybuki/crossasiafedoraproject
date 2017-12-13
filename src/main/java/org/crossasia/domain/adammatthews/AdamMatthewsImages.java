@@ -17,7 +17,7 @@ public class AdamMatthewsImages {
     private String image_file;
 
     @Field
-    private String image_text;
+    private String text;
 
     @Field
     private int book_id;
@@ -58,11 +58,11 @@ public class AdamMatthewsImages {
     }
 
     public String getImage_text() {
-        return image_text;
+        return text;
     }
 
-    public void setImage_text(String image_text) {
-        this.image_text = image_text;
+    public void setImage_text(String text) {
+        this.text = text;
     }
 
     public int getBook_id() {
@@ -89,7 +89,7 @@ public class AdamMatthewsImages {
         sb.append("id='").append(id).append('\'');
         sb.append(",  hasModel='").append(hasModel).append('\'');
         sb.append(",   image_url='").append(image_url).append('\'');
-        sb.append(",  image_text='").append(image_text).append('\'');
+        sb.append(",  text='").append(text).append('\'');
         sb.append(", image_file='").append(image_file).append('\'');
         sb.append(", position='").append(position).append('\'');
         sb.append(", book_id='").append(book_id).append('\'');

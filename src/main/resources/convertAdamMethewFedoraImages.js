@@ -25,31 +25,16 @@ request.body = JSON.stringify({
     "@graph": b.products,
     "@graph": _.map(books, function(p) {
       return {
-          "fedora:hasModel": "Book",
+          "fedora:hasModel": "Page",
           "@type": "pcdm:Object",
           "@id": "",
-          "id":p.nodeId+"book",
-
-          "book_id": p.book_id,
+          "id":p.id,
+          "dcterms:isPartOf": p.book_id,
           "identifier": p.identifier,
-          "dc:title": p.title,
-          "dc:creator": p.author,
-          "dc:date": p.date,
-          "dcndl:publicationPlace": p.publication_place,
-          "dc:edition": p.edition,
-          "dcterms:rightsHolder": p.source,
-          "dc:description": p.description,
-          "dcterms:spatial" : p.spatial,
-          "schema:Person" : p.person,
-          "schema:keywords": p.keywords,
-          "dc:subject": p.subject,
-          "schema:Organization" :  p.organization,
-          "dc:medium": p.medium,
-          "dcndl:seriesTitle": p.series_title,
-          "dc:language": p.language,
-          "dc:publisher": [p.publisher  + "", "" +  p.publication_name],
-          "dcndl:publicationVolume": p.publication_volume,
-          "dcndl:issue": p.volume_number
-      }
+          "schema:position":p.position,
+          "schema:text": p.image_text,
+          "schema:image":p.image_file,
+          "dcterms:identifier":p.image_url
+    }
     })
 })

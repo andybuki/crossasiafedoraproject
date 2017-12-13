@@ -1,26 +1,15 @@
-package org.crossasia.curlconverter.localgazetteer;
+package org.crossasia.curlconverter.adammetthew;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.util.Map;
-
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.commons.io.FileUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
-
-import static java.awt.SystemColor.text;
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class BooksFedoraConverter {
     private Object obj;
@@ -28,7 +17,7 @@ public class BooksFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "H:\\fedora\\data2\\";
+            String absolutePath = "C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\fedora\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
@@ -50,10 +39,10 @@ public class BooksFedoraConverter {
 
                     JSONArray booksArray = (JSONArray) object.get("@graph");
                     JSONObject book = (JSONObject) booksArray.get(0);
-                    String books_id = (String) book.get("books_id").toString();
+                    Long books_id = (Long) book.get("book_id");
 
                     String name = file.getName();
-                    String newName = books_id + "book" + ".json";
+                    String newName = books_id  + ".json";
                     String newPath = absolutePath + "\\" + newName;
                     File file2 = new File(absolutePath+newName);
 
@@ -62,7 +51,8 @@ public class BooksFedoraConverter {
 
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
-                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8081/fcrepo/rest/Local_gazetteer/" + books_id + "book";
+                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8081/fcrepo/rest/AD/" + books_id + "book";
+
                     out.write(cURLink + "\r\n");
 
                     System.out.println(name + " changed to " + newName);
