@@ -16,7 +16,7 @@ public class Product {
     private String hasModel;
 
     @Field
-    private int book_id;
+    private String book_id;
 
     @Field
     private String title;
@@ -37,10 +37,10 @@ public class Product {
     private String[] medium;
 
     @Field
-    private String issued;
+    private int issued;
 
     @Field
-    private String date;
+    private int date;
 
     @Field
     private String edition;
@@ -75,6 +75,16 @@ public class Product {
     @Field
     private String language;
 
+    @Field
+    private String collection;
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
 
     public String getSeries_title() {
         return series_title;
@@ -128,13 +138,7 @@ public class Product {
     }
 
 
-    public int getBook_id() {
-        return book_id;
-    }
 
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
-    }
 
     public String [] getCreator_transcription() {
         return creator_transcription;
@@ -160,19 +164,27 @@ public class Product {
         this.medium = medium;
     }
 
-    public String getIssued() {
+    public String getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(String book_id) {
+        this.book_id = book_id;
+    }
+
+    public int getIssued() {
         return issued;
     }
 
-    public void setIssued(String issued) {
+    public void setIssued(int issued) {
         this.issued = issued;
     }
 
-    public String getDate() {
+    public int getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(int date) {
         this.date = date;
     }
 
@@ -298,6 +310,7 @@ public class Product {
             sb.append(", title_transcription='").append(title_transcription).append('\'');
             sb.append(", series_title='").append(series_title).append('\'');
             sb.append(", book_id='").append(book_id).append('\'');
+            sb.append(", collection='").append(collection).append('\'');
             sb.append(", author='").append(author).append('\'');
             sb.append(", creator_transcription='").append(creator_transcription).append('\'');
             sb.append(", medium='").append(medium).append('\'');

@@ -12,11 +12,11 @@ request.body = JSON.stringify({
    "products": b.products,
     "products": _.map(books, function(p) {
       return {
+          "id":p.id+'_airiti',
           "hasModel":"Page",
           "book_id": p.book_id,
-          "title": p.title,
           "position":p.position,
-          "text":[p.text]
+          "text":p.text
       }
     })
 })

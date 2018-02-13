@@ -1,4 +1,17 @@
-package org.crossasia.collections.adammethew;
+package org.crossasia.collections.reminrebao;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.camel.component.ActiveMQComponent;
+import org.apache.camel.CamelContext;
+import org.apache.camel.Exchange;
+import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.builder.xml.XPathBuilder;
+import org.apache.camel.component.gson.GsonDataFormat;
+import org.apache.camel.component.jms.JmsComponent;
+import org.apache.camel.component.solr.SolrConstants;
+import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.model.dataformat.JsonLibrary;
+import org.crossasia.domain.Products;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.component.solr.SolrConstants;
@@ -26,7 +39,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ConvertJsonToFedora {
+
+
+import javax.jms.ConnectionFactory;
+
+public class JsonToSolrRemieRebao {
 
     private static final String INDEXING_URI = "CamelIndexingUri";
 
@@ -36,9 +53,11 @@ public class ConvertJsonToFedora {
 
         CamelContext context = new DefaultCamelContext();
 
-        final GsonDataFormat gsonDataFormat = new GsonDataFormat();
+        GsonDataFormat gsonDataFormat = new GsonDataFormat();
 
+        gsonDataFormat.setDateFormatPattern("yyyy.mm.dd");
         gsonDataFormat.setUnmarshalType(Products.class);
+
         XPathBuilder xpath = new XPathBuilder("/rdf:RDF/rdf:Description/rdf:type[@rdf:resource='http://fedora.info/definitions/v4/indexing#Indexable']");
         xpath.namespace("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
         context.setTracing(true);
@@ -56,27 +75,30 @@ public class ConvertJsonToFedora {
             @Override
             public void configure() throws Exception {
 
-                /*from("file:C:\\TEMP\\solrFinal5")
-                        .process(Utils.javascript("convertAdamMethewFedora.js"))
-                        .to("file:C:\\TEMP\\solrFinal7");*/
+
+                    /*from("file:D:\\TEMP\\loc_gaz\\pages")
+                            .process(Utils.javascript("convertPages.js"))
+                            .to("file:D:\\TEMP\\loc_gaz\\pages2");*/
 
 
-                from("file:C:\\TEMP\\solrFinal4")
-                                        .process(Utils.javascript("convertAdamMethewFedoraImages.js"))
-                                        .to("file:C:\\TEMP\\fedoraPages");
-
-                /*from("file:data/solr2")
+                from("file:D:\\SOLR-COLLECTIONS\\REM_REB\\articles")
                         .unmarshal(gsonDataFormat)
+                        //.unmarshal().json(JsonLibrary.Gson)
+                        //.marshal().json(JsonLibrary.Gson)
+
                         .setBody().simple("${body.products}")
                         .split(body())
                         .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                         .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                        .to("solr://10.46.3.100:8980/solr/AD");*/
+                        .to("solr://10.46.3.100:8982/solr/RMRB");
             }
         });
 
         context.start();
-        Thread.sleep(10000000);
+        Thread.sleep(100000000);
         context.stop();
     }
 }
+
+
+

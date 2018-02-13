@@ -17,14 +17,14 @@ public class AdamMetthewSplittPages {
             {
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                from("file:C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\fedora2")
+                from("file:C:\\TEMP\\fedoraPages")
                         .split(method(JsonSplitterPages.class))
-                        .to("file:C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\fedora2\\pages?fileName=${header.books_id}");
+                        .to("file:C:\\TEMP\\fedoraPages2?fileName=${header.books_id}");
             }
         });
 
         context.start();
-        Thread.sleep(10000);
+        Thread.sleep(10000000);
         context.stop();
     }
 }

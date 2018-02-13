@@ -7,6 +7,7 @@ import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.component.solr.SolrConstants;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.crossasia.domain.Products;
+import org.crossasia.utils.Utils;
 import org.fcrepo.client.FcrepoClient;
 
 public class AiritiMetadata {
@@ -26,17 +27,17 @@ public class AiritiMetadata {
             @Override
             public void configure() throws Exception
             {
-                /*from("file:data3?noop=true")
-                        .process(Utils.javascript("convertAiritiMetadata.js"))
-                        .to("file:data3/test");*/
+                /*from("file:D:\\TEMP\\airiti\\pages")
+                        .process(Utils.javascript("convertAiriti.js"))
+                        .to("file:D:\\TEMP\\airiti\\pages2");*/
 
-                from("file:data3/test")
+                from("file:D:\\SOLR-COLLECTIONS\\AIRITI\\page")
                         .unmarshal(gsonDataFormat)
                         .setBody().simple("${body.products}")
                         .split(body())
                         .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                         .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                        .to("solr://10.46.3.100:8980/solr/airiti");
+                        .to("solr://10.46.3.100:8982/solr/airiti");
             }
         });
 

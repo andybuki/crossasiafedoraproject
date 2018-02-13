@@ -34,7 +34,7 @@ public class AiritiMetadata {
     private String[] medium;
 
     @Field
-    private String issued;
+    private int date;
 
     @Field
     private String language;
@@ -80,6 +80,9 @@ public class AiritiMetadata {
 
     @Field
     private String source;
+
+    @Field
+    private String collection;
 
     @Field
     private String publication_id;
@@ -156,12 +159,12 @@ public class AiritiMetadata {
         this.medium = medium;
     }
 
-    public String getIssued() {
-        return issued;
+    public int getDate() {
+        return date;
     }
 
-    public void setIssued(String issued) {
-        this.issued = issued;
+    public void setDate(int date) {
+        this.date = date;
     }
 
     public String getLanguage() {
@@ -292,6 +295,14 @@ public class AiritiMetadata {
         this.publication_id = publication_id;
     }
 
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
+
     @Override
     public String toString() {
         return "AiritiMetadata{" +
@@ -304,7 +315,7 @@ public class AiritiMetadata {
                 ", series_title='" + series_title + '\'' +
                 ", creator_transcription=" + Arrays.toString(creator_transcription) +
                 ", medium=" + Arrays.toString(medium) +
-                ", issued='" + issued + '\'' +
+                ", date='" + date + '\'' +
                 ", language='" + language + '\'' +
                 ", keywords=" + Arrays.toString(keywords) +
                 ", series_title_transcription='" + series_title_transcription + '\'' +
@@ -314,6 +325,7 @@ public class AiritiMetadata {
                 ", description='" + description + '\'' +
                 ", mods_genre='" + mods_genre + '\'' +
                 ", identifier_type_ISSN='" + identifier_type_ISSN + '\'' +
+                ", collection='" + collection + '\'' +
                 ", extent='" + extent + '\'' +
                 ", subject_xsi_type='" + subject_xsi_type + '\'' +
                 ", subject='" + subject + '\'' +

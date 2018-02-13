@@ -19,7 +19,7 @@ public class Content {
     private String hasModel;
 
     @Field
-    private int book_id;
+    private String book_id;
 
     @Field
     private int position;
@@ -28,7 +28,18 @@ public class Content {
     private String text;
 
     @Field
+    private String collection;
+
+    @Field
     private String[] chapter_id;
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
 
     public String getId() {
         return id;
@@ -46,14 +57,13 @@ public class Content {
         this.page_id = page_id;
     }
 
-    public int getBook_id() {
+    public String getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(int book_id) {
+    public void setBook_id(String book_id) {
         this.book_id = book_id;
     }
-
 
     public String[] getChapter_id() {
         return chapter_id;
@@ -100,6 +110,7 @@ public class Content {
         sb.append("page_id='").append(page_id).append('\'');
         sb.append(", hasModel='").append("Page").append('\'');
         sb.append(", book_id='").append(book_id).append('\'');
+        sb.append(", collection='").append(collection).append('\'');
         sb.append(", position='").append(position).append('\'');
         sb.append(", text='").append(text).append('\'');
         sb.append(", chapter_id='").append(chapter_id).append('\'');

@@ -20,10 +20,21 @@ public class AdamMatthewsImages {
     private String text;
 
     @Field
-    private int book_id;
+    private String book_id;
+
+    @Field
+    private String collection;
 
     @Field
     private int position;
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
 
     public String getId() {
         return id;
@@ -57,19 +68,19 @@ public class AdamMatthewsImages {
         this.image_file = image_file;
     }
 
-    public String getImage_text() {
+    public String getText() {
         return text;
     }
 
-    public void setImage_text(String text) {
+    public void setText(String text) {
         this.text = text;
     }
 
-    public int getBook_id() {
+    public String getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(int book_id) {
+    public void setBook_id(String book_id) {
         this.book_id = book_id;
     }
 
@@ -93,6 +104,7 @@ public class AdamMatthewsImages {
         sb.append(", image_file='").append(image_file).append('\'');
         sb.append(", position='").append(position).append('\'');
         sb.append(", book_id='").append(book_id).append('\'');
+        sb.append(", collection='").append(collection).append('\'');
 
         sb.append('}');
         return sb.toString();

@@ -32,7 +32,7 @@ request.body = JSON.stringify({
           "dcterms:isPartOf": p.book_id,
           "identifier": p.identifier,
           "schema:position":p.position,
-          "schema:text": p.image_text,
+          "schema:text": p.text,
           "schema:image":p.image_file,
           "dcterms:identifier":p.image_url
     }

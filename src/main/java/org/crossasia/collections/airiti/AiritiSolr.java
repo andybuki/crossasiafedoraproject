@@ -28,7 +28,7 @@ public class AiritiSolr {
             @Override
             public void configure() throws Exception
             {
-                from("file:H:\\airiti\\finalairiti?noop=true")
+                from("file:D:\\SOLR-COLLECTIONS\\AIRITI\\page")
                         .unmarshal(gsonDataFormat)
                         .setBody().simple("${body.products}")
                         .split().body()

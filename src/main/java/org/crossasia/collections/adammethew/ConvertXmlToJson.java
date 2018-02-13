@@ -33,9 +33,10 @@ public class ConvertXmlToJson {
     private String userID = "bypassAdmin";
 
     public static void main(String[] args) throws Exception {
-        /*try {
-            String filePathFolder = "H:\\fedora\\FO China\\FO China\\Data\\json\\";
-            String directoryPath = "H:\\fedora\\FO China\\FO China\\Data\\Default";
+        /*
+        try {
+            String filePathFolder = "H:\\ADAM METTHEW\\Foreign Office Files for China\\JSON\\";
+            String directoryPath = "H:\\ADAM METTHEW\\Foreign Office Files for China\\XML";
             File folder = new File(filePathFolder);
             folder.mkdir();
             String absolutePath = filePathFolder;
@@ -92,22 +93,23 @@ public class ConvertXmlToJson {
             @Override
             public void configure() throws Exception {
 
-                                /*from("file:H:\\fedora\\FO China\\FO China\\Data\\json")
-                                        .process(Utils.javascript("convertAdamMethewSolr.js"))
-                                        .to("file:data/solr");*/
-
-                                  from("file:data/solr2")
+                               /*from("file:D:\\\\TEMP\\\\solrFinalAdam_Mettew_Pages")
+                                        .process(Utils.javascript("convertAdamMethewSolrImages2.js"))
+                                        .to("file:D:\\\\TEMP\\\\solrFinalAdam_Mettew_Pages2");*/
+                                 //from("file:C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\solr3")
+                                  from("file:D:\\SOLR-COLLECTIONS\\ADAM_METHEW\\page")
                                           .unmarshal(gsonDataFormat)
                                           .setBody().simple("${body.products}")
                                           .split(body())
                                           .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                                           .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                                          .to("solr://10.46.3.100:8980/solr/AD");
+                                          //.to("solr://10.46.3.100:8982/solr/AD3")
+                                          .to("solr://10.46.3.100:8982/solr/AMD_FOChina");
             }
         });
 
         context.start();
-        Thread.sleep(10000);
+        Thread.sleep(100000000);
         context.stop();
     }
 }

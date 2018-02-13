@@ -17,12 +17,13 @@ public class BooksFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\fedora\\";
+            String absolutePath = "C:\\TEMP\\solrFinal7\\";
+            String absolutePath2 = "C:\\TEMP\\fedoraFinal\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"books.sh"));
+            out = new BufferedWriter(new FileWriter(absolutePath2+"books.sh"));
             //PrintWriter out = new PrintWriter( "/Users/andreybuchmann/Downloads/camel-to-solr-master/camelsolr/data/filename.txt" );
             String cURLink = "";
 
@@ -31,7 +32,7 @@ public class BooksFedoraConverter {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"books.sh")) {
+                if (fileName.equals(absolutePath2+"books.sh")) {
                     System.out.println("text file");
                 } else {
                     Object obj = parser.parse(new FileReader(file));
@@ -39,10 +40,11 @@ public class BooksFedoraConverter {
 
                     JSONArray booksArray = (JSONArray) object.get("@graph");
                     JSONObject book = (JSONObject) booksArray.get(0);
-                    Long books_id = (Long) book.get("book_id");
+                    String books_id = (String) book.get("identifier");
+                    String book_id_New = books_id.replace("http://www.archivesdirect.amdigital.co.uk/Documents/Details/","").replace("%20","_");
 
                     String name = file.getName();
-                    String newName = books_id  + ".json";
+                    String newName = book_id_New  + ".json";
                     String newPath = absolutePath + "\\" + newName;
                     File file2 = new File(absolutePath+newName);
 
@@ -51,7 +53,7 @@ public class BooksFedoraConverter {
 
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
-                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8081/fcrepo/rest/AD/" + books_id + "book";
+                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8081/fcrepo/rest/AD/" + book_id_New + "book";
 
                     out.write(cURLink + "\r\n");
 

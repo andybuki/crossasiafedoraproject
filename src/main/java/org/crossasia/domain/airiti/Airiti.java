@@ -11,13 +11,48 @@ public class Airiti {
     private String book_id;
 
     @Field
-    private int position_isi;
+    private int position;
 
     @Field
-    private String text_tcsi;
+    private String text;
 
     @Field
-    private String has_model_ssim;
+    private String hasModel;
+
+    @Field
+    private String collection;
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getHasModel() {
+        return hasModel;
+    }
+
+    public void setHasModel(String hasModel) {
+        this.hasModel = hasModel;
+    }
 
     public String getBook_id() {
         return book_id;
@@ -35,29 +70,7 @@ public class Airiti {
         this.id = id;
     }
 
-    public int getPosition_isi() {
-        return position_isi;
-    }
 
-    public void setPosition_isi(int position_isi) {
-        this.position_isi = position_isi;
-    }
-
-    public String getText_tcsi() {
-        return text_tcsi;
-    }
-
-    public void setText_tcsi(String text_tcsi) {
-        this.text_tcsi = text_tcsi;
-    }
-
-    public String getHas_model_ssim() {
-        return has_model_ssim;
-    }
-
-    public void setHas_model_ssim(String has_model_ssim) {
-        this.has_model_ssim = has_model_ssim;
-    }
 
     @Override
     public String toString() {
@@ -65,9 +78,10 @@ public class Airiti {
         StringBuilder sb = new StringBuilder("Content{");
         sb.append("id='").append(id).append('\'');
         sb.append(",  book_id='").append(book_id).append('\'');
-        sb.append(", position_isi='").append(position_isi).append('\'');
-        sb.append(", has_model_ssim='").append(has_model_ssim).append('\'');
-        sb.append(", text_tcsi='").append(text_tcsi).append('\'');
+        sb.append(", position='").append(position).append('\'');
+        sb.append(", hasModel='").append(hasModel).append('\'');
+        sb.append(", collection='").append(collection).append('\'');
+        sb.append(", text='").append(text).append('\'');
         sb.append('}');
         return sb.toString();
     }

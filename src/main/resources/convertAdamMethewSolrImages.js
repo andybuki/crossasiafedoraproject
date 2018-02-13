@@ -10,17 +10,28 @@ var pages = _.filter(b.dataExport.document.images.image, function(page) {
 request.body = JSON.stringify({
     "images": b.dataExport.document.images.image,
     "images": _.map(pages, function(page) {
+        if (page.imageText!=null) {
+            return {
+                "id": page.id,
+                "position": page.id,
+                "hasModel": "Page",
+                //"text": page.imageText.replace(/(\r\n|\n|\r)/gm, " "),
+                "text": page.imageText,
+                "image_file": page.imageFile,
+                "image_url": page.imageUrl,
+                "book_id": page.imageUrl.replace("http://www.archivesdirect.amdigital.co.uk/Documents/Images/", "").split('/')[0]
 
-        return {
-            "id": page.id,
-            "position":page.id,
-            "hasModel":"Page",
-            "image_text":page.imageText.replace(/(\r\n|\n|\r)/gm," "),
-            "image_file":page.imageFile,
-            "image_url":page.imageUrl,
-            "book_id":page.imageUrl.replace("http://www.archivesdirect.amdigital.co.uk/Documents/Images/","").split('/')[0]
+            }
+        }else {
+            return {
+                "id": page.id,
+                "position": page.id,
+                "hasModel": "Page",
+                "image_file": page.imageFile,
+                "image_url": page.imageUrl,
+                "book_id": page.imageUrl.replace("http://www.archivesdirect.amdigital.co.uk/Documents/Images/", "").split('/')[0]
 
+            }
         }
-
     }),
 })

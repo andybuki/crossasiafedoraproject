@@ -22,7 +22,7 @@ public class AdamMatthews {
     private int nodeId;
 
     @Field
-    private int book_id;
+    private String book_id;
 
 
     @Field
@@ -82,6 +82,16 @@ public class AdamMatthews {
     @Field
     private String publication_volume;
 
+    @Field
+    private String collection;
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
 
     public String getId() {
         return id;
@@ -123,11 +133,11 @@ public class AdamMatthews {
         this.nodeId = nodeId;
     }
 
-    public int getBook_id() {
+    public String getBook_id() {
         return book_id;
     }
 
-    public void setBook_id(int book_id) {
+    public void setBook_id(String book_id) {
         this.book_id = book_id;
     }
 
@@ -294,6 +304,7 @@ public class AdamMatthews {
         sb.append(",  language='").append(language).append('\'');
         sb.append(",   nodeId='").append(nodeId).append('\'');
         sb.append(",  book_id='").append(book_id).append('\'');
+        sb.append(",  collection='").append(collection).append('\'');
         sb.append(",  person='").append(person).append('\'');
         sb.append(", identifier='").append(identifier).append('\'');
         sb.append(", spatial='").append(spatial).append('\'');
