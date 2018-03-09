@@ -36,11 +36,21 @@ public class Pages {
     private String author;
 
     @Field
+    private String journal_title;
+
+    @Field
     private String collection;
 
     @Field
     private String [] description;
 
+    public String getJournal_title() {
+        return journal_title;
+    }
+
+    public void setJournal_title(String journal_title) {
+        this.journal_title = journal_title;
+    }
 
     public String getCollection() {
         return collection;
@@ -153,6 +163,7 @@ public class Pages {
         sb.append(", medium='").append(medium).append('\'');
         sb.append(", description='").append(description).append('\'');
         sb.append(", author='").append(author).append('\'');
+        sb.append(", journal_title='").append(journal_title).append('\'');
         sb.append(", language='").append("chi").append('\'');
 
         sb.append('}');

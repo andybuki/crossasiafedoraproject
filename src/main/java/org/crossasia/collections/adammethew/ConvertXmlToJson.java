@@ -97,7 +97,7 @@ public class ConvertXmlToJson {
                                         .process(Utils.javascript("convertAdamMethewSolrImages2.js"))
                                         .to("file:D:\\\\TEMP\\\\solrFinalAdam_Mettew_Pages2");*/
                                  //from("file:C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\solr3")
-                                  from("file:D:\\SOLR-COLLECTIONS\\ADAM_METHEW\\page")
+                                  from("file:D:\\SOLR-COLLECTIONS\\ADAM_METHEW\\book")
                                           .unmarshal(gsonDataFormat)
                                           .setBody().simple("${body.products}")
                                           .split(body())

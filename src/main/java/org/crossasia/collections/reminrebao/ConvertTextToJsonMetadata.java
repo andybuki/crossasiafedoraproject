@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class ConvertTextToJson {
+public class ConvertTextToJsonMetadata {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\REMIN REBAO\\rem\\rem.tar\\REM_REB\\1985-1988\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\FEDORA-COLLECTIONS\\REM_REB\\json2\\rem_1985_1988.json"));
+        File dir = new File("D:\\REMIN REBAO\\rem\\rem.tar\\REM_REB\\2007-2009\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\FEDORA-COLLECTIONS\\REM_REB\\json\\rem_2007_2009_Metadata.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -43,7 +43,7 @@ public class ConvertTextToJson {
                 String everything = sb.toString();
                 String textReplace =  everything.replace("\r\n"," ").replace("\f","");
                 String fileName = file.toString();
-                String fileName1 = fileName.replace("D:\\REMIN REBAO\\rem\\rem.tar\\REM_REB\\1985-1988\\", "");
+                String fileName1 = fileName.replace("D:\\REMIN REBAO\\rem\\rem.tar\\REM_REB\\2007-2009\\", "");
                 String fileName2 = fileName1.replace(".txt", "");
                 String[] parts = fileName2.split("_");
                 String pageNumber = parts[0];
@@ -63,6 +63,7 @@ public class ConvertTextToJson {
                 String d =splitter[3];
                 if (d!="") {
                     date = d.replaceAll("日期：", "");
+                    //date2 = date.replaceAll(".","-");
                     //String [] partsDate = date.split(".");
                     //year = Integer.parseInt(partsDate[2]);
                     wholeDate = d.replaceAll("日期：", "").replace(".","-");
@@ -98,8 +99,6 @@ public class ConvertTextToJson {
                     }
                 }
 
-
-
                 /*list.remove("标题：");
                 list.remove("作者：");
                 list.remove("日期：");
@@ -116,18 +115,11 @@ public class ConvertTextToJson {
                     fullText = fullText.replaceAll("正文：", "");
                 }
 
-                out.println("{" + quote + "id" + quote + ":" + quote + fileName2+"_rmrb" + quote + "," + '\n'
-                        + quote + "title" + quote + ":" + quote + title + quote + "," + '\n'
-                        + quote + "author" + quote + ":" + quote + author + quote + "," + '\n'
-                        + quote + "hasModel" + quote + ":" +   quote +"Article" +  quote + "," + '\n'
+                out.println("{" + quote + "id" + quote + ":" + quote + wholeDate+"_rmrb" + quote + "," + '\n'
+                        + quote + "title" + quote + ":" + quote + "人民日报 = People's Daily" + quote + "," + '\n'
                         + quote + "wholeDate" + quote + ":" +quote + wholeDate +  quote+ "," + '\n'
-                        + quote + "description" + quote + ":" +  "["+ quote +column +  quote + "," + quote +edition_name +  quote +"],"+ '\n'
-                        + quote + "page" + quote + ":"  + edition +  "," + '\n'
-                        + quote + "medium" + quote + ":" +  "["+ quote +"article" +  quote + "," + quote +"electronic" +  quote +"],"+ '\n'
-                        + quote + "language" + quote + ":" +   quote +"chi" +  quote + "," + '\n'
-                        + quote + "text" + quote + ":" + quote + fullText + quote  + '\n'+"},"
+                        + quote + "medium" + quote + ":" +   quote +"newspaper" +  quote +"},"
                 );
-
 
             } finally {
                 br.close();
