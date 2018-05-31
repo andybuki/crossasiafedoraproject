@@ -76,12 +76,12 @@ public class JsonToSolrRemieRebao {
             public void configure() throws Exception {
 
 
-                    /*from("file:D:\\TEMP\\loc_gaz\\pages")
-                            .process(Utils.javascript("convertPages.js"))
-                            .to("file:D:\\TEMP\\loc_gaz\\pages2");*/
+                    from("file:D:\\SOLR-COLLECTIONS\\REM_REB\\articles")
+                            .process(Utils.javascript("convertRMRBSolr.js"))
+                            .to("file:D:\\SOLR-COLLECTIONS\\REM_REB\\articles\\json");
 
 
-                from("file:D:\\SOLR-COLLECTIONS\\REM_REB\\articles")
+                /*from("file:D:\\SOLR-COLLECTIONS\\REM_REB\\articles")
                         .unmarshal(gsonDataFormat)
                         //.unmarshal().json(JsonLibrary.Gson)
                         //.marshal().json(JsonLibrary.Gson)
@@ -90,12 +90,12 @@ public class JsonToSolrRemieRebao {
                         .split(body())
                         .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                         .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                        .to("solr://10.46.3.100:8982/solr/RMRB");
+                        .to("solr://10.46.3.100:8982/solr/RMRB");*/
             }
         });
 
         context.start();
-        Thread.sleep(100000000);
+        Thread.sleep(1000000);
         context.stop();
     }
 }

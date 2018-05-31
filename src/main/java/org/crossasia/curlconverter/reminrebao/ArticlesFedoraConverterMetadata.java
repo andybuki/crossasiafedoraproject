@@ -19,12 +19,12 @@ public class ArticlesFedoraConverterMetadata {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "D:\\FEDORA-COLLECTIONS\\REM_REB\\articles\\";
+            String absolutePath = "D:\\FEDORA-COLLECTIONS\\REM_REB\\metadata\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"\\metadata.sh"));
+            out = new BufferedWriter(new FileWriter(absolutePath+"\\metadata3.sh"));
             //PrintWriter out = new PrintWriter( "/Users/andreybuchmann/Downloads/camel-to-solr-master/camelsolr/data/filename.txt" );
             String cURLink = "";
             String cURLink2 = "";
@@ -34,7 +34,7 @@ public class ArticlesFedoraConverterMetadata {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"\\metadata.sh")) {
+                if (fileName.equals(absolutePath+"\\metadata3.sh")) {
                     System.out.println("text file");
                 } else {
                     Object obj = parser.parse(new FileReader(file));

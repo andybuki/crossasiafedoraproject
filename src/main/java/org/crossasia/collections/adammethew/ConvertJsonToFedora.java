@@ -2,6 +2,7 @@ package org.crossasia.collections.adammethew;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.component.solr.SolrConstants;
+import org.crossasia.splitter.adammetthew.JsonSplitterPages;
 import org.crossasia.utils.Utils;
 import org.json.JSONObject;
 import org.json.XML;
@@ -44,7 +45,7 @@ public class ConvertJsonToFedora {
         context.setTracing(true);
         context.addComponent("activemq", ActiveMQComponent.activeMQComponent("tcp://10.46.3.100:61616"));
         context.getShutdownStrategy().setLogInflightExchangesOnTimeout(true);
-        context.getShutdownStrategy().setTimeout(120000);
+        context.getShutdownStrategy().setTimeout(1200000);
 
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
                 "tcp://localhost:61616");
@@ -61,9 +62,14 @@ public class ConvertJsonToFedora {
                         .to("file:C:\\TEMP\\solrFinal7");*/
 
 
-                from("file:C:\\TEMP\\solrFinal4")
+                /*from("file:D:\\FEDORA-COLLECTIONS\\ADM_METH\\pageNew+")
                                         .process(Utils.javascript("convertAdamMethewFedoraImages.js"))
-                                        .to("file:C:\\TEMP\\fedoraPages");
+                                        .to("file:D:\\FEDORA-COLLECTIONS\\ADM_METH\\pages_fedora");*/
+
+                from("file:D:\\FEDORA-COLLECTIONS\\ADM_METH\\pages_fedora2")
+                        //.delay(10)
+                        .split(method(JsonSplitterPages.class))
+                        .to("file:D:\\FEDORA-COLLECTIONS\\ADM_METH\\pages_fedora_split2?fileName=${header.id}");
 
                 /*from("file:data/solr2")
                         .unmarshal(gsonDataFormat)
@@ -76,7 +82,7 @@ public class ConvertJsonToFedora {
         });
 
         context.start();
-        Thread.sleep(10000000);
+        Thread.sleep(100000000);
         context.stop();
     }
 }

@@ -28,7 +28,7 @@ public class BooksFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "H:\\fedora\\data2\\";
+            String absolutePath = "D:\\RAW-COLLECTIONS\\LocalGazzetter\\json3\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
@@ -50,10 +50,10 @@ public class BooksFedoraConverter {
 
                     JSONArray booksArray = (JSONArray) object.get("@graph");
                     JSONObject book = (JSONObject) booksArray.get(0);
-                    String books_id = (String) book.get("books_id").toString();
+                    String books_id = (String) book.get("book_id").toString();
 
                     String name = file.getName();
-                    String newName = books_id + "book" + ".json";
+                    String newName = books_id  + ".json";
                     String newPath = absolutePath + "\\" + newName;
                     File file2 = new File(absolutePath+newName);
 
@@ -62,7 +62,7 @@ public class BooksFedoraConverter {
 
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
-                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8081/fcrepo/rest/Local_gazetteer/" + books_id + "book";
+                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8085/fcrepo/rest/LocGaz/" + books_id;
                     out.write(cURLink + "\r\n");
 
                     System.out.println(name + " changed to " + newName);

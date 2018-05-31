@@ -18,7 +18,7 @@ public class ReminRebaoSplitterArticle {
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
         gsonDataFormat.setUnmarshalType(Products.class);
 
-        context.getShutdownStrategy().setTimeout(20000);
+        context.getShutdownStrategy().setTimeout(1000000);
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception
@@ -26,22 +26,22 @@ public class ReminRebaoSplitterArticle {
 
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                /*from("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\jsonDone")
+                from("file:D:\\RAW-COLLECTIONS\\REMIN_REBAO\\jsonDone")
                         //.delay(10)
                         .split(method(JsonSplitterArticles.class))
-                        .to("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\articles?fileName=${header.id}");*/
+                        .to("file:D:\\FEDORA-COLLECTIONS\\REM_REB4?fileName=${header.id}");
 
 
-                from("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\json2\\done")
+                /*from("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\json2\\done")
                  .process(Utils.javascript("convertReminRebaoFedoraArticles.js"))
-                        .to("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\jsonDone2");
+                        .to("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\jsonDone2");*/
 
 
             }
         });
 
         context.start();
-        Thread.sleep(10000);
+        Thread.sleep(100000000);
         context.stop();
     }
 }

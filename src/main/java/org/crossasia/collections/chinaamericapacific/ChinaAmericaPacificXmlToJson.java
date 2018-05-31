@@ -1,10 +1,4 @@
-package org.crossasia.collections.adammethew;
-
-import org.apache.camel.Exchange;
-import org.apache.camel.component.solr.SolrConstants;
-import org.crossasia.utils.Utils;
-import org.json.JSONObject;
-import org.json.XML;
+package org.crossasia.collections.chinaamericapacific;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
@@ -15,18 +9,19 @@ import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.crossasia.domain.Products;
-import org.fcrepo.client.FcrepoClient;
-import org.w3c.dom.Document;
+import org.crossasia.utils.Utils;
+import org.json.JSONObject;
+import org.json.XML;
 
 import javax.jms.ConnectionFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ConvertXmlToJson {
+public class ChinaAmericaPacificXmlToJson {
 
     private static final String INDEXING_URI = "CamelIndexingUri";
 
@@ -35,8 +30,8 @@ public class ConvertXmlToJson {
     public static void main(String[] args) throws Exception {
 
         /*try {
-            String filePathFolder = "D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\notdone\\";
-            String directoryPath = "D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\notdone";
+            String filePathFolder = "D:\\RAW-COLLECTIONS\\ChinaAmericaPacific\\JSON\\";
+            String directoryPath = "D:\\RAW-COLLECTIONS\\ChinaAmericaPacific";
             File folder = new File(filePathFolder);
             folder.mkdir();
             String absolutePath = filePathFolder;
@@ -50,7 +45,8 @@ public class ConvertXmlToJson {
                 JSONObject jsonObject = XML.toJSONObject(new String(Files.readAllBytes(Paths.get(filePath))));
                 String fileName = filePath.replace(directoryPath, "").replace(".xml", "");
                 //out = new BufferedWriter(new FileWriter(folder+"\\"+fileName+".json"));
-                String jsonString = jsonObject.toString().replace(",\"name\":\"AD\"", "");
+                String jsonString = jsonObject.toString();
+                //String jsonString = jsonObject.toString().replace(",\"name\":\"CH\"", "");
                 //out.write(jsonString);
 
                 FileWriter fileWriter = new FileWriter(folder + "\\" + fileName + ".json");
@@ -93,9 +89,9 @@ public class ConvertXmlToJson {
             @Override
             public void configure() throws Exception {
 
-                               from("file:D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\JSON3\\notdone")
-                                        .process(Utils.javascript("convertAdamMethewSolr_Meta_Images.js"))
-                                        .to("file:D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\JSON3\\notdone2");
+                               from("file:D:\\RAW-COLLECTIONS\\ChinaAmericaPacific\\pages4")
+                                        .process(Utils.javascript("convertChinaAmericaPacificSolr3.js"))
+                                        .to("file:D:\\RAW-COLLECTIONS\\ChinaAmericaPacific\\pages5");
                                  //from("file:C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\solr3")
                                   /*from("file:D:\\SOLR-COLLECTIONS\\ADAM_METHEW\\JSON2")
                                           .unmarshal(gsonDataFormat)

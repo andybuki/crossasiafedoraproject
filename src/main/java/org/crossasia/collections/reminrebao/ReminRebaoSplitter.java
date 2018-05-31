@@ -19,7 +19,7 @@ public class ReminRebaoSplitter {
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
         gsonDataFormat.setUnmarshalType(Products.class);
 
-        context.getShutdownStrategy().setTimeout(50000);
+        context.getShutdownStrategy().setTimeout(70000);
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception
@@ -27,15 +27,15 @@ public class ReminRebaoSplitter {
 
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                from("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\jsonDone")
+                /*from("file:D:\RAW-COLLECTIONS\REMIN_REBAO\jsonDone")
                         //.delay(10)
                         .split(method(JsonSplitterArticles.class))
-                        .to("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\articles3?fileName=${header.id}");
+                        .to("file:D:\RAW-COLLECTIONS\REMIN_REBAO\split?fileName=${header.id}");*/
 
 
-                /*from("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\json\\example")
-                 .process(Utils.javascript("convertReminRebaoFedoraMetadata.js"))
-                        .to("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\jsonDone");*/
+                from("file:D:\\RAW-COLLECTIONS\\REMIN_REBAO\\json")
+                 .process(Utils.javascript("convertReminRebaoFedoraArticles.js"))
+                        .to("file:D:\\RAW-COLLECTIONS\\REMIN_REBAO\\jsonDone");
 
 
             }

@@ -25,30 +25,30 @@ request.body = JSON.stringify({
     "@graph": b,
     "@graph": _.map(books, function(p) {
       return {
-          "fedora:hasModel": "Book", "@type": "pcdm:Object", "@id": "",
+          "fedora:hasModel": "Book",
+          "@type": "pcdm:Object",
+          "@id": "",
           "id":p.nodeId+"book",
           "book_id": p.book_id,
-
           "identifier": p.identifier,
           "dc:title": p.title,
-
-          "dc:creator": p.author,
+          //"dc:creator": p.author,
           "dc:date": p.date,
-          "dcndl:publicationPlace": p.publication_place,
+          //"dcndl:publicationPlace": p.publication_place,
           "dc:edition": p.edition,
-          "dcterms:rightsHolder": p.source,
-          "dc:description": p.description,
+          //"dcterms:rightsHolder": p.source,
+          //"dc:description": p.description,
           "dcterms:spatial" : p.spatial,
           "schema:Person" : p.person,
           "schema:keywords": p.keywords,
-          "dc:subject": p.subject,
-          "schema:Organization" :  p.organization,
+          //"dc:subject": p.subject,
+          //"schema:Organization" :  p.organization,
           "dc:medium": p.medium,
-          "dcndl:seriesTitle": p.series_title,
-          "dc:language": p.language,
-          "dc:publisher": [p.publisher  + "", "" +  p.publication_name],
-          "dcndl:publicationVolume": p.publication_volume,
-          "dcndl:issue": p.volume_number
+          //"dcndl:seriesTitle": p.series_title,
+          "dc:language": p.language
+          //"dc:publisher": [p.publisher  + "", "" +  p.publication_name],
+          //"dcndl:publicationVolume": p.publication_volume,
+          //"dcndl:issue": p.volume_number
       }
     })
 })

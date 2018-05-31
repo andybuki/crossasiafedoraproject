@@ -8,8 +8,8 @@ import java.util.List;
 public class ConvertTextToJsonMetadata {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\REMIN REBAO\\rem\\rem.tar\\REM_REB\\2007-2009\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\FEDORA-COLLECTIONS\\REM_REB\\json\\rem_2007_2009_Metadata.json"));
+        File dir = new File("D:\\RAW-COLLECTIONS\\REMIN_REBAO\\rem\\rem.tar\\REM_REB\\1946-1950\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\REM_REB\\json\\1946-1950.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -26,7 +26,7 @@ public class ConvertTextToJsonMetadata {
 
 
         for (File file : dir.listFiles()) {
-            String encoding = "GB2312";
+            String encoding = "UTF-8";
             Reader reader = new BufferedReader(new InputStreamReader(
                     new FileInputStream(file), encoding));
             BufferedReader br = new BufferedReader(reader);
@@ -43,7 +43,7 @@ public class ConvertTextToJsonMetadata {
                 String everything = sb.toString();
                 String textReplace =  everything.replace("\r\n"," ").replace("\f","");
                 String fileName = file.toString();
-                String fileName1 = fileName.replace("D:\\REMIN REBAO\\rem\\rem.tar\\REM_REB\\2007-2009\\", "");
+                String fileName1 = fileName.replace("D:\\RAW-COLLECTIONS\\REMIN_REBAO\\rem\\rem.tar\\REM_REB\\1946-1950\\", "");
                 String fileName2 = fileName1.replace(".txt", "");
                 String[] parts = fileName2.split("_");
                 String pageNumber = parts[0];
@@ -117,7 +117,7 @@ public class ConvertTextToJsonMetadata {
 
                 out.println("{" + quote + "id" + quote + ":" + quote + wholeDate+"_rmrb" + quote + "," + '\n'
                         + quote + "title" + quote + ":" + quote + "人民日报 = People's Daily" + quote + "," + '\n'
-                        + quote + "wholeDate" + quote + ":" +quote + wholeDate +  quote+ "," + '\n'
+                        + quote + "wholeDate" + quote + ":" +quote + wholeDate+"T00:00:00Z" +  quote+ "," + '\n'
                         + quote + "medium" + quote + ":" +   quote +"newspaper" +  quote +"},"
                 );
 

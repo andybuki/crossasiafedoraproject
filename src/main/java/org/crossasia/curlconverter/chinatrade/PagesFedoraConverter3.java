@@ -1,4 +1,4 @@
-package org.crossasia.curlconverter.localgazetteer;
+package org.crossasia.curlconverter.chinatrade;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-public class PagesFedoraConverter {
+public class PagesFedoraConverter3 {
 
 
     private Object obj;
@@ -19,21 +19,22 @@ public class PagesFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "C:\\TEMP\\fedora\\files8";
+            String absolutePath = "D:\\RAW-COLLECTIONS\\ChinaTradePolitics\\fedora\\splited_pages\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"\\pages8.sh"));
+            out = new BufferedWriter(new FileWriter("D:\\RAW-COLLECTIONS\\ChinaTradePolitics\\fedora\\pages.sh"));
             //PrintWriter out = new PrintWriter( "/Users/andreybuchmann/Downloads/camel-to-solr-master/camelsolr/data/filename.txt" );
             String cURLink = "";
+            String cURLink2 = "";
 
             for (File file : filesInDir) {
                 i++;
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"\\pages8.sh")) {
+                if (fileName.equals(absolutePath+"\\pages.sh")) {
                     System.out.println("text file");
                 } else {
                     Object obj = parser.parse(new FileReader(file));
@@ -42,15 +43,18 @@ public class PagesFedoraConverter {
 
                     JSONArray booksArray = (JSONArray) object.get("@graph");
                     JSONObject book = (JSONObject) booksArray.get(0);
-                    String book_id = (String) book.get("book_id").toString();
+                    String book_id = (String) book.get("dcterms:isPartOf");
+                    String image_Name = (String) book.get("schema:image");
 
-                    String sections_id = (String) book.get("dc:identifier").toString();
+                    //String sections_id = (String) book.get("dc:identifier").toString();
 
                     String page_id = (String) book.get("id").toString();
 
                     String name = file.getName();
+                    //String newName = book_id+"_"+ page_id +  ".json";
                     String newName = page_id +  ".json";
                     String newPath = absolutePath + "/" + newName;
+                    String position = (String) book.get("schema:position");
 
                     File file2 = new File(absolutePath+"\\"+newName);
 
@@ -60,13 +64,15 @@ public class PagesFedoraConverter {
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
                     //file.renameTo(new File(newPath));
-                    JSONArray chapter_id = (JSONArray) book.get("fedora:hasMember");
-                    String chapter ="";
-                    for (int ch=0; ch<chapter_id.size();ch++) {
-                        chapter = (String) chapter_id.get(ch);
-                        cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8085/fcrepo/rest/LocGaz/" + book_id + "book" + "/" + chapter + "section"+ "/" +page_id;
-                        out.write(cURLink + "\r\n");
-                    }
+                    //JSONArray chapter_id = (JSONArray) book.get("fedora:hasMember");
+                    //String chapter ="";
+                    //for (int ch=0; ch<chapter_id.size();ch++) {
+                        //chapter = (String) chapter_id.get(ch);
+                        //cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8081/fcrepo/rest/Adam_Matthew/" + book_id + "book" + "/" +position;
+                        //cURLink2 = "curl -i -X POST --data-binary" + " @/data1/Foreign_Office_Files_for_China/JPegs/"+book_id+"/" +image_Name +  " -H " + quote + "Content-Type: image/jpeg"  + quote + " -H \"Content-Disposition: attachment; filename="+image_Name + quote +" " + "http://10.46.3.100:8081/fcrepo/rest/Adam_Matthew/" + book_id + "book" + "/" +position+"/file";
+                        //out.write(cURLink + "\r\n");
+                        //out.write(cURLink2 + "\r\n");
+                    //}
 
                     System.out.println(name + " changed to " + newName);
                 }

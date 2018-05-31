@@ -19,12 +19,12 @@ public class PagesFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "C:\\TEMP\\fedoraPages2\\";
+            String absolutePath = "D:\\RAW-COLLECTIONS\\ChinaAmericaPacific\\fedora\\splited_page\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"\\pages.sh"));
+            out = new BufferedWriter(new FileWriter("D:\\RAW-COLLECTIONS\\ChinaAmericaPacific\\fedora\\pages.sh"));
             //PrintWriter out = new PrintWriter( "/Users/andreybuchmann/Downloads/camel-to-solr-master/camelsolr/data/filename.txt" );
             String cURLink = "";
             String cURLink2 = "";
@@ -54,7 +54,7 @@ public class PagesFedoraConverter {
                     //String newName = book_id+"_"+ page_id +  ".json";
                     String newName = page_id +  ".json";
                     String newPath = absolutePath + "/" + newName;
-                    Long position = (Long) book.get("schema:position");
+                    String position = (String) book.get("schema:position");
 
                     File file2 = new File(absolutePath+"\\"+newName);
 
@@ -69,9 +69,9 @@ public class PagesFedoraConverter {
                     //for (int ch=0; ch<chapter_id.size();ch++) {
                         //chapter = (String) chapter_id.get(ch);
                         //cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8081/fcrepo/rest/Adam_Matthew/" + book_id + "book" + "/" +position;
-                        cURLink2 = "curl -i -X POST --data-binary" + " @/data1/Foreign_Office_Files_for_China/JPegs/"+book_id+"/" +image_Name +  " -H " + quote + "Content-Type: image/jpeg"  + quote + " -H \"Content-Disposition: attachment; filename="+image_Name + quote +" " + "http://10.46.3.100:8081/fcrepo/rest/Adam_Matthew/" + book_id + "book" + "/" +position;
+                        //cURLink2 = "curl -i -X POST --data-binary" + " @/data1/Foreign_Office_Files_for_China/JPegs/"+book_id+"/" +image_Name +  " -H " + quote + "Content-Type: image/jpeg"  + quote + " -H \"Content-Disposition: attachment; filename="+image_Name + quote +" " + "http://10.46.3.100:8081/fcrepo/rest/Adam_Matthew/" + book_id + "book" + "/" +position+"/file";
                         //out.write(cURLink + "\r\n");
-                        out.write(cURLink2 + "\r\n");
+                        //out.write(cURLink2 + "\r\n");
                     //}
 
                     System.out.println(name + " changed to " + newName);

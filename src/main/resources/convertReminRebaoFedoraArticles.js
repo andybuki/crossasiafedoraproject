@@ -4,7 +4,7 @@ var moment = require('moment');
 
 var b = JSON.parse(request.getBody(Java.type("java.lang.String").class))
 
-var books = _.filter(b.products, function(p) {
+var books = _.filter(b, function(p) {
     return p;
 });
 
@@ -22,7 +22,7 @@ request.body = JSON.stringify({
 
     },
     "@id": "urn:x-arq:DefaultGraphNode",
-    "@graph": b.products,
+    "@graph": b,
     "@graph": _.map(books, function(p) {
       return {
           "fedora:hasModel": "Article",

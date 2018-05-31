@@ -13,12 +13,13 @@ import java.nio.file.StandardCopyOption;
 
 public class ArticlesFedoraConverter {
 
+
     private Object obj;
 
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "D:\\FEDORA-COLLECTIONS\\REM_REB\\articles\\";
+            String absolutePath = "D:\\FEDORA-COLLECTIONS\\REM_REB\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
@@ -42,13 +43,14 @@ public class ArticlesFedoraConverter {
 
                     JSONArray booksArray = (JSONArray) object.get("@graph");
                     JSONObject book = (JSONObject) booksArray.get(0);
-                    String book_id = (String) book.get("dcterms:isPartOf");
-                    String image_Name = (String) book.get("schema:image");
-
+                    //String book_id = (String) book.get("dcterms:isPartOf");
+                    //String image_Name = (String) book.get("schema:image");
                     //String sections_id = (String) book.get("dc:identifier").toString();
-
                     String page_id = (String) book.get("id").toString();
-
+                    String date = (String) book.get("dcterms:issued");
+                    int year = Integer.parseInt(date.substring(0,4));
+                    String month = date.substring(5,7);
+                    String day = date.substring(8,10);
                     String name = file.getName();
                     //String newName = book_id+"_"+ page_id +  ".json";
                     String newName = page_id +  ".json";
@@ -66,11 +68,11 @@ public class ArticlesFedoraConverter {
                     //JSONArray chapter_id = (JSONArray) book.get("fedora:hasMember");
                     //String chapter ="";
                     //for (int ch=0; ch<chapter_id.size();ch++) {
-                        //chapter = (String) chapter_id.get(ch);
-                        cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8083/fcrepo/rest/Renmin_Ribao/" + book_id + "book" + "/" +position;
-                        //cURLink2 = "curl -i -X POST --data-binary" + " @/data1/Foreign_Office_Files_for_China/JPegs/"+book_id+"/" +image_Name +  " -H " + quote + "Content-Type: image/jpeg"  + quote + " -H \"Content-Disposition: attachment; filename="+image_Name + quote +" " + "http://10.46.3.100:8083/fcrepo/rest/Renmin_Ribao/" + book_id + "book" + "/" +position;
-                        //out.write(cURLink + "\r\n");
-                        out.write(cURLink + "\r\n");
+                    //chapter = (String) chapter_id.get(ch);
+                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8083/fcrepo/rest/RMRB/" + year  + "/" +month + "/"+day+"/"+page_id;
+                    //cURLink2 = "curl -i -X POST --data-binary" + " @/data1/Foreign_Office_Files_for_China/JPegs/"+book_id+"/" +image_Name +  " -H " + quote + "Content-Type: image/jpeg"  + quote + " -H \"Content-Disposition: attachment; filename="+image_Name + quote +" " + "http://10.46.3.100:8083/fcrepo/rest/Renmin_Ribao/" + book_id + "book" + "/" +position;
+                    //out.write(cURLink + "\r\n");
+                    out.write(cURLink + "\r\n");
                     //}
 
                     System.out.println(name + " changed to " + newName);

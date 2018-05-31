@@ -26,14 +26,16 @@ request.body = JSON.stringify({
     "@graph": _.map(books, function(p) {
       return {
           "fedora:hasModel": "Page",
-          "@type": "pcdm:Object", "@id": "",
+          "@type": "pcdm:Object",
+          "@id": "",
           "id":p.id,
           "dcterms:isPartOf": p.book_id,
           "identifier": p.identifier,
           "schema:position":p.position,
-          "schema:text": p.text,
+          //"schema:text": p.text,
           "schema:image":p.image_file,
-          "dcterms:identifier":p.image_url
+          "dcterms:identifier":p.image_url,
+          "dc:language": p.language
     }
     })
 })

@@ -8,8 +8,8 @@ import java.util.List;
 public class ConvertTextToJson {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\REMIN REBAO\\rem\\rem.tar\\REM_REB\\1985-1988\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\FEDORA-COLLECTIONS\\REM_REB\\json2\\rem_1985_1988.json"));
+        File dir = new File("D:\\RAW-COLLECTIONS\\REMIN_REBAO\\rem\\rem.tar\\REM_REB\\new\\2007-2009NEW\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\RAW-COLLECTIONS\\REMIN_REBAO\\json\\2007-2009.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -26,7 +26,7 @@ public class ConvertTextToJson {
 
 
         for (File file : dir.listFiles()) {
-            String encoding = "GB2312";
+            String encoding = "UTF-8";
             Reader reader = new BufferedReader(new InputStreamReader(
                     new FileInputStream(file), encoding));
             BufferedReader br = new BufferedReader(reader);
@@ -43,7 +43,7 @@ public class ConvertTextToJson {
                 String everything = sb.toString();
                 String textReplace =  everything.replace("\r\n"," ").replace("\f","");
                 String fileName = file.toString();
-                String fileName1 = fileName.replace("D:\\REMIN REBAO\\rem\\rem.tar\\REM_REB\\1985-1988\\", "");
+                String fileName1 = fileName.replace("D:\\RAW-COLLECTIONS\\REMIN_REBAO\\rem\\rem.tar\\REM_REB\\new\\2007-2009NEW\\", "");
                 String fileName2 = fileName1.replace(".txt", "");
                 String[] parts = fileName2.split("_");
                 String pageNumber = parts[0];
@@ -120,7 +120,9 @@ public class ConvertTextToJson {
                         + quote + "title" + quote + ":" + quote + title + quote + "," + '\n'
                         + quote + "author" + quote + ":" + quote + author + quote + "," + '\n'
                         + quote + "hasModel" + quote + ":" +   quote +"Article" +  quote + "," + '\n'
-                        + quote + "wholeDate" + quote + ":" +quote + wholeDate +  quote+ "," + '\n'
+                        + quote + "collection" + quote + ":" +   quote +"Renmin Ribao" +  quote + "," + '\n'
+                        + quote + "wholeDate" + quote + ":" +quote + wholeDate+"T00:00:00Z" +  quote+ "," + '\n'
+                        + quote + "date" + quote + ":" +quote + wholeDate.substring(0,4) +  quote+ "," + '\n'
                         + quote + "description" + quote + ":" +  "["+ quote +column +  quote + "," + quote +edition_name +  quote +"],"+ '\n'
                         + quote + "page" + quote + ":"  + edition +  "," + '\n'
                         + quote + "medium" + quote + ":" +  "["+ quote +"article" +  quote + "," + quote +"electronic" +  quote +"],"+ '\n'
