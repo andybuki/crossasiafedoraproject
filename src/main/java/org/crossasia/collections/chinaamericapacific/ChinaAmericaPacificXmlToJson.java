@@ -29,7 +29,7 @@ public class ChinaAmericaPacificXmlToJson {
 
     public static void main(String[] args) throws Exception {
 
-        /*try {
+        try {
             String filePathFolder = "D:\\RAW-COLLECTIONS\\ChinaAmericaPacific\\JSON\\";
             String directoryPath = "D:\\RAW-COLLECTIONS\\ChinaAmericaPacific";
             File folder = new File(filePathFolder);
@@ -65,7 +65,7 @@ public class ChinaAmericaPacificXmlToJson {
         }   catch (IOException e) {
             e.printStackTrace();
 
-        }*/
+        }
 
         CamelContext context = new DefaultCamelContext();
 
@@ -90,7 +90,7 @@ public class ChinaAmericaPacificXmlToJson {
             public void configure() throws Exception {
 
                                from("file:D:\\RAW-COLLECTIONS\\ChinaAmericaPacific\\pages4")
-                                        .process(Utils.javascript("convertChinaAmericaPacificSolr3.js"))
+                                        .process(Utils.javascript("chinaamericapacific/convertChinaAmericaPacificSolr3.js"))
                                         .to("file:D:\\RAW-COLLECTIONS\\ChinaAmericaPacific\\pages5");
                                  //from("file:C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\solr3")
                                   /*from("file:D:\\SOLR-COLLECTIONS\\ADAM_METHEW\\JSON2")

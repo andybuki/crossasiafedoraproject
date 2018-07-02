@@ -1,7 +1,5 @@
 package org.crossasia.collections.adammethew;
 
-import org.apache.camel.Exchange;
-import org.apache.camel.component.solr.SolrConstants;
 import org.crossasia.utils.Utils;
 import org.json.JSONObject;
 import org.json.XML;
@@ -15,12 +13,8 @@ import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.crossasia.domain.Products;
-import org.fcrepo.client.FcrepoClient;
-import org.w3c.dom.Document;
 
 import javax.jms.ConnectionFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -34,7 +28,7 @@ public class ConvertXmlToJson {
 
     public static void main(String[] args) throws Exception {
 
-        /*try {
+        try {
             String filePathFolder = "D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\notdone\\";
             String directoryPath = "D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\notdone";
             File folder = new File(filePathFolder);
@@ -69,7 +63,7 @@ public class ConvertXmlToJson {
         }   catch (IOException e) {
             e.printStackTrace();
 
-        }*/
+        }
 
         CamelContext context = new DefaultCamelContext();
 
@@ -94,8 +88,9 @@ public class ConvertXmlToJson {
             public void configure() throws Exception {
 
                                from("file:D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\JSON3\\notdone")
-                                        .process(Utils.javascript("convertAdamMethewSolr_Meta_Images.js"))
+                                        .process(Utils.javascript("adammetthew/convertAdamMethewSolr_Meta_Images.js"))
                                         .to("file:D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\JSON3\\notdone2");
+
                                  //from("file:C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\solr3")
                                   /*from("file:D:\\SOLR-COLLECTIONS\\ADAM_METHEW\\JSON2")
                                           .unmarshal(gsonDataFormat)
