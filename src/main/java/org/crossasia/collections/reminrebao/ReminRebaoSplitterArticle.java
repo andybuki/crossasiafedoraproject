@@ -26,10 +26,10 @@ public class ReminRebaoSplitterArticle {
 
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                from("file:D:\\RAW-COLLECTIONS\\REMIN_REBAO\\jsonDone")
+                from("file:D:\\FEDORA-COLLECTIONS\\CNKI\\pages")
                         //.delay(10)
                         .split(method(JsonSplitterArticles.class))
-                        .to("file:D:\\FEDORA-COLLECTIONS\\REM_REB4?fileName=${header.id}");
+                        .to("file:D:\\FEDORA-COLLECTIONS\\CNKI\\pages\\splited_pages?fileName=${header.id}");
 
 
                 /*from("file:D:\\FEDORA-COLLECTIONS\\REM_REB\\json2\\done")
@@ -41,7 +41,7 @@ public class ReminRebaoSplitterArticle {
         });
 
         context.start();
-        Thread.sleep(100000000);
+        Thread.sleep(1000000);
         context.stop();
     }
 }

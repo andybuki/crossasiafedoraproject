@@ -17,9 +17,9 @@ public class AdamMetthewSplittPages {
             {
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                from("file:D:\\RAW-COLLECTIONS\\ChinaTradePolitics\\fedora")
+                from("file:D:\\FEDORA-COLLECTIONS\\CNKI\\pages")
                         .split(method(JsonSplitterPages.class))
-                        .to("file:D:\\RAW-COLLECTIONS\\ChinaTradePolitics\\fedora\\splited_pages?fileName=${header.books_id}");
+                        .to("file:D:\\FEDORA-COLLECTIONS\\CNKI\\pages\\splited_pages?fileName=${header.books_id}");
             }
         });
 

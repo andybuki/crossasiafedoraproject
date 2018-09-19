@@ -19,12 +19,12 @@ public class PagesFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "C:\\TEMP\\fedora\\files8";
+            String absolutePath = "D:\\FEDORA-COLLECTIONS\\LOC_GAZ2";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"\\pages8.sh"));
+            out = new BufferedWriter(new FileWriter(absolutePath+"\\pages.sh"));
             //PrintWriter out = new PrintWriter( "/Users/andreybuchmann/Downloads/camel-to-solr-master/camelsolr/data/filename.txt" );
             String cURLink = "";
 
@@ -33,7 +33,7 @@ public class PagesFedoraConverter {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"\\pages8.sh")) {
+                if (fileName.equals(absolutePath+"\\pages.sh")) {
                     System.out.println("text file");
                 } else {
                     Object obj = parser.parse(new FileReader(file));
@@ -60,7 +60,7 @@ public class PagesFedoraConverter {
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
                     //file.renameTo(new File(newPath));
-                    JSONArray chapter_id = (JSONArray) book.get("fedora:hasMember");
+                    JSONArray chapter_id = (JSONArray) book.get("fedora:isMemberOf");
                     String chapter ="";
                     for (int ch=0; ch<chapter_id.size();ch++) {
                         chapter = (String) chapter_id.get(ch);

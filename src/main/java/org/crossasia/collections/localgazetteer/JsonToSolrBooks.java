@@ -73,18 +73,18 @@ public class JsonToSolrBooks {
                 public void configure() throws Exception {
 
 
-                    /*from("file:D:\\TEMP\\loc_gaz\\pages")
+                    from("file:D:\\SOLR-COLLECTIONS\\LOC_GAZ\\batchII\\pages")
                             .process(Utils.javascript("convertPages.js"))
-                            .to("file:D:\\TEMP\\loc_gaz\\pages2");*/
+                            .to("file:D:\\SOLR-COLLECTIONS\\LOC_GAZ\\batchII\\pages2");
 
 
-                    from("file:D:\\SOLR-COLLECTIONS\\LOC_GAZ\\page")
+                    /*from("file:D:\\SOLR-COLLECTIONS\\LOC_GAZ\\page")
                             .unmarshal(gsonDataFormat)
                             .setBody().simple("${body.products}")
                             .split(body())
                             .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                             .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                            .to("solr://10.46.3.100:8982/solr/LocGaz");
+                            .to("solr://10.46.3.100:8982/solr/LocGaz");*/
                 }
             });
 

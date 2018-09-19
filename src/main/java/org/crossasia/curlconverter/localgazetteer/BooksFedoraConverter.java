@@ -28,7 +28,7 @@ public class BooksFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "D:\\RAW-COLLECTIONS\\LocalGazzetter\\json3\\";
+            String absolutePath = "D:\\FEDORA-COLLECTIONS\\LOC_GAZ2\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;

@@ -18,7 +18,7 @@ request.body = JSON.stringify({
           "book_id": p.book_id,
           "position":p.position,
           "collection":p.collection,
-          "text":p.text,
+          //"text":p.text,
           "language":p.language,
           "chapter_id":p.chapter_id.split(",")
       }

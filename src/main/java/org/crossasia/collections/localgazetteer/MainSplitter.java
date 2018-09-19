@@ -20,7 +20,7 @@ public class MainSplitter
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
         gsonDataFormat.setUnmarshalType(Products.class);
 
-        context.getShutdownStrategy().setTimeout(20000);
+        context.getShutdownStrategy().setTimeout(40000);
           context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception
@@ -28,15 +28,15 @@ public class MainSplitter
 
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                /*from("file:D:\\RAW-COLLECTIONS\\LocalGazzetter\\json2")
+                from("file:D:\\SOLR-COLLECTIONS\\LOC_GAZ\\batchII\\sections")
                         //.delay(10)
                         .split(method(JsonSplitterPages.class))
-                        .to("file:D:\\RAW-COLLECTIONS\\LocalGazzetter\\json3?fileName=${header.books_id}");*/
+                        .to("file:D:\\SOLR-COLLECTIONS\\LOC_GAZ\\batchII\\sections2?fileName=${header.books_id}");
 
 
-                from("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json")
+                /*from("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json")
                  .process(Utils.javascript("convertBooksXixiu.js"))
-                        .to("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json2");
+                        .to("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json2");*/
 
 
             }

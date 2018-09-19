@@ -9,9 +9,9 @@ import java.io.*;
 public class ConvertXmlToJsonPage {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\CNDI\\cnki3\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CNDI\\pages2.json"));
-        PrintStream out2 = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CNDI\\no_genetiv.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\CNDI\\cnki2\\CNKI_liz_eBooks\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CNDI\\cnki2\\pages.json"));
+        PrintStream out2 = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CNDI\\cnki2\\no_genetiv.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -37,14 +37,14 @@ public class ConvertXmlToJsonPage {
                     sb.append(System.lineSeparator());
                     line = br.readLine();
                 }
-                String everything = sb.toString().replaceAll(quote+quote+quote,"\"");
+                String everything = sb.toString().replaceAll(quote+quote+quote,"\"").replaceAll("\r\n","").replaceAll("\"","");
                 String fileName = file.toString();
-                String book_id =fileName.replace("D:\\SOLR-COLLECTIONS\\CNDI\\cnki3\\","").replace(".txt","").split("_")[0];
-                int position = Integer.parseInt(fileName.replace("D:\\SOLR-COLLECTIONS\\CNDI\\cnki3\\","").replace(".txt","").split("_")[1]);
+                String book_id =fileName.replace("D:\\SOLR-COLLECTIONS\\CNDI\\cnki2\\CNKI_liz_eBooks\\","").replace(".txt","").split("_")[0];
+                int position = Integer.parseInt(fileName.replace("D:\\SOLR-COLLECTIONS\\CNDI\\cnki2\\CNKI_liz_eBooks\\","").replace(".txt","").split("_")[1]);
                 //if (everything.contains("的") || everything.contains("之")){
-                String id = fileName.replace("D:\\SOLR-COLLECTIONS\\CNDI\\cnki3\\","").replace(".txt","")+"cnki";
+                String id = fileName.replace("D:\\SOLR-COLLECTIONS\\CNDI\\cnki2\\CNKI_liz_eBooks\\","").replace(".txt","")+"cnki";
 
-                    out.println("{" + quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n'
+                    /*out.println("{" + quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n'
                             + quote + "hasModel" + quote + ":" + quote + "Page"  + quote + "," + '\n'
                             + quote + "book_id" + quote + ":" +  quote + book_id +  quote + "," + '\n'
                             + quote + "position" + quote + ":" +  quote + position +  quote + "," + '\n'
@@ -52,7 +52,18 @@ public class ConvertXmlToJsonPage {
                             + quote + "collection" + quote + ":" + quote+  "CNKI_eBooks"  + quote+ "," + '\n'
                             + quote + "text" + quote + ":" + quote+  everything  + quote+ "" + '\n'
                             +"},"
-                    );
+                    );*/
+
+                    out.println("{" + quote + "id" + quote + ":" + quote+ id+ quote + "," +
+                         quote + "fedora:hasModel" + quote + ":" + quote + "Page"  + quote + "," +
+                         quote + "dcterms:isPartOf" + quote + ":" +  quote + book_id +  quote + "," +
+                         quote + "schema:position" + quote + ":" +  quote + position +  quote + "," +
+                         quote + "dc:language" + quote + ":" +  quote + "chi"  + quote +"," +
+                         quote + "@type" + quote + ":" + quote+  "pcdm:Object"  + quote+ "," +
+                         quote + "@id" + quote + ":" + quote+  ""  + quote+ "," +
+                         quote + "schema:text" + quote + ":" + quote+  everything  + quote+ "" + "\n" +
+                        "},"
+                );
 
 
 
