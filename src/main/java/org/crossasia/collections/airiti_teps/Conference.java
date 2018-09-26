@@ -6,11 +6,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ConvertXmlToJsonBook2 {
+public class Conference {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\Airiti_Conference\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\journalsConference.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\Conference\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Conference2.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -149,6 +149,23 @@ public class ConvertXmlToJsonBook2 {
                 String author = (String) docMeta.get("Author").toString();
                 String author_EN = (String) docMeta.get("AuthorEn").toString();
 
+                String pageFrom="";
+                String pageTo="";
+                if (docMeta.get("PageFrom")=="") {
+                    pageFrom="";
+                }else {
+                    pageFrom = docMeta.get("PageFrom").toString();
+                }
+                if (docMeta.get("PageTo")=="") {
+                    pageTo="";
+                }else {
+                    pageTo = docMeta.get("PageTo").toString();
+                }
+
+
+                String page_range = pageFrom+"-"+pageTo;
+
+
                 String authors = author + ";" +author_EN;
                 String [] authors2 = authors.split( ";" );
                 if (authors2.length>0) {
@@ -183,31 +200,32 @@ public class ConvertXmlToJsonBook2 {
                     description_Ch = (String) docMeta.get("AbstractCh").toString().replaceAll("\"","'").replaceAll(quote,"'");
                 }
 
-                String description = description_En+", "+description_Ch;
-                String desc = (String) docMeta.get("Degree");
+                String description = description_En+" !!!! "+description_Ch;
+                //String desc = (String) docMeta.get("Degree");
 
 
-                String advisors_Ch = (String) docMeta.get("AdvisorsCh").toString().replaceAll(quote,"\"");
-                String advisors_En = (String) docMeta.get("AdvisorsEn").toString().replaceAll(quote,"\"");
-                String advisor = "advisor: "+ advisors_Ch+" ("+advisors_En+")";
-                advisor.replaceAll(";",",");
-                String description2 = "degree: "+desc + "; advisor: "+ advisors_Ch.replaceAll(";",",")+" ("+advisors_En.replaceAll(";",",")+")";
-                String college = (String) docMeta.get("college").toString().replaceAll(quote,"\"");
-                String college_c = (String) docMeta.get("college_c").toString().replaceAll(quote,"\"");
-                String department = (String) docMeta.get("department").toString().replaceAll(quote,"\"");
-                String department_c = (String) docMeta.get("department_c").toString().replaceAll(quote,"\"");
-                String description3 = "department: "+department_c +" ("+department+"), "+college_c+" ("+college+")";
+                //String advisors_Ch = (String) docMeta.get("AdvisorsCh").toString().replaceAll(quote,"\"");
+                //String advisors_En = (String) docMeta.get("AdvisorsEn").toString().replaceAll(quote,"\"");
+                //String advisor = "advisor: "+ advisors_Ch+" ("+advisors_En+")";
+                //advisor.replaceAll(";",",");
+                //String description2 = advisors_Ch.replaceAll(";",",")+" ("+advisors_En.replaceAll(";",",")+")";
+                //String college = (String) docMeta.get("college").toString().replaceAll(quote,"\"");
+                //String college_c = (String) docMeta.get("college_c").toString().replaceAll(quote,"\"");
+                //String department = (String) docMeta.get("department").toString().replaceAll(quote,"\"");
+                //String department_c = (String) docMeta.get("department_c").toString().replaceAll(quote,"\"");
+                //String description3 = "department: "+department_c +" ("+department+"), "+college_c+" ("+college+")";
 
 
-                String  descriptions = description_En+";"+description_Ch+";"+";"+description2+";"+";"+description3;
-                descriptions.replaceAll("\"","'").replaceAll(quote,"'");
-                String [] descriptions2 = descriptions.split(";");
-                if (descriptions2.length>0) {
+                //String  descriptions = description_En+";"+description_Ch+";"+";"+description2+";"+";"+description3;
+                //descriptions.replaceAll("\"","'").replaceAll(quote,"'");
+                //String [] descriptions2 = descriptions.split(";");
+
+                /*if (descriptions2.length>0) {
                     sbf4.append( descriptions2 [0]);
                     for (int key=1; key<descriptions2.length; key ++) {
                         sbf4.append("\","+quote).append(descriptions2[key] ).append("");
                     }
-                }
+                }*/
 
                 String record_timestamp = (String) docMeta.get("last_modified");
                 String record = record_timestamp.replaceAll("/","-");
@@ -222,20 +240,21 @@ public class ConvertXmlToJsonBook2 {
                         + quote + "collection" + quote + ":" +   quote +"airiti Conferences papers (會議論文)" +  quote + "," + '\n'
                         + quote + "hasModel" + quote + ":" +   quote +"Article" +  quote + "," + '\n'
                         + quote + "medium" + quote + ":" +   quote +"article" +  quote + "," + '\n'
-                        + quote + "series_title" + quote + ":" +   quote +series_title + " : " + series_title2+ quote + "," + '\n'
-                        + quote + "publication_name" + quote + ":" +   quote +publication_name +  quote + "," + '\n'
-                        + quote + "volume_number" + quote + ":" +   quote +volume_number +  quote + "," + '\n'
+                        + quote + "series-title" + quote + ":" +   quote +series_title + " : " + series_title2+ quote + "," + '\n'
+                        + quote + "publication-name" + quote + ":" +   quote +publication_name +  quote + "," + '\n'
+                        + quote + "volume-number" + quote + ":" +   quote +volume_number +  quote + "," + '\n'
                         + quote + "date" + quote + ":" +quote+years+"-"+monats+"-"+days+ quote+","+'\n'
                         + quote + "title" + quote + ":" +   quote +title +  quote + "," + '\n'
+                        + quote + "page-range" + quote + ":" +   quote +page_range +  quote + "," + '\n'
                         //+ quote + "alternative" + quote + ":" +   quote +alternative +  quote + "," + '\n'
                         + quote + "language" + quote + ":" +   "["+  quote +sbf5.toString().replaceAll( " \" ","" ) +  quote +"]" + "," + '\n'
                         + quote + "extent" + quote + ":" +   quote +extent + "pp"+  quote + "," + '\n'
                         + quote + "DOI_identifier" + quote + ":" +   quote +DOI_identifier +  quote + "," + '\n'
-                        + quote + "electronic_url" + quote + ":" +   quote +electronic_url +  quote + "," + '\n'
+                        + quote + "electronic-url" + quote + ":" +   quote +electronic_url +  quote + "," + '\n'
                         + quote + "author" + quote + ":" +   "["+  quote +sbf2.toString().replaceAll( " \" ","" ) +  quote +"]" + "," + '\n'
                         + quote + "subject" + quote + ":" +   "["+  quote +sbf.toString().replaceAll( " \" ","" ) +  sbf3.toString().replaceAll( " \" ","" ) +  quote +"]" + "," + '\n'
-                        + quote + "description" + quote + ":" +   "["+  quote +sbf4.toString()+quote +"]" + "," + '\n'
-                        + quote + "record_timestamp" + quote + ":" +   quote + timestamp +  quote + "," + '\n'
+                        + quote + "description" + quote + ":" +   "["+  quote +description.replaceAll("[\r\n]+", " ")+quote + "]" +"," + '\n'
+                        + quote + "record_timestamp" + quote + ":" +   quote + timestamp +  quote + "" + '\n'
                         +"},"
                 );
 

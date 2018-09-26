@@ -6,11 +6,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ConvertXmlToJsonBook {
+public class Thesis {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\Airiti_Teps\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\journalsNew.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\Thesis\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Thesis3.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -158,12 +158,12 @@ public class ConvertXmlToJsonBook {
                     }
                 }
 
-                String subject_En = (String) docMeta.get("KeywordsEn").toString().replaceAll("\"","'").replaceAll(quote,"'");
+                String subject_En = (String) docMeta.get("KeywordsEn").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(";","!?!");
                 String subject_Ch ="";
                 if (docMeta.get("KeywordsCh")==null) {
                     subject_Ch ="";
                 } else {
-                    subject_Ch = (String) docMeta.get("KeywordsCh").toString().replaceAll("\"","'").replaceAll(quote,"'");
+                    subject_Ch = (String) docMeta.get("KeywordsCh").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(";","!?!");
                 }
 
                 String subjects = subject_En + ";" +subject_Ch;
@@ -175,12 +175,12 @@ public class ConvertXmlToJsonBook {
                     }
                 }
 
-                String description_En = (String) docMeta.get("AbstractEn").toString().replaceAll("\"","'").replaceAll(quote,"'");
+                String description_En = (String) docMeta.get("AbstractEn").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(";","!???!");
                 String description_Ch ="";
                 if (docMeta.get("AbstractCh")==null) {
                     description_Ch ="";
                 } else {
-                    description_Ch = (String) docMeta.get("AbstractCh").toString().replaceAll("\"","'").replaceAll(quote,"'");
+                    description_Ch = (String) docMeta.get("AbstractCh").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(";","!???!");
                 }
 
                 String description = description_En+", "+description_Ch;
@@ -199,7 +199,7 @@ public class ConvertXmlToJsonBook {
                 String description3 = "department: "+department_c +" ("+department+"), "+college_c+" ("+college+")";
 
 
-                String  descriptions = description_En+";"+description_Ch+";"+";"+description2+";"+";"+description3;
+                String  descriptions =description2+";"+";"+description3+ " ;"+description_En+";"+description_Ch;
                 descriptions.replaceAll("\"","'").replaceAll(quote,"'");
                 String [] descriptions2 = descriptions.split(";");
                 if (descriptions2.length>0) {
@@ -222,20 +222,20 @@ public class ConvertXmlToJsonBook {
                         + quote + "collection" + quote + ":" +   quote +"airiti CETD (碩博士論文)" +  quote + "," + '\n'
                         + quote + "hasModel" + quote + ":" +   quote +"Thesis" +  quote + "," + '\n'
                         + quote + "medium" + quote + ":" +   quote +"thesis" +  quote + "," + '\n'
-                        + quote + "series_title" + quote + ":" +   quote +series_title + " : " + series_title2+ quote + "," + '\n'
-                        + quote + "publication_name" + quote + ":" +   quote +publication_name +  quote + "," + '\n'
-                        + quote + "volume_number" + quote + ":" +   quote +volume_number +  quote + "," + '\n'
+                        + quote + "series-title" + quote + ":" +   quote +(series_title + " : " + series_title2).replaceAll("[\r\n]+", " ")+ quote + "," + '\n'
+                        + quote + "publication-name" + quote + ":" +   quote +publication_name +  quote + "," + '\n'
+                        + quote + "volume-number" + quote + ":" +   quote +volume_number +  quote + "," + '\n'
                         + quote + "date" + quote + ":" +quote+years+"-"+monats+"-"+days+ quote+","+'\n'
-                        + quote + "title" + quote + ":" +   quote +title +  quote + "," + '\n'
+                        + quote + "title" + quote + ":" +   quote +title.replaceAll("[\r\n]+", " ") +  quote + "," + '\n'
                         //+ quote + "alternative" + quote + ":" +   quote +alternative +  quote + "," + '\n'
                         + quote + "language" + quote + ":" +   "["+  quote +sbf5.toString().replaceAll( " \" ","" ) +  quote +"]" + "," + '\n'
-                        + quote + "extent" + quote + ":" +   quote +extent + "pp"+  quote + "," + '\n'
+                        + quote + "physical-extent" + quote + ":" +   quote +extent + "pp"+  quote + "," + '\n'
                         + quote + "DOI_identifier" + quote + ":" +   quote +DOI_identifier +  quote + "," + '\n'
-                        + quote + "electronic_url" + quote + ":" +   quote +electronic_url +  quote + "," + '\n'
-                        + quote + "author" + quote + ":" +   "["+  quote +sbf2.toString().replaceAll( " \" ","" ) +  quote +"]" + "," + '\n'
-                        + quote + "subject" + quote + ":" +   "["+  quote +sbf.toString().replaceAll( " \" ","" ) +  sbf3.toString().replaceAll( " \" ","" ) +  quote +"]" + "," + '\n'
-                        + quote + "description" + quote + ":" +   "["+  quote +sbf4.toString()+quote +"]" + "," + '\n'
-                        + quote + "record_timestamp" + quote + ":" +   quote + timestamp +  quote + "," + '\n'
+                        + quote + "electronic-url" + quote + ":" +   quote +electronic_url +  quote + "," + '\n'
+                        + quote + "author" + quote + ":" +   "["+  quote +sbf2.toString().replaceAll( " \" ","" ).replaceAll("[\r\n]+", " ") +  quote +"]" + "," + '\n'
+                        + quote + "subject" + quote + ":" +   "["+  quote +sbf.toString().replaceAll( " \" ","" ).replaceAll("[\r\n]+", " ") +  sbf3.toString().replaceAll( " \" ","" ).replaceAll("[\r\n]+", " ") +  quote +"]" + "," + '\n'
+                        + quote + "description" + quote + ":" +   "["+  quote +sbf4.toString().replaceAll("[\r\n]+", " ").replaceAll("\\%","")+quote +"]" + "," + '\n'
+                        + quote + "record_timestamp" + quote + ":" +   quote + timestamp +  quote + "" + '\n'
                         +"},"
                 );
 
