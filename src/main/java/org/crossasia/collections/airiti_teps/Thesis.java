@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 public class Thesis {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\Thesis\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Thesis3.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\Data\\Thesis\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\ThesisNEW.json"));
         String bookName = "";
         String page = "";
         String text = "";

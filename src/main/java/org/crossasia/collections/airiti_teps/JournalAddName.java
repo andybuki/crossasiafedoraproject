@@ -15,9 +15,9 @@ public class JournalAddName {
         try {
             String quote = "\u005c\u0022";
             JSONObject jsonObject;
-            String thesis = "D:\\SOLR-COLLECTIONS\\Journals3.json";
-            String thesis_name = "D:\\SOLR-COLLECTIONS\\Journal_Name3.json";
-            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Journal_Result3.json"));
+            String thesis = "D:\\SOLR-COLLECTIONS\\Journal\\JournalsNEW2.json";
+            String thesis_name = "D:\\SOLR-COLLECTIONS\\Journal\\Journal_Name.json";
+            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Journal\\Journal_Result2.json"));
             JSONArray thesisObject = new JSONArray(new JSONTokener(new FileInputStream(thesis)));
             JSONArray thesisNameObject = new JSONArray(new JSONTokener(new FileInputStream(thesis_name)));
 

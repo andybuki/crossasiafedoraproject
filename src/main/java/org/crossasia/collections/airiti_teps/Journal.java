@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 public class Journal {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\Journals\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Journals2.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\Data\\Journals\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\JournalsNEW.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -199,12 +199,12 @@ public class Journal {
                     }
                 }
 
-                String description_En = (String) docMeta.get("AbstractEn").toString().replaceAll("\"","'").replaceAll(quote,"'");
+                String description_En = (String) docMeta.get("AbstractEn").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(quote,"\"");
                 String description_Ch ="";
                 if (docMeta.get("AbstractCh")==null) {
                     description_Ch ="";
                 } else {
-                    description_Ch = (String) docMeta.get("AbstractCh").toString().replaceAll("\"","'").replaceAll(quote,"'");
+                    description_Ch = (String) docMeta.get("AbstractCh").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(quote,"\"");
                 }
 
                 String description = description_En+" !!!! "+description_Ch;
@@ -260,7 +260,7 @@ public class Journal {
                         + quote + "electronic-url" + quote + ":" +   quote +electronic_url +  quote + "," + '\n'
                         + quote + "author" + quote + ":" +   "["+  quote +sbf2.toString().replaceAll( " \" ","" ) +  quote +"]" + "," + '\n'
                         + quote + "subject" + quote + ":" +   "["+  quote +sbf.toString().replaceAll( " \" ","" ).replaceAll("[\r\n]+", " ") +  sbf3.toString().replaceAll( " \" ","" ).replaceAll("[\r\n]+", " ") +  quote +"]" + "," + '\n'
-                        + quote + "description" + quote + ":" +   "["+  quote +description.replaceAll("[\r\n]+", " ")+quote + "]" +"," + '\n'
+                        + quote + "description" + quote + ":" +   "["+  quote +description.replaceAll("[\r\n]+", " ").replaceAll(quote,"\"")+quote + "]" +"," + '\n'
                         + quote + "record_timestamp" + quote + ":" +   quote + timestamp +  quote + "" + '\n'
                         +"},"
                 );

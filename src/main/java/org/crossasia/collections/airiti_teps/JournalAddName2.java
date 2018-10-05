@@ -3,29 +3,29 @@ package org.crossasia.collections.airiti_teps;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.json.XML;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 
-public class ThesisAddName {
+public class JournalAddName2 {
 
     public static void main(String[] args) {
         try {
             String quote = "\u005c\u0022";
             JSONObject jsonObject;
-            String thesis = "D:\\SOLR-COLLECTIONS\\Thesis\\ThesisNEW.json";
-            String thesis_name = "D:\\SOLR-COLLECTIONS\\Thesis\\Thesis_Name.json";
-            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Thesis\\Thesis_Result.json"));
+            String thesis = "D:\\SOLR-COLLECTIONS\\Journal\\Journal_Result.json";
+            //String thesis_name = "D:\\SOLR-COLLECTIONS\\Journal\\Journal_Name.json";
+            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Journal\\Journal_Result2.json"));
             JSONArray thesisObject = new JSONArray(new JSONTokener(new FileInputStream(thesis)));
-            JSONArray thesisNameObject = new JSONArray(new JSONTokener(new FileInputStream(thesis_name)));
+            //JSONArray thesisNameObject = new JSONArray(new JSONTokener(new FileInputStream(thesis_name)));
 
             String id="";
             String name="";
             String title="";
             String id_name="";
-            String series_title ="";
+            String journal_title ="";
             String publication_name ="";
             String volume_number="";
             String date ="";
@@ -38,19 +38,21 @@ public class ThesisAddName {
             String subject ="";
             String description ="";
             String record_timestamp ="";
-
+            String page_range="";
+            String DOI_identifier ="";
 
             for (int i=0; i<thesisObject.length(); i++) {
                 JSONObject numerObj = (JSONObject) thesisObject.get(i);
                 id = (String) numerObj.get("id").toString();
                 title = (String) numerObj.get("title").toString();
-                series_title =(String) numerObj.get("series-title").toString();
+                journal_title =(String) numerObj.get("journal-title").toString();
                 publication_name=(String) numerObj.get("publication-name").toString();
                 volume_number=(String) numerObj.get("volume-number").toString();
                 date =(String) numerObj.get("date").toString();
                 language =(String) numerObj.get("language").toString();
+                page_range =(String) numerObj.get("page-range").toString();
                 String [] languages = language.split( ";" );
-                String DOI_identifier ="";
+
                 StringBuffer sbf = new StringBuffer();
                 StringBuffer sbf2 = new StringBuffer();
                 StringBuffer sbf3 = new StringBuffer();
@@ -65,12 +67,12 @@ public class ThesisAddName {
                     }
                 }
 
-                extent =(String) numerObj.get("physical-extent").toString();
+                extent =(String) numerObj.get("extent").toString();
                 //DOI_identifier = (String) numerObj.get("DOI_identifier").toString();
                 if (numerObj.get("DOI_identifier").toString()!=""){
                     DOI_identifier =(String) numerObj.get("DOI_identifier").toString();
                 } else {
-                    DOI_identifier ="";
+                    DOI_identifier ="".toString();
                 }
 
                 electronic_url =(String) numerObj.get("electronic-url").toString();
@@ -105,58 +107,29 @@ public class ThesisAddName {
 
                 record_timestamp =(String) numerObj.get("record_timestamp").toString();
 
-                for (int j=0; j<thesisNameObject.length();j++) {
-                    JSONObject numerObjName = (JSONObject) thesisNameObject.get(j);
-                    id_name = (String) numerObjName.get("id").toString();
-                    name = (String) numerObjName.get("name").toString();
 
-
-                    if (id.equals(id_name)){
                         out.println("{" + quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n'
-                                + quote + "collection" + quote + ":" +   quote +"airiti CETD (碩博士論文)" +  quote + "," + '\n'
-                                + quote + "hasModel" + quote + ":" +   quote +"Thesis" +  quote + "," + '\n'
-                                + quote + "medium" + quote + ":" +   quote +"thesis" +  quote + "," + '\n'
-                                + quote + "series-title" + quote + ":" +   quote +series_title + quote + "," + '\n'
+                                + quote + "collection" + quote + ":" +   quote +"airiti TEPS (臺灣電子期刊)" +  quote + "," + '\n'
+                                + quote + "hasModel" + quote + ":" +   quote +"Article" +  quote + "," + '\n'
+                                + quote + "medium" + quote + ":" +   quote +"article" +  quote + "," + '\n'
+                                + quote + "journal-title" + quote + ":" +   quote +journal_title + quote + "," + '\n'
                                 + quote + "publication-name" + quote + ":" +   quote +publication_name +  quote + "," + '\n'
                                 + quote + "volume-number" + quote + ":" +   quote +volume_number +  quote + "," + '\n'
                                 + quote + "date" + quote + ":" +quote+date+ quote+","+'\n'
                                 + quote + "title" + quote + ":" +   quote +title+" : "+ name +  quote + "," + '\n'
                                 + quote + "language" + quote + ":" +    sbf5.toString().replaceAll( " \" ","" )  + "," + '\n'
-                                + quote + "physical-extent" + quote + ":" +   quote +extent +   quote + "," + '\n'
+                                + quote + "page-range" + quote + ":" +   quote +page_range +  quote + "," + '\n'
+                                + quote + "extent" + quote + ":" +   quote +extent +   quote + "," + '\n'
                                 + quote + "DOI_identifier" + quote + ":" +   quote +DOI_identifier +  quote + "," + '\n'
                                 + quote + "electronic-url" + quote + ":" +   quote +electronic_url +  quote + "," + '\n'
                                 + quote + "author" + quote + ":" +   sbf2.toString().replaceAll( " \" ","" )  + "," + '\n'
                                 + quote + "subject" + quote + ":" +    sbf.toString().replaceAll( " \" ","" ) + "," + '\n'
-                                + quote + "description" + quote + ":" +    sbf4.toString().replaceAll( " \" ","" ).replaceAll("[\r\n]+", " ")+ "," + '\n'
+                                + quote + "description" + quote + ":" +    sbf4.toString().replaceAll( " \" ","" ).replaceAll("[\r\n]+", " ").replaceAll(quote+","+quote,"")+ "," + '\n'
                                 + quote + "record_timestamp" + quote + ":" +   quote + record_timestamp +  quote + "" + '\n'
                                 +"},"
                         );
-                    }else {
-                        System.out.println("NO");
-
-                        /*out.println("{" + quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n'
-                                + quote + "collection" + quote + ":" +   quote +"airiti CETD (碩博士論文)" +  quote + "," + '\n'
-                                + quote + "hasModel" + quote + ":" +   quote +"Thesis" +  quote + "," + '\n'
-                                + quote + "medium" + quote + ":" +   quote +"thesis" +  quote + "," + '\n'
-                                + quote + "series-title" + quote + ":" +   quote +series_title + quote + "," + '\n'
-                                + quote + "publication-name" + quote + ":" +   quote +publication_name +  quote + "," + '\n'
-                                + quote + "volume-number" + quote + ":" +   quote +volume_number +  quote + "," + '\n'
-                                + quote + "date" + quote + ":" +quote+date+ quote+","+'\n'
-                                + quote + "title" + quote + ":" +   quote +title+   quote + "," + '\n'
-                                + quote + "language" + quote + ":"       +sbf5.toString().replaceAll( " \" ","" )     + "," + '\n'
-                                + quote + "physical-extent" + quote + ":" +   quote +extent +   quote + "," + '\n'
-                                + quote + "DOI_identifier" + quote + ":" +   quote +DOI_identifier +  quote + "," + '\n'
-                                + quote + "electronic-url" + quote + ":" +   quote +electronic_url +  quote + "," + '\n'
-                                + quote + "author" + quote + ":" +   sbf2.toString().replaceAll( " \" ","" )  + "," + '\n'
-                                + quote + "subject" + quote + ":" +    sbf.toString().replaceAll( " \" ","" ) + "," + '\n'
-                                + quote + "description" + quote + ":" +    sbf4.toString().replaceAll( " \" ","" )+ "," + '\n'
-                                + quote + "record_timestamp" + quote + ":" +   quote + record_timestamp +  quote + "" + '\n'
-                                +"},"
-                        );*/
-                    }
 
                 }
-            }
 
 
         }catch (IOException e) {
