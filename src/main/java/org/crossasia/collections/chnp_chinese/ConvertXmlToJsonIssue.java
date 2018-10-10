@@ -82,22 +82,42 @@ public class ConvertXmlToJsonIssue {
                     date = (String) da.get("searchableDateStart").toString();
                 }
 
+                String code = "";
+                if (metadata.has("mcode")) {
+                    code = (String) metadata.get("mcode").toString();
+                }
+                String id="";
+                if (metadata.has("newspaperID")) {
+                    id = (String) metadata.get("newspaperID").toString();
+                }
+                String assetID="";
+                if (metadata.has("assetID")) {
+                    assetID = (String) metadata.get("assetID").toString();
+                }
+
+                String dviCollectionID="";
+                if (metadata.has("dviCollectionID")) {
+                    dviCollectionID = (String) metadata.get("dviCollectionID").toString();
+                }
+                String PSMID ="";
+                if (metadata.has("PSMID")) {
+                    PSMID = (String) metadata.get("PSMID").toString();
+                }
+
                 out.println("{" + quote + "language" + quote + ":" + quote + language + quote + "," + '\n'
                         + quote + "libraryName" + quote + ":" + quote + libraryName + quote + "," + '\n'
                         + quote + "libraryLocation" + quote + ":" + quote + libraryLocation + quote + "," + '\n'
                         + quote + "publicationVolume" + quote + ":" + quote + publicationVolume + quote + "," + '\n'
                         + quote + "issue" + quote + ":" + quote + issue + quote + "," + '\n'
+                        + quote + "code" + quote + ":" + quote + code + quote + "," + '\n'
+                        + quote + "assetID" + quote + ":" + quote + assetID + quote + "," + '\n'
+                        + quote + "dviCollectionID" + quote + ":" + quote + dviCollectionID + quote + "," + '\n'
+                        + quote + "PSMID" + quote + ":" + quote + PSMID + quote + "," + '\n'
+                        + quote + "id" + quote + ":" + quote + id + quote + "," + '\n'
                         + quote + "date_original" + quote + ":" + quote + date_original + quote + "," + '\n'
                         + quote + "date" + quote + ":" + quote + date + quote + "" + '\n'
                         + "},"
                 );
-
-
-
-
-
-
-
 
 
             }catch(JSONException e){

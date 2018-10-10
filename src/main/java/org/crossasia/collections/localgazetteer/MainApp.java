@@ -41,13 +41,7 @@ public class MainApp {
         FcrepoClient client = FcrepoClient.client().build();
         URI uri = URI.create("http://10.46.3.100:8080/fcrepo/rest/book4");
 
-        File turtleFile =new File ("C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data2\\test.ttl") ;
-        try (FcrepoResponse response = new PostBuilder(uri, client)
-                .body(turtleFile, "text/turtle")
-                .perform()) {
-            URI location = response.getLocation();
-            //logger.debug("Container creation status and location: {}, {}", response.getStatusCode(), location);
-        }
+
         
 
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
@@ -80,9 +74,9 @@ public class MainApp {
                         .split(body())
                         .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
                         .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
-                        .to("solr://10.46.3.100:8980/solr/loc_gaz");
+                        .to("solr://10.46.3.100:8980/solr/loc_gaz");*/
 
-                from("file:data2?noop=true")
+                from("file:data?noop=true")
                 .split(new JsonPathExpression("$.@context")).process(new Processor() {
                     public void process(Exchange exchange) throws Exception {
 
@@ -90,9 +84,9 @@ public class MainApp {
                         System.out.println(s);
                     }
                 })
-                .to("jms:queue:activemq/queue");*/
+                .to("jms:queue:activemq/queue");
 
-                from("file:data2")
+                /*from("file:data2")
 
                         /*.setHeader(INDEXING_URI).simple("${header.CamelFcrepoUri}")
                         .setHeader(Exchange.HTTP_METHOD, constant("POST"))
@@ -102,7 +96,7 @@ public class MainApp {
                         .shutdownRunningTask(ShutdownRunningTask.CompleteAllTasks)
                         .transacted()
                         .delay(1000)
-                        .to("fcrepo:10.46.3.100:8080/fcrepo/rest/test");*/
+                        .to("fcrepo:10.46.3.100:8080/fcrepo/rest/test");
 
                         .setHeader(Exchange.HTTP_METHOD, constant("POST"))
                         .setHeader(Exchange.CONTENT_TYPE, constant("application/rdf+xml"))
@@ -110,7 +104,7 @@ public class MainApp {
                         //.setHeader("Slug", constant("book"))
 
                         .delay(10000)
-                        .to("fcrepo:10.46.3.100:8080/fcrepo/rest/book");
+                        .to("fcrepo:10.46.3.100:8080/fcrepo/rest/book");*/
 
             }
         });

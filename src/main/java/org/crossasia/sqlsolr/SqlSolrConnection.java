@@ -6,7 +6,7 @@ import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.jms.JmsComponent;
 import org.crossasia.domain.Book;
-import org.crossasia.mapper.BookMapper;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.apache.camel.component.jms.JmsComponent;
