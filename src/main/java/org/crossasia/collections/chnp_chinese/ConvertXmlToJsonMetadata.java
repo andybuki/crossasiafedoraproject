@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 public class ConvertXmlToJsonMetadata {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadata2\\");
+        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadata\\");
         PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadata2.json"));
         String bookName = "";
         String page = "";
@@ -50,15 +50,21 @@ public class ConvertXmlToJsonMetadata {
                 String id ="";
                 String language ="";
                 String country ="";
-                JSONArray variantTitles = (JSONArray) dataExport.get("VariantTitles");
-                //if ( ((JSONObject) dataExport.get("VariantTitles")).length()>=2) {
+                String format ="";
+                String format2 ="";
+                Object art = dataExport.get("VariantTitles");
+                if (art instanceof JSONArray) {
+                    JSONArray variantTitles = (JSONArray) dataExport.get("VariantTitles");
+                    //if ( ((JSONObject) dataExport.get("VariantTitles")).length()>=2) {
                     System.out.println("ok");
                     for (int k=0; k<variantTitles.length(); k++) {
                         JSONObject variantTitles2 = (JSONObject) variantTitles.get( k );
                         title = (String) variantTitles2.get("Title").toString();
                         id = (String) variantTitles2.get("NewspaperID").toString();
+                        format = (String) variantTitles2.get("Frequency").toString();
+                        format2 = (String) variantTitles2.get("Format").toString();
                         language = (String) variantTitles2.get("Language").toString();
-
+                        language = (String) variantTitles2.get("Language").toString();
                         if (variantTitles2.has("City")){
                             city = (String) variantTitles2.get("City").toString();
                         } else {
@@ -67,20 +73,22 @@ public class ConvertXmlToJsonMetadata {
                         country = (String) variantTitles2.get("Country").toString();
 
                         out.println("{" + quote + "journal-title" + quote + ":" + quote+ journal_title + quote + "," + '\n'
-                                + quote + "code" + quote + ":" +   quote +code +  quote + "," + '\n'
-                                + quote + "id" + quote + ":" +   quote +id +  quote + "," + '\n'
+                                + quote + "hasModel" + quote + ":" +   quote +"Journal" +  quote + "," + '\n'
+                                + quote + "id" + quote + ":" +   quote +code +  quote + "," + '\n'
                                 + quote + "title" + quote + ":" +   quote +title +  quote + "," + '\n'
                                 + quote + "series-title" + quote + ":" +   quote +"Gale - China from Empire to Republic: Missionary, Sinology and Literary Periodicals, 1817-1949" +  quote + "," + '\n'
                                 + quote + "language" + quote + ":" +   quote +language +  quote + "," + '\n'
-                                + quote + "city" + quote + ":" +   quote +city +  quote + "," + '\n'
-                                + quote + "country" + quote + ":" +   quote +country +  quote + "" + '\n'
+                                + quote + "format" + quote + ":" +   quote +format+", "+format2 +  quote + "," + '\n'
+                                + quote + "publication-place" + quote + ":" +   quote +city+", " + country +  quote + "" + '\n'
                                 +"},"
                         );
-                   // }
-                //} else {
-
-                     /*title = (String) variantTitles.get("Title").toString();
+                    }
+                } else {
+                    JSONObject variantTitles = (JSONObject) dataExport.get("VariantTitles");
+                     title = (String) variantTitles.get("Title").toString();
                      id = (String) variantTitles.get("NewspaperID").toString();
+                    format = (String) variantTitles.get("Frequency").toString();
+                    format2 = (String) variantTitles.get("Format").toString();
                      language = (String) variantTitles.get("Language").toString();
                      city="";
                     if (variantTitles.has("City")){
@@ -88,19 +96,19 @@ public class ConvertXmlToJsonMetadata {
                     } else {
                         city="";
                     }
-
                      country = (String) variantTitles.get("Country").toString();
 
                     out.println("{" + quote + "journal-title" + quote + ":" + quote+ journal_title + quote + "," + '\n'
-                            + quote + "code" + quote + ":" +   quote +code +  quote + "," + '\n'
-                            + quote + "id" + quote + ":" +   quote +id +  quote + "," + '\n'
+
+                            + quote + "hasModel" + quote + ":" +   quote +"Journal" +  quote + "," + '\n'
+                            + quote + "id" + quote + ":" +   quote +code +  quote + "," + '\n'
                             + quote + "title" + quote + ":" +   quote +title +  quote + "," + '\n'
                             + quote + "series-title" + quote + ":" +   quote +"Gale - China from Empire to Republic: Missionary, Sinology and Literary Periodicals, 1817-1949" +  quote + "," + '\n'
                             + quote + "language" + quote + ":" +   quote +language +  quote + "," + '\n'
-                            + quote + "city" + quote + ":" +   quote +city +  quote + "," + '\n'
-                            + quote + "country" + quote + ":" +   quote +country +  quote + "" + '\n'
+                            + quote + "format" + quote + ":" +   quote +format+", "+format2 +  quote + "," + '\n'
+                            + quote + "publication-place" + quote + ":" +   quote +city+", " + country +  quote + "" + '\n'
                             +"},"
-                    );*/
+                    );
 
                 }
 

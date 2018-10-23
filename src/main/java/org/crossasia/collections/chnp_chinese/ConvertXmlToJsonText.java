@@ -12,7 +12,7 @@ public class ConvertXmlToJsonText {
     public static void main( String[] args ) throws Exception {
 
         File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\text\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\text3.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\textResult2.json"));
 
 
         String quote = "\u005c\u0022";
@@ -45,16 +45,21 @@ public class ConvertXmlToJsonText {
                 JSONArray article = (JSONArray) articles.get("artInfo");
                 String text = "";
                 String link = "";
+                String id ="";
                 for (int ar=0; ar<article.length(); ar++) {
                     JSONObject artikul = (JSONObject) article.get(ar);
                     if (artikul.has("ProductLink")) {
                         link = (String) artikul.get("ProductLink");
                     }
+                    if (artikul.has("id")) {
+                        id = (String) artikul.get("id");
+                    }
                     if (artikul.has("ocrText")) {
-                        text = (String) artikul.get("ocrText").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(quote,"\"");
+                        text = (String) artikul.get("ocrText").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(quote,"\"").replaceAll("[\r\n]+", " ");
                     }
                     System.out.println(text);
                     out.println("{"
+                            + quote + "id" + quote + ":" + quote + id + quote + "," + '\n'
                             + quote + "link" + quote + ":" + quote + link + quote + "," + '\n'
                             + quote + "text" + quote + ":" + quote + text + quote + "" + '\n'
                             + "},"

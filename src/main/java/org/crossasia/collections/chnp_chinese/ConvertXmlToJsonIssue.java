@@ -12,7 +12,7 @@ public class ConvertXmlToJsonIssue {
     public static void main( String[] args ) throws Exception {
 
         File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue2.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -105,15 +105,14 @@ public class ConvertXmlToJsonIssue {
                 }
 
                 out.println("{" + quote + "language" + quote + ":" + quote + language + quote + "," + '\n'
-                        + quote + "libraryName" + quote + ":" + quote + libraryName + quote + "," + '\n'
-                        + quote + "libraryLocation" + quote + ":" + quote + libraryLocation + quote + "," + '\n'
+                        + quote + "id" + quote + ":" + quote + id+"_"+assetID + quote + "," + '\n'
+                        + quote + "description" + quote + ":" + quote + "Source library: "+libraryName+ " ("+libraryLocation+")"+ quote + "," + '\n'
                         + quote + "publicationVolume" + quote + ":" + quote + publicationVolume + quote + "," + '\n'
-                        + quote + "issue" + quote + ":" + quote + issue + quote + "," + '\n'
-                        + quote + "code" + quote + ":" + quote + code + quote + "," + '\n'
-                        + quote + "assetID" + quote + ":" + quote + assetID + quote + "," + '\n'
+                        + quote + "volume-number" + quote + ":" + quote + issue + quote + "," + '\n'
+                        + quote + "hasModel" + quote + ":" +   quote +"Journal" +  quote + "," + '\n'
+                        + quote + "url" + quote + ":" + quote + "http://gdc.galegroup.com/gdc/artemis/atp/AboutThisPublicationPortletWin?p=CFER&mode=view&action=e&mCode="+code+"&prodId=CFER&windowstate=normal&userGroupName=sbbpk" + quote + "," + '\n'
                         + quote + "dviCollectionID" + quote + ":" + quote + dviCollectionID + quote + "," + '\n'
                         + quote + "PSMID" + quote + ":" + quote + PSMID + quote + "," + '\n'
-                        + quote + "id" + quote + ":" + quote + id + quote + "," + '\n'
                         + quote + "date_original" + quote + ":" + quote + date_original + quote + "," + '\n'
                         + quote + "date" + quote + ":" + quote + date + quote + "" + '\n'
                         + "},"

@@ -15,9 +15,9 @@ public class JoinJson {
         try {
             String quote = "\u005c\u0022";
             JSONObject jsonObject;
-            String metadata = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadata.json";
-            String china = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\china.json";
-            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\meta_china.json"));
+            String metadata = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadata2.json";
+            String china = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\china2.json";
+            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\meta_china2.json"));
             JSONArray metadataObject = new JSONArray(new JSONTokener(new FileInputStream(metadata)));
             JSONArray chinaObject = new JSONArray(new JSONTokener(new FileInputStream(china)));
 
@@ -26,8 +26,8 @@ public class JoinJson {
             String code="";
             String title="";
             String language ="";
-            String city ="";
-            String country="";
+            String format ="";
+            String publication_place="";
             String PublicationTitle ="";
             String IssueDate ="";
             String XMLDriveName ="";
@@ -42,12 +42,11 @@ public class JoinJson {
             for (int i=0; i<metadataObject.length(); i++) {
                 JSONObject numerObj = (JSONObject) metadataObject.get(i);
                 id = (String) numerObj.get("id").toString();
-                code = (String) numerObj.get("code").toString();
                 title = (String) numerObj.get("title").toString();
                 journal_title =(String) numerObj.get("journal-title").toString();
                 language =(String) numerObj.get("language").toString();
-                city=(String) numerObj.get("city").toString();
-                country=(String) numerObj.get("country").toString();
+                format=(String) numerObj.get("format").toString();
+                publication_place=(String) numerObj.get("publication-place").toString();
 
                 for (int j=0; j<chinaObject.length();j++) {
                     JSONObject numerObjName = (JSONObject) chinaObject.get(j);
@@ -65,10 +64,9 @@ public class JoinJson {
                                 + quote + "title" + quote + ":" +   quote +title+  quote + "," + '\n'
                                 + quote + "hasModel" + quote + ":" +   quote +"Journal" +  quote + "," + '\n'
                                 + quote + "journal-title" + quote + ":" +   quote +journal_title + quote + "," + '\n'
-                                + quote + "code" + quote + ":" +   quote +code + quote+"," + '\n'
                                 + quote + "language" + quote + ":" +   quote +language+ quote+  "," + '\n'
-                                + quote + "city" + quote + ":" +   quote +city+ quote+  "," + '\n'
-                                + quote + "country" + quote + ":" +   quote +country +quote+ "," + '\n'
+                                + quote + "format" + quote + ":" +   quote +format+ quote+  "," + '\n'
+                                + quote + "publication-place" + quote + ":" +   quote +publication_place +quote+ "," + '\n'
                                 + quote + "series-title" + quote + ":" +   quote +"Gale - China from Empire to Republic: Missionary, Sinology and Literary Periodicals, 1817-1949" +  quote + "," + '\n'
                                 + quote + "issue-date" + quote + ":" +   quote +IssueDate +  quote + "," + '\n'
                                 + quote + "xml-location" + quote + ":" +   quote +XMLLocation +  quote + "," + '\n'
@@ -81,13 +79,9 @@ public class JoinJson {
                         );
                     }else {
                         System.out.println("NO");
-
-
                     }
-
                 }
             }
-
 
         }catch (IOException e) {
             e.printStackTrace();

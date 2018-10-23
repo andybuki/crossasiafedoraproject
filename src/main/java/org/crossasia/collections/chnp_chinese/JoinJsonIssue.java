@@ -16,9 +16,9 @@ public class JoinJsonIssue {
             String quote = "\u005c\u0022";
             String quote2 = "&#92;";
             JSONObject jsonObject;
-            String meta_china = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\meta_china.json";
-            String issue = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue.json";
-            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metachina_issue.json"));
+            String meta_china = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\meta_china2.json";
+            String issue = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue2.json";
+            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metachina_issue2.json"));
             JSONArray metachinaObject = new JSONArray(new JSONTokener(new FileInputStream(meta_china)));
             JSONArray issueObject = new JSONArray(new JSONTokener(new FileInputStream(issue)));
 
@@ -27,8 +27,8 @@ public class JoinJsonIssue {
             String code="";
             String title="";
             String language ="";
-            String city ="";
-            String country="";
+            String format ="";
+            String publication_place="";
             String PublicationTitle ="";
             String issue_date ="";
             String xml_name ="";
@@ -40,28 +40,28 @@ public class JoinJsonIssue {
             String image_location ="";
             String file_name_check="";
 
-            String libraryName ="";
+            String description ="";
             String libraryLocation ="";
             String publicationVolume ="";
             String issue_issue ="";
             String id_issue ="";
-            String assetID ="";
+            String url ="";
             String dviCollectionID ="";
             String PSMID ="";
 
             String date_original ="";
             String date ="";
-            String imageLocationId ="";
+            String volume_number ="";
 
             for (int i=0; i<metachinaObject.length(); i++) {
                 JSONObject numerObj = (JSONObject) metachinaObject.get(i);
                 id = (String) numerObj.get("id").toString();
-                code = (String) numerObj.get("code").toString();
+
                 title = (String) numerObj.get("title").toString();
                 journal_title =(String) numerObj.get("journal-title").toString();
                 language =(String) numerObj.get("language").toString();
-                city=(String) numerObj.get("city").toString();
-                country=(String) numerObj.get("country").toString();
+                format=(String) numerObj.get("format").toString();
+                publication_place=(String) numerObj.get("publication-place").toString();
                 issue_date = (String) numerObj.get("issue-date").toString();
                 xml_location = (String) numerObj.get("xml-location").toString();
                 xml_name = (String) numerObj.get("xml-name").toString();
@@ -77,13 +77,14 @@ public class JoinJsonIssue {
 
                 for (int j=0; j<issueObject.length();j++) {
                     JSONObject numerObjName = (JSONObject) issueObject.get(j);
-
-                    libraryName = (String) numerObjName.get("libraryName").toString();
-                    libraryLocation = (String) numerObjName.get("libraryLocation").toString();
-                    publicationVolume = (String) numerObjName.get("publicationVolume").toString();
-                    issue_issue = (String) numerObjName.get("issue").toString();
                     id_issue = (String) numerObjName.get("id").toString();
-                    assetID = (String) numerObjName.get("assetID").toString();
+
+                    description = (String) numerObjName.get("description").toString();
+                    volume_number = (String) numerObjName.get("volume-number").toString();
+                    publicationVolume = (String) numerObjName.get("publicationVolume").toString();
+                    //issue_issue = (String) numerObjName.get("issue").toString();
+
+                    url = (String) numerObjName.get("url").toString();
                     dviCollectionID = (String) numerObjName.get("dviCollectionID").toString();
                     PSMID = (String) numerObjName.get("PSMID").toString();
                     date_original = (String) numerObjName.get("date_original").toString();
@@ -94,10 +95,8 @@ public class JoinJsonIssue {
                                 + quote + "title" + quote + ":" +   quote +title+  quote + "," + '\n'
                                 + quote + "hasModel" + quote + ":" +   quote +"Journal" +  quote + "," + '\n'
                                 + quote + "journal-title" + quote + ":" +   quote +journal_title + quote + "," + '\n'
-                                + quote + "code" + quote + ":" +   quote +code + "," + '\n'
                                 + quote + "language" + quote + ":" +   quote +language+   "," + '\n'
-                                + quote + "city" + quote + ":" +   quote +city+   "," + '\n'
-                                + quote + "country" + quote + ":" +   quote +country + "," + '\n'
+                                + quote + "volume-number" + quote + ":" +   quote +volume_number+   "," + '\n'
                                 + quote + "series-title" + quote + ":" +   quote +"Gale - China from Empire to Republic: Missionary, Sinology and Literary Periodicals, 1817-1949" +  quote + "," + '\n'
                                 + quote + "issue-date" + quote + ":" +   quote +issue_date +  quote + "," + '\n'
                                 + quote + "xml-location" + quote + ":" +   quote +xml_location +  quote + "," + '\n'
@@ -105,13 +104,15 @@ public class JoinJsonIssue {
                                 + quote + "file-name" + quote + ":" +   quote +file_name +  quote + "," + '\n'
                                 + quote + "image-name" + quote + ":" +   quote +image_name +  quote + "," + '\n'
                                 + quote + "image-location" + quote + ":" +   quote +image_location +  quote + ","  + '\n'
-
+                                + quote + "PSMID" + quote + ":" +   quote +PSMID +  quote + ","  + '\n'
+                                + quote + "format" + quote + ":" +   quote +format +  quote + ","  + '\n'
+                                + quote + "publication-place" + quote + ":" +   quote +publication_place +  quote + ","  + '\n'
                                 + quote + "date" + quote + ":" +   quote +date +  quote + ","  + '\n'
                                 + quote + "date_original" + quote + ":" +   quote +date_original +  quote + ","  + '\n'
-                                + quote + "issue" + quote + ":" +   quote +issue_issue +  quote + ","  + '\n'
+                                + quote + "url" + quote + ":" +   quote +url +  quote + ","  + '\n'
                                 + quote + "publication-volume" + quote + ":" +   quote +publicationVolume +  quote + ","  + '\n'
-                                + quote + "library-location" + quote + ":" +   quote +libraryLocation +  quote + ","  + '\n'
-                                + quote + "library-name" + quote + ":" +   quote +libraryName +  quote +  '\n'
+                                + quote + "description" + quote + ":" +   quote +description +  quote + ","  + '\n'
+
                                 +"},"
                         );
                     }else {
