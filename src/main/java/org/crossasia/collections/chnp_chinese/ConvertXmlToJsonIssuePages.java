@@ -1,5 +1,10 @@
 package org.crossasia.collections.chnp_chinese;
-import org.json.*;
+
+import org.crossasia.converter.Converter;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.XML;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -16,8 +21,9 @@ public class ConvertXmlToJsonIssuePages {
 
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pages2.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_error\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pagesSmall.json"));
+        Converter converter = new Converter();
         String bookName = "";
         //String page = "";
         String text = "";
@@ -48,9 +54,9 @@ public class ConvertXmlToJsonIssuePages {
                 JSONObject jsonObject = XML.toJSONObject(new String(Files.readAllBytes(Paths.get(fileName))));
                 JSONObject dataExport = (JSONObject) jsonObject.get("issue");
                 JSONArray page = (JSONArray) dataExport.get("page");
-                String page_num = "";
+                int page_num = 0;
                 String asset_id = "";
-                String title = "";
+
                 String assetid_page = "";
                 String language = "";
                 String id = "";
@@ -65,15 +71,19 @@ public class ConvertXmlToJsonIssuePages {
                 double ocrs=0.0;
                 int clipref =0;
                 int real_page=0;
-                int pc =0;
+                //int pc =0;
                 String sum_descriptionPic ="";
 
                 for (int ar = 0; ar < page.length(); ar++) {
                     JSONObject page_description = (JSONObject) page.get(ar);
                     if (page_description.has("pa")) {
-                        page_num = (String) page_description.get("pa").toString();
+                        if (page_description.get("pa").toString().matches("-?\\d+")){
+                            page_num = (int) page_description.get("pa");
+                        } else {
+                            page_num =converter.toNumerical(page_description.get("pa").toString());
+                        }
                     }else {
-                        page_num ="";
+                        page_num =0;
                     }
 
                     asset_id = (String) page_description.get("assetID").toString();
@@ -81,12 +91,13 @@ public class ConvertXmlToJsonIssuePages {
                     if (page_description.has("article")) {
                         Object intervention = page_description.get("article");
                         String author = "";
-                        String author2 = "";
+
 
 
                        // StringBuffer sbf2 = new StringBuffer();
                         if (intervention instanceof JSONObject) {
                            JSONObject articles = (JSONObject) page_description.get("article");
+                            String title = "";
                             title = (String) articles.get("ti").toString().replaceAll("\"","'").replaceAll(quote,"'");
                             assetid_page = (String) articles.get("assetID").toString();
 
@@ -111,11 +122,10 @@ public class ConvertXmlToJsonIssuePages {
                                         content ="";
                                     }
                                     if (ocrs>0) {
-                                        real_page = parseStrToInt(page_num);
+                                        real_page = page_num;
                                         int sum= real_page+clipref-1;
                                         descriptionPic2 = type+"("+ colorImage+"): "+content +"p."+sum;
                                         sum_descriptionPic ="Article contains images. "+descriptionPic2;
-
                                     }
                                 } else {
                                     JSONArray descriptions = (JSONArray) articles.get("il");
@@ -133,13 +143,12 @@ public class ConvertXmlToJsonIssuePages {
                                             content ="";
                                         }
                                         if (ocrs>0) {
-                                            real_page = parseStrToInt(page_num);
+                                            real_page = page_num;
                                             int sum= real_page+clipref-1;
                                             sum_content =sum_content.concat(content);
                                             descriptionPic = type+"("+ colorImage+"): "+content +" p."+sum+"; ";
                                             sum_descriptionPic =sum_descriptionPic.concat(descriptionPic);
                                         }
-
                                     }
                                 }
                             }else {
@@ -172,14 +181,14 @@ public class ConvertXmlToJsonIssuePages {
                                     if (authors_array.length>=1) {
                                         sbf.append(authors_array[0]);
                                         for (int key=1; key<authors_array.length; key ++) {
-                                            sbf.append("\","+quote).append(authors_array[key] ).append("");
+                                            sbf.append("\","+quote).append(authors_array[key]).append("");
                                         }
                                     }
                                 }
                             }
-
+                            int pc;
                             pc = (int) articles.get("pc")-1;
-                            pc = parseStrToInt(page_num)+pc;
+                            pc = page_num+pc;
 
                             out.println("{" + quote + "language" + quote + ":" + quote + language + quote + "," + '\n'
                                     + quote + "assetid_page" + quote + ":" + quote + assetid_page + quote + "," + '\n'
@@ -201,6 +210,7 @@ public class ConvertXmlToJsonIssuePages {
                                 JSONArray articles = (JSONArray) page_description.get("article");
                                 for (int art = 0; art < articles.length(); art++) {
                                     JSONObject article2 = (JSONObject) articles.get(art);
+                                    String title="";
                                     title = (String) article2.get("ti").toString().replaceAll("\"","'").replaceAll(quote,"'");
                                     assetid_page = (String) article2.get("assetID").toString();
                                     language = (String) article2.get("ocrLanguage").toString();
@@ -226,11 +236,10 @@ public class ConvertXmlToJsonIssuePages {
                                                 content ="";
                                             }
                                             if (ocrs>0) {
-                                                real_page = parseStrToInt(page_num);
+                                                real_page = page_num;
                                                 int sum= real_page+clipref-1;
                                                 descriptionPic2 = type+"("+ colorImage+"): "+content +"p."+sum;
                                                 sum_descriptionPic ="Article contains images. "+descriptionPic2;
-
                                             }
                                         } else {
                                             JSONArray descriptions = (JSONArray) article2.get("il");
@@ -248,13 +257,12 @@ public class ConvertXmlToJsonIssuePages {
                                                     content ="";
                                                 }
                                                 if (ocrs>0) {
-                                                    real_page = parseStrToInt(page_num);
+                                                    real_page = page_num;
                                                     int sum= real_page+clipref-1;
                                                     sum_content =sum_content.concat(content);
                                                     descriptionPic = type+"("+ colorImage+"): "+content +" p."+sum+"; ";
                                                     sum_descriptionPic =sum_descriptionPic.concat(descriptionPic);
                                                 }
-
                                             }
                                         }
                                     }else {
@@ -264,12 +272,14 @@ public class ConvertXmlToJsonIssuePages {
                                     id = (String) article2.get("id").toString();
                                     ct = (String) article2.get("ct").toString();
                                     StringBuffer sbf2 = new StringBuffer();
+                                    String author2 = "";
+                                    String author3 = "";
                                     if (article2.has("detailed_au")) {
                                         Object art22 = article2.get("detailed_au");
                                         if (art22 instanceof JSONObject) {
                                             JSONObject authors2 = (JSONObject) article2.get("detailed_au");
-                                            author2 = (String) authors2.get("composed").toString();
-                                            sbf2.append(author2);
+                                            author3 = (String) authors2.get("composed").toString();
+                                            sbf2.append(author3);
 
                                         }else if (art22 instanceof JSONArray) {
                                             JSONArray authors = (JSONArray) article2.get("detailed_au");
@@ -291,8 +301,9 @@ public class ConvertXmlToJsonIssuePages {
                                         }
 
                                     }
+                                    int pc;
                                     pc = (int) article2.get("pc")-1;
-                                    pc = parseStrToInt(page_num)+pc;
+                                    pc = page_num+pc;
 
                                     out.println("{" + quote + "language" + quote + ":" + quote + language + quote + "," + '\n'
                                             + quote + "assetid_page" + quote + ":" + quote + assetid_page + quote + "," + '\n'
@@ -309,9 +320,7 @@ public class ConvertXmlToJsonIssuePages {
                                             + quote + "page-range" + quote + ":" + quote + page_num+"-"+pc + quote + "" + '\n'
                                             + "},"
                                     );
-
                             }
-
                         }
                     } else {
                         out.println("{"

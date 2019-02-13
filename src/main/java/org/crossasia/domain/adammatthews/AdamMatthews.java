@@ -2,8 +2,6 @@ package org.crossasia.domain.adammatthews;
 
 import org.apache.solr.client.solrj.beans.Field;
 
-import static java.awt.SystemColor.text;
-
 public class AdamMatthews {
 
     @Field
@@ -16,7 +14,7 @@ public class AdamMatthews {
     private String identifier;
 
     @Field
-    private String title;
+    private String [] title;
 
     @Field
     private int nodeId;
@@ -26,7 +24,7 @@ public class AdamMatthews {
 
 
     @Field
-    private int date;
+    private String date;
 
     @Field
     private String[] publication_name;
@@ -38,7 +36,7 @@ public class AdamMatthews {
     private String[] edition;
 
     @Field
-    private String [] description;
+    private String []  description;
 
     @Field
     private String [] medium;
@@ -53,13 +51,13 @@ public class AdamMatthews {
     private String [] keywords;
 
     @Field
-    private String author;
+    private String [] author;
 
     @Field
     private String source;
 
     @Field
-    private String [] series_title;
+    private String []  series_title;
 
     @Field
     private String [] person;
@@ -117,11 +115,11 @@ public class AdamMatthews {
         this.identifier = identifier;
     }
 
-    public String getTitle() {
+    public String[] getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String[] title) {
         this.title = title;
     }
 
@@ -141,11 +139,11 @@ public class AdamMatthews {
         this.book_id = book_id;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -173,11 +171,11 @@ public class AdamMatthews {
         this.edition = edition;
     }
 
-    public String[] getDescription() {
+    public String [] getDescription() {
         return description;
     }
 
-    public void setDescription(String[] description) {
+    public void setDescription(String [] description) {
         this.description = description;
     }
 
@@ -189,11 +187,11 @@ public class AdamMatthews {
         this.medium = medium;
     }
 
-    public String[] getSubject() {
+    public String [] getSubject() {
         return subject;
     }
 
-    public void setSubject(String[] subject) {
+    public void setSubject(String [] subject) {
         this.subject = subject;
     }
 
@@ -205,11 +203,11 @@ public class AdamMatthews {
         this.organization = organization;
     }
 
-    public String getAuthor() {
+    public String[] getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(String [] author) {
         this.author = author;
     }
 
@@ -221,11 +219,11 @@ public class AdamMatthews {
         this.source = source;
     }
 
-    public String[] getSeries_title() {
+    public String [] getSeries_title() {
         return series_title;
     }
 
-    public void setSeries_title(String[] series_title) {
+    public void setSeries_title(String [] series_title) {
         this.series_title = series_title;
     }
 

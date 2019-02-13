@@ -17,9 +17,9 @@ public class JoinJsonMetadataText {
             String question ="\\u003F";
             String quote2 = "&#92;";
             JSONObject jsonObject;
-            String issue_pages = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pages_FullNEW.json";
-            String text = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\textResult2.json";
-            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadatatext3.json"));
+            String issue_pages = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pages_FullSmall.json";
+            String text = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\NEW_JSON\\textResult.json";
+            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadatatextSmall.json"));
             JSONArray issue_pagesObject = new JSONArray(new JSONTokener(new FileInputStream(issue_pages)));
             JSONArray textObject = new JSONArray(new JSONTokener(new FileInputStream(text)));
 
@@ -52,6 +52,7 @@ public class JoinJsonMetadataText {
                 String PSMID="";
                 String date="";
                 String date_original="";
+                String publication_volume ="";
 
 
                 JSONObject numerObj = (JSONObject) issue_pagesObject.get(i);
@@ -100,7 +101,11 @@ public class JoinJsonMetadataText {
                 }
 
                 if (numerObj.has("date")) {
-                    date = (String) numerObj.get("date").toString();
+                    if (numerObj.get("date").toString().length()==8){
+                        date = (String) numerObj.get("date").toString().substring(0,4);
+                    }else {
+                        date = (String) numerObj.get("date").toString();
+                    }
                 }
 
                 if (numerObj.has("date-original")) {
@@ -111,12 +116,16 @@ public class JoinJsonMetadataText {
                     journal_title = (String) numerObj.get("journal-title").toString();
                 }
 
-                if (numerObj.has("journal-title2")) {
+                /*if (numerObj.has("journal-title2")) {
                     journal_title2 = (String) numerObj.get("journal-title2").toString();
-                }
+                }*/
 
                 if (numerObj.has("publication-place")) {
                     publication_place = (String) numerObj.get("publication-place").toString();
+                }
+
+                if (numerObj.has("publication-volume")) {
+                    publication_volume = (String) numerObj.get("publication-volume").toString();
                 }
 
                 if (numerObj.has("series-title")) {
@@ -146,7 +155,7 @@ public class JoinJsonMetadataText {
                     if (numerObjName.get("id").equals(numerObj.get("id"))){
 
                         out.println("{" + quote + "language" + quote + ":" + quote + language + quote + "," + '\n'
-                                + quote + "assetid_page" + quote + ":" + quote + assetid_page + quote + "," + '\n'
+                                + quote + "asset-id-object" + quote + ":" + quote + assetid_page + quote + "," + '\n'
                                 + quote + "id" + quote + ":" + quote + id + quote + "," + '\n'
                                 + quote + "format" + quote + ":" + quote + format + quote + "," + '\n'
                                 + quote + "date" + quote + ":" + quote + date + quote + "," + '\n'
@@ -155,16 +164,17 @@ public class JoinJsonMetadataText {
                                 + quote + "medium" + quote + ":" + quote + "Article" + quote + "," + '\n'
                                 + quote + "journal-title" + quote + ":" + quote + journal_title + quote + "," + '\n'
                                 + quote + "author" + quote + ":" +    author  +  "," + '\n'
-                                + quote + "asset_id" + quote + ":" + quote + asset_id + quote + "," + '\n'
+                                + quote + "asset-id-page" + quote + ":" + quote + asset_id + quote + "," + '\n'
                                 + quote + "volume-number" + quote + ":" + quote + volume_number + quote + "," + '\n'
                                 + quote + "description" + quote + ":" + quote + description + quote + "," + '\n'
-                                + quote + "journal-title2" + quote + ":" + quote + journal_title2 + quote + "," + '\n'
-                                + quote + "format2" + quote + ":" + quote + format2 + quote + "," + '\n'
-                                + quote + "url" + quote + ":" + quote + url + quote + "," + '\n'
+                                + quote + "title" + quote + ":" + quote + title + quote + "," + '\n'
+                                //+ quote + "format2" + quote + ":" + quote + format2 + quote + "," + '\n'
+                                + quote + "collection" + quote + ":" + quote + "Gale CFER" + quote + "," + '\n'
                                 + quote + "publication-place" + quote + ":" + quote + publication_place + quote + "," + '\n'
-                                + quote + "series-title" + quote + ":" + quote + series_title + quote + "," + '\n'
-                                + quote + "issue-date" + quote + ":" + quote + issue_date + quote + "," + '\n'
-                                + quote + "link" + quote + ":" + quote + link + quote + "," + '\n'
+                                + quote + "publication-volume" + quote + ":" + quote + publication_volume + quote + "," + '\n'
+                                + quote + "series-title" + quote + ":" + quote + "Gale - China from Empire to Republic: Missionary, Sinology and Literary Periodicals, 1817-1949" + quote + "," + '\n'
+                                //+ quote + "issue-date" + quote + ":" + quote + issue_date + quote + "," + '\n'
+                                + quote + "electronic-url" + quote + ":" + quote + link + quote + "," + '\n'
                                 + quote + "text" + quote + ":" + quote + text2 + quote + "," + '\n'
                                 + quote + "page-range" + quote + ":" + quote + page_range + quote + "" + '\n'
                                 + "},"

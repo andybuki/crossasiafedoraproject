@@ -1,6 +1,7 @@
 package org.crossasia.collections.airiti;
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.component.solr.SolrConstants;
@@ -22,19 +23,20 @@ public class AiritiSolr {
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
         gsonDataFormat.setUnmarshalType(Products.class);
         context.setTracing(true);
-        context.getShutdownStrategy().setTimeout(2000000);
+        context.getShutdownStrategy().setTimeout(20000);
 
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception
             {
-                from("file:D:\\SOLR-COLLECTIONS\\AIRITI\\page")
+                from("file:D:\\SOLR-COLLECTIONS\\AMD-JAPAN\\test")
                         .unmarshal(gsonDataFormat)
                         .setBody().simple("${body.products}")
                         .split().body()
                         .setHeader(SolrConstants.OPERATION, constant(SolrConstants.OPERATION_ADD_BEAN))
-                        //.to("solr://10.46.3.100:8980/solr/airiti2");
-                .to("solr://b-app66.sbb.spk-berlin.de:8985/solr/rep-airiti");
+                        .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
+                        .to("solr://10.46.3.100:8982/solr/AMD_FOChina");
+                //.to("solr://b-app66.sbb.spk-berlin.de:8985/solr/rep-airiti");
             }
         });
 

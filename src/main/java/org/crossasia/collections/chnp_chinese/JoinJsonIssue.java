@@ -16,9 +16,9 @@ public class JoinJsonIssue {
             String quote = "\u005c\u0022";
             String quote2 = "&#92;";
             JSONObject jsonObject;
-            String meta_china = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\meta_china2.json";
-            String issue = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue2.json";
-            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metachina_issue2.json"));
+            String meta_china = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\NEW_JSON\\meta_china.json";
+            String issue = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\NEW_JSON\\issue.json";
+            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\NEW_JSON\\metachina_issue.json"));
             JSONArray metachinaObject = new JSONArray(new JSONTokener(new FileInputStream(meta_china)));
             JSONArray issueObject = new JSONArray(new JSONTokener(new FileInputStream(issue)));
 
@@ -92,11 +92,11 @@ public class JoinJsonIssue {
 
                     if (file_name_check.equals(PSMID)){
                         out.println("{" + quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n'
-                                + quote + "title" + quote + ":" +   quote +title+  quote + "," + '\n'
+                                //+ quote + "title" + quote + ":" +   quote +title+  quote + "," + '\n'
                                 + quote + "hasModel" + quote + ":" +   quote +"Journal" +  quote + "," + '\n'
                                 + quote + "journal-title" + quote + ":" +   quote +journal_title + quote + "," + '\n'
-                                + quote + "language" + quote + ":" +   quote +language+   "," + '\n'
-                                + quote + "volume-number" + quote + ":" +   quote +volume_number+   "," + '\n'
+                                + quote + "language" + quote + ":" +   quote +language+  quote+ "," + '\n'
+                                + quote + "volume-number" + quote + ":" +   quote +volume_number+ quote+  "," + '\n'
                                 + quote + "series-title" + quote + ":" +   quote +"Gale - China from Empire to Republic: Missionary, Sinology and Literary Periodicals, 1817-1949" +  quote + "," + '\n'
                                 + quote + "issue-date" + quote + ":" +   quote +issue_date +  quote + "," + '\n'
                                 + quote + "xml-location" + quote + ":" +   quote +xml_location +  quote + "," + '\n'

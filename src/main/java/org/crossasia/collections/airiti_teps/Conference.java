@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 public class Conference {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\Conference\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Conference2.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\Data\\MetaFile\\all\\Articles\\Conference\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Data\\MetaFile\\all\\Articles\\Conference2.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -18,7 +18,6 @@ public class Conference {
         String line_="\\";
         int year = 0;
         int i;
-
 
 
         for (File file : dir.listFiles()) {

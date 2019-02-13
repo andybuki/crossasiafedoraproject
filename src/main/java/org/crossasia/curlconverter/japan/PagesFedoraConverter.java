@@ -1,4 +1,4 @@
-package org.crossasia.curlconverter.dfz;
+package org.crossasia.curlconverter.japan;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -19,12 +19,12 @@ public class PagesFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "D:\\SOLR-COLLECTIONS\\dfz\\page\\";
+            String absolutePath = "D:\\FEDORA-COLLECTIONS\\AMD-FO-JAPAN\\pages_sp\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"\\images.sh"));
+            out = new BufferedWriter(new FileWriter(absolutePath+"\\files.sh"));
             //PrintWriter out = new PrintWriter( "/Users/andreybuchmann/Downloads/camel-to-solr-master/camelsolr/data/filename.txt" );
             String cURLink = "";
 
@@ -33,7 +33,7 @@ public class PagesFedoraConverter {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"\\images.sh")) {
+                if (fileName.equals(absolutePath+"\\files.sh")) {
                     System.out.println("text file");
                 } else {
                     Object obj = parser.parse(new FileReader(file));
@@ -43,8 +43,7 @@ public class PagesFedoraConverter {
                     JSONArray booksArray = (JSONArray) object.get("@graph");
                     JSONObject book = (JSONObject) booksArray.get(0);
 
-                    String book_id = (String) book.get("book_id").toString().replace("dfz2-","");
-                    String filename = book_id.replace("dfz-","");
+                    String book_id = (String) book.get("book_id").toString().replace("-","");
 
                     //String sections_id = (String) book.get("dc:identifier").toString();
 
@@ -60,7 +59,6 @@ public class PagesFedoraConverter {
                     Path from = file.toPath(); //convert from File to Path
                     Path to = file2.toPath(); //convert from String to Path
                     String fileNameXml=(String) book.get("schema:fileFormat");
-                    //String fileNameXml2=fileNameXml.replaceAll(".xml","");
                     String fileNameXml2=fileNameXml.replaceAll(".xml","");
                     /*int image= Integer.parseInt(page_id);
                     if (image<10) {
@@ -77,9 +75,9 @@ public class PagesFedoraConverter {
 
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
-                    //cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/dfz/" + book_id + "book" + "/"  +page_id;
-                    //cURLink = "curl -i -X PUT --data-binary" + " @/data3/DFZ/dfz/" + filename + "/" + "Page/XMLContent/" + fileNameXml + "" + " -H " + quote + "Content-Type: application/xhtml+xml" + quote + " -H \"Content-Disposition: attachment; filename=" + fileNameXml  + "" + quote + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/dfz/" + book_id  + "/" + page_id + "/xml";
-                    cURLink = "curl -i -X PUT --data-binary" + " @/data3/DFZ/dfz/" + filename + "/" + "Page/ImageContent/" + fileNameXml2+".tif" + "" + " -H " + quote + "Content-Type: image/tif" + quote + " -H \"Content-Disposition: attachment; filename=" + fileNameXml2+".tif"  + "" + quote + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/dfz/" + book_id + "/" + page_id + "/image";
+                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/amd_fo_japan/" + book_id +  "/"  +page_id;
+                    //cURLink = "curl -i -X PUT --data-binary" + " @/data3/DFZ/dfz/" + book_id + "/" + "Page/XMLContent/" + fileNameXml + "" + " -H " + quote + "Content-Type: application/xhtml+xml" + quote + " -H \"Content-Disposition: attachment; filename=" + fileNameXml  + "" + quote + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/dfz/" + book_id +"book" + "/" + page_id + "/xml";
+                    //cURLink = "curl -i -X PUT --data-binary" + " @/data3/DFZ/dfz2/" + book_id + "/" + "Page/ImageContent/" + fileNameXml2+".tif" + "" + " -H " + quote + "Content-Type: image/tif" + quote + " -H \"Content-Disposition: attachment; filename=" + fileNameXml2+".tif"  + "" + quote + " " + "http://10.46.3.100:8095/fcrepo/rest/DFZ/" + book_id + "/" + page_id + "/image";
                     out.write(cURLink + "\r\n");
 
                     System.out.println(name + " changed to " + newName);

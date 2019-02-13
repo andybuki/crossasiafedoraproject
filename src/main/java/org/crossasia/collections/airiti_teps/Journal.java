@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 public class Journal {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\Data\\Journals\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\JournalsNEW.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\Data\\MetaFile\\all\\Articles\\Journals\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\Data\\MetaFile\\all\\Articles\\Journals.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -19,15 +19,13 @@ public class Journal {
         int year = 0;
         int i;
 
-
-
         for (File file : dir.listFiles()) {
-            String encoding = "UTF-8";
+           String encoding = "UTF-8";
            Reader reader = new BufferedReader(new InputStreamReader(
                     new FileInputStream(file), encoding));
             BufferedReader br = new BufferedReader(reader);
 
-            try {
+           try {
                 StringBuilder sb = new StringBuilder();
                 String line = br.readLine();
 
@@ -71,9 +69,6 @@ public class Journal {
                 }else {
                     days = date.substring(6,8);
                 }
-
-                //int real_days = Integer.parseInt(days);
-
 
                 String subject = (String) publication.get("DocSubject");
                 String [] subject2 = subject.split( "\\|" );

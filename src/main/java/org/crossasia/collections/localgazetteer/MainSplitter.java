@@ -7,9 +7,7 @@ import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.jena.vocabulary.RDF;
 import org.crossasia.domain.Products;
-import org.crossasia.splitter.localgazetteer.JsonSplitterBooks;
 import org.crossasia.splitter.localgazetteer.JsonSplitterPages;
-import org.crossasia.utils.Utils;
 
 public class MainSplitter
 {
@@ -21,7 +19,7 @@ public class MainSplitter
         final GsonDataFormat gsonDataFormat = new GsonDataFormat();
         gsonDataFormat.setUnmarshalType(Products.class);
 
-        context.getShutdownStrategy().setTimeout(40000);
+        context.getShutdownStrategy().setTimeout(300000);
           context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception
@@ -29,10 +27,10 @@ public class MainSplitter
 
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                from("file:D:\\FEDORA-COLLECTIONS\\dfz_dev\\pages")
+                from("file:D:\\FEDORA-COLLECTIONS\\AMD-FO-JAPAN\\pages")
                         //.delay(10)
                         .split(method(JsonSplitterPages.class))
-                        .to("file:D:\\FEDORA-COLLECTIONS\\dfz_dev\\splitted_pages?fileName=${header.books_id}");
+                        .to("file:D:\\FEDORA-COLLECTIONS\\AMD-FO-JAPAN\\pages_sp?fileName=${header.books_id}");
 
 
                 /*from("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json")
@@ -44,7 +42,7 @@ public class MainSplitter
         });
 
         context.start();
-        Thread.sleep(1000000);
+        Thread.sleep(100000);
         context.stop();
     }
 }

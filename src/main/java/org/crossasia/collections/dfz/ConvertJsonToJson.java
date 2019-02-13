@@ -1,19 +1,14 @@
 package org.crossasia.collections.dfz;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.io.IOException;
-import java.util.Arrays;
 
 public class ConvertJsonToJson {
     public static void main(String[] args) throws Exception{
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\dfz_dev\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\dfz_dev\\solr_books.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\dfz\\2\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\dfz\\solr_books.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -53,7 +48,7 @@ public class ConvertJsonToJson {
                     org.json.simple.JSONArray creator_transcription = (org.json.simple.JSONArray) book.get("creator_transcription");
                     org.json.simple.JSONArray edition = (org.json.simple.JSONArray) book.get("edition");
                     org.json.simple.JSONArray temporal = (org.json.simple.JSONArray) book.get("temporal");
-                    org.json.simple.JSONArray hasModel = (org.json.simple.JSONArray) book.get("hasModel");
+                    String hasModel = (String) book.get("hasModel");
                     String collection = (String) book.get( "collection" ).toString();
                     org.json.simple.JSONArray identifier = (org.json.simple.JSONArray) book.get("identifier");
                     String book_id ="";
@@ -82,7 +77,15 @@ public class ConvertJsonToJson {
 
                     String book_id4 = book_id3.replace("\" ", "");
                     org.json.simple.JSONArray language = (org.json.simple.JSONArray) book.get("language");
+                    org.json.simple.JSONArray citation = (org.json.simple.JSONArray) book.get("citation");
                     org.json.simple.JSONArray issued = (org.json.simple.JSONArray) book.get("issued");
+                    long date=0;
+                    if (issued != null) {
+                        for (int a=0; a<issued.size();a++) {
+                            date = (long) issued.get(0);
+                        }
+
+                    }
                     org.json.simple.JSONArray note = (org.json.simple.JSONArray) book.get("note");
                     org.json.simple.JSONArray medium = (org.json.simple.JSONArray) book.get("medium");
                     org.json.simple.JSONArray spatial = (org.json.simple.JSONArray) book.get("spatial");
@@ -98,16 +101,17 @@ public class ConvertJsonToJson {
 
                     out.println("{" + quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n'
                             //+ quote + "contained_in" + quote + ":" +  contained_in  + "," + '\n'
-                            + quote + "creator" + quote + ":" +   creator +   "," + '\n'
+                            + quote + "author" + quote + ":" +   creator +   "," + '\n'
+                            + quote + "citation" + quote + ":" +   citation +   "," + '\n'
                             //+ quote + "creator_transcription" + quote + ":" +    creator_transcription    + "," + '\n'
                             + quote + "edition" + quote + ":" +   edition  + "," + '\n'
-                            //+ quote + "temporal" + quote + ":" +   temporal  + "," + '\n'
-                            + quote + "hasModel" + quote + ":" +   hasModel  + "," + '\n'
+                            + quote + "temporal" + quote + ":" +   temporal  + "," + '\n'
+                            + quote + "hasModel" + quote + ":" + quote +  hasModel  + quote + "," + '\n'
                             + quote + "collection" + quote + ":" + quote+  collection  + quote+ "," + '\n'
                             + quote + "book_id" + quote + ":" +   quote+ book_id4  + quote+ "," + '\n'
                             + quote + "identifier" + quote + ":" +   identifier  + "," + '\n'
                             + quote + "language" + quote + ":" +  quote+ "chi"  +quote+ "," + '\n'
-                            + quote + "issued" + quote + ":" +   issued  + "," + '\n'
+                            + quote + "date" + quote + ":" +   date  + "," + '\n'
                             //+ quote + "note" + quote + ":" +   note  + "," + '\n'
                             //+ quote + "medium" + quote + ":" +   medium  + "," + '\n'
                             + quote + "spatial" + quote + ":" +   spatial  + "," + '\n'
@@ -118,7 +122,7 @@ public class ConvertJsonToJson {
                             + quote + "thumbnail_path" + quote + ":" +   quote+ thumbnail_path + quote + "," + '\n'
                             + quote + "title" + quote + ":" +   title  + "," + '\n'
                             + quote + "title_responsibility" + quote + ":" +   title_responsibility  + "" + '\n'
-                            //+ quote + "title_transcription" + quote + ":" +   title_transcription  + "" + '\n'
+                            + quote + "title_transcription" + quote + ":" +   title_transcription  + "" + '\n'
                             //'\n'
                             +"},"
                     );

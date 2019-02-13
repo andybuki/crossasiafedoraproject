@@ -15,8 +15,8 @@ public class JoinJson {
         try {
             String quote = "\u005c\u0022";
             JSONObject jsonObject;
-            String metadata = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadata2.json";
-            String china = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\china2.json";
+            String metadata = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metadata.json";
+            String china = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\china.json";
             PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\meta_china2.json"));
             JSONArray metadataObject = new JSONArray(new JSONTokener(new FileInputStream(metadata)));
             JSONArray chinaObject = new JSONArray(new JSONTokener(new FileInputStream(china)));

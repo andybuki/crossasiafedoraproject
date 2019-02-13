@@ -1,4 +1,4 @@
-package org.crossasia.curlconverter.dfz;
+package org.crossasia.curlconverter.chnp_chinese;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -11,18 +11,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-public class BooksFedoraConverter {
+public class JournalsFedoraConverter {
     private Object obj;
 
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "D:\\FEDORA-COLLECTIONS\\dfz\\books\\splited_books\\";
+            String absolutePath = "D:\\FEDORA-COLLECTIONS\\chnp_2016_chinese\\journals\\journal\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"books.sh"));
+            out = new BufferedWriter(new FileWriter(absolutePath+"journals.sh"));
             //PrintWriter out = new PrintWriter( "/Users/andreybuchmann/Downloads/camel-to-solr-master/camelsolr/data/filename.txt" );
             String cURLink = "";
 
@@ -31,7 +31,7 @@ public class BooksFedoraConverter {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"books.sh")) {
+                if (fileName.equals(absolutePath+"journals.sh")) {
                     System.out.println("text file");
                 } else {
                     Object obj = parser.parse(new FileReader(file));
@@ -39,10 +39,11 @@ public class BooksFedoraConverter {
 
                     JSONArray booksArray = (JSONArray) object.get("@graph");
                     JSONObject book = (JSONObject) booksArray.get(0);
-                    String books_id = (String) book.get("book_id").toString().replaceAll("dfz-","");
-                    String id =(String) book.get("id").toString();
+                    String books_id = (String) book.get("id").toString();
+                    String journal_id = (String) book.get("journal_id").toString();
+
                     String name = file.getName();
-                    String newName = id  + ".json";
+                    String newName = journal_id  + ".json";
                     String newPath = absolutePath + "\\" + newName;
                     File file2 = new File(absolutePath+newName);
 
@@ -51,7 +52,7 @@ public class BooksFedoraConverter {
 
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
-                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8095/fcrepo/rest/DFZ/" + books_id;
+                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8097/fcrepo/rest/Gale-CGER/" + books_id+"/"+journal_id;
                     out.write(cURLink + "\r\n");
 
                     System.out.println(name + " changed to " + newName);

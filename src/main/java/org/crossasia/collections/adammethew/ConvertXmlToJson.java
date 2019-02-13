@@ -1,24 +1,13 @@
 package org.crossasia.collections.adammethew;
 
-import org.crossasia.utils.Utils;
-import org.json.JSONObject;
-import org.json.XML;
-
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.builder.xml.XPathBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;
-import org.apache.camel.component.jms.JmsComponent;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.crossasia.domain.Products;
-
-import javax.jms.ConnectionFactory;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import org.crossasia.utils.Utils;
 
 public class ConvertXmlToJson {
 
@@ -28,9 +17,9 @@ public class ConvertXmlToJson {
 
     public static void main(String[] args) throws Exception {
 
-        try {
-            String filePathFolder = "D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\notdone\\";
-            String directoryPath = "D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\notdone";
+        /*try {
+            String filePathFolder = "D:\\SOLR-COLLECTIONS\\AMD-JAPAN\\xml\\";
+            String directoryPath = "D:\\SOLR-COLLECTIONS\\AMD-JAPAN\\xml";
             File folder = new File(filePathFolder);
             folder.mkdir();
             String absolutePath = filePathFolder;
@@ -63,7 +52,7 @@ public class ConvertXmlToJson {
         }   catch (IOException e) {
             e.printStackTrace();
 
-        }
+        }*/
 
         CamelContext context = new DefaultCamelContext();
 
@@ -75,21 +64,21 @@ public class ConvertXmlToJson {
         context.setTracing(true);
         context.addComponent("activemq", ActiveMQComponent.activeMQComponent("tcp://10.46.3.100:61616"));
         context.getShutdownStrategy().setLogInflightExchangesOnTimeout(true);
-        context.getShutdownStrategy().setTimeout(120000);
+        context.getShutdownStrategy().setTimeout(1200000);
 
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
+        /*ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(
                 "tcp://localhost:61616");
         context.addComponent("jms",
                 JmsComponent.jmsComponentAutoAcknowledge(connectionFactory));
-        context.stopRoute("nonAuto");
+        context.stopRoute("nonAuto");*/
 
         context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception {
 
-                               from("file:D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\JSON3\\notdone")
+                               from("file:D:\\SOLR-COLLECTIONS\\AMD-JAPAN\\xml\\.camel")
                                         .process(Utils.javascript("adammetthew/convertAdamMethewSolr_Meta_Images.js"))
-                                        .to("file:D:\\RAW-COLLECTIONS\\AdamMetthew\\fehlende_xml\\JSON3\\notdone2");
+                                        .to("file:D:\\SOLR-COLLECTIONS\\AMD-JAPAN\\pages");
 
                                  //from("file:C:\\Users\\b-ab107\\IdeaProjects\\crossasiafedoraproject\\data\\solr3")
                                   /*from("file:D:\\SOLR-COLLECTIONS\\ADAM_METHEW\\JSON2")

@@ -1,4 +1,4 @@
-package org.crossasia.curlconverter.dfz;
+package org.crossasia.curlconverter.japan;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -17,7 +17,7 @@ public class BooksFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "D:\\FEDORA-COLLECTIONS\\dfz\\books\\splited_books\\";
+            String absolutePath = "D:\\FEDORA-COLLECTIONS\\AMD-FO-JAPAN\\books_sp\\";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
@@ -39,7 +39,7 @@ public class BooksFedoraConverter {
 
                     JSONArray booksArray = (JSONArray) object.get("@graph");
                     JSONObject book = (JSONObject) booksArray.get(0);
-                    String books_id = (String) book.get("book_id").toString().replaceAll("dfz-","");
+                    String books_id = (String) book.get("book_id").toString().replaceAll("","");
                     String id =(String) book.get("id").toString();
                     String name = file.getName();
                     String newName = id  + ".json";
@@ -51,7 +51,7 @@ public class BooksFedoraConverter {
 
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
-                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://10.46.3.100:8095/fcrepo/rest/DFZ/" + books_id;
+                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/amd_fo_japan/" + books_id;
                     out.write(cURLink + "\r\n");
 
                     System.out.println(name + " changed to " + newName);

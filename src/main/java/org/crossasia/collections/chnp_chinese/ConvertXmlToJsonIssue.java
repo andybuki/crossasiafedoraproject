@@ -1,5 +1,4 @@
 package org.crossasia.collections.chnp_chinese;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -11,8 +10,8 @@ import java.nio.file.Paths;
 public class ConvertXmlToJsonIssue {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue2.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_error\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_error.json"));
         String bookName = "";
         String page = "";
         String text = "";

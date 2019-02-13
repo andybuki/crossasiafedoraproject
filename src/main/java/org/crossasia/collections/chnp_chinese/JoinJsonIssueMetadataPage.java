@@ -17,14 +17,15 @@ public class JoinJsonIssueMetadataPage {
             String question ="\\u003F";
             String quote2 = "&#92;";
             JSONObject jsonObject;
-            String issue_pages = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pages2.json";
-            String text = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\metachina_issue2.json";
-            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pages_FullNEW.json"));
+            String issue_pages = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pagesSmall.json";
+            //String metachina_issue = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_error.json";
+            String metachina_issue = "D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_error.json";
+            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pages_FullSmall.json"));
             JSONArray issue_pagesObject = new JSONArray(new JSONTokener(new FileInputStream(issue_pages)));
-            JSONArray textObject = new JSONArray(new JSONTokener(new FileInputStream(text)));
+            JSONArray metachina_issueObject = new JSONArray(new JSONTokener(new FileInputStream(metachina_issue)));
 
 
-            for (int j=0; j<textObject.length();j++) {
+            for (int j=0; j<metachina_issueObject.length();j++) {
 
                 String format2="";
                 String journal_title ="";
@@ -35,21 +36,69 @@ public class JoinJsonIssueMetadataPage {
                 String PSMID="";
                 String date="";
                 String date_original="";
+                String volume_number ="";
+                String publication_volume="";
+                String description="";
 
+                JSONObject numerObjName = (JSONObject) metachina_issueObject.get(j);
 
-                JSONObject numerObjName = (JSONObject) textObject.get(j);
-                journal_title = (String) numerObjName.get("journal-title").toString();
-                format2 = (String) numerObjName.get("format").toString();
-                publication_place = (String) numerObjName.get("publication-place").toString();
-
-                series_title = (String) numerObjName.get("series-title").toString();
-                issue_date = (String) numerObjName.get("issue-date").toString();
-                url = (String) numerObjName.get("url").toString();
+                /*url = (String) numerObjName.get("url").toString();
                 date = (String) numerObjName.get("date").toString();
                 date_original = (String) numerObjName.get("date_original").toString();
-                PSMID = (String) numerObjName.get("PSMID").toString();
-                String filename = (String) numerObjName.get("file-name").toString();
-                String filenameShort =filename.replaceAll("_Issue.xml","");
+                PSMID = (String) numerObjName.get("PSMID").toString();*/
+
+                if (numerObjName.has("description")) {
+                    description = (String) numerObjName.get("description").toString();
+                }
+
+                if (numerObjName.has("title")) {
+                    journal_title = (String) numerObjName.get("title").toString();
+                }
+
+                if (numerObjName.has("format")) {
+                    format2 = (String) numerObjName.get("format").toString();
+                }
+
+                if (numerObjName.has("publication-place")) {
+                    publication_place = (String) numerObjName.get("publication-place").toString();
+                }
+
+                if (numerObjName.has("series-title")) {
+                    series_title = (String) numerObjName.get("series-title").toString();
+                }
+                if (numerObjName.has("issue-date")) {
+                    issue_date = (String) numerObjName.get("issue-date").toString();
+                }
+
+                if (numerObjName.has("url")) {
+                    url = (String) numerObjName.get("url").toString();
+                }
+                if (numerObjName.has("date")) {
+                    date = (String) numerObjName.get("date").toString();
+                }
+                if (numerObjName.has("date_original")) {
+                    date_original = (String) numerObjName.get("date_original").toString();
+                }
+
+                if (numerObjName.has("PSMID")) {
+                    PSMID = (String) numerObjName.get("PSMID").toString();
+                }
+                if (numerObjName.has("file-name")) {
+                    String filename = (String) numerObjName.get("file-name").toString();
+                    String filenameShort =filename.replaceAll("_Issue.xml","");
+                }
+
+
+                if (numerObjName.has("volume-number")) {
+                    volume_number =(String) numerObjName.get("volume-number").toString();
+                }
+
+                if (numerObjName.has("publication-volume")) {
+                    publication_volume = (String) numerObjName.get("publication-volume").toString();
+                }
+
+
+
 
                 for (int i=0; i<issue_pagesObject.length(); i++) {
                     String id="";
@@ -59,7 +108,7 @@ public class JoinJsonIssueMetadataPage {
                     String language ="";
                     String link ="";
                     String assetid_page ="";
-                    String volume_number ="";
+
 
                     String page_range ="";
                     String asset_id="";
@@ -67,8 +116,9 @@ public class JoinJsonIssueMetadataPage {
 
                     String format="";
                     String author ="";
-                    String description="";
-                    String journal_title2="";
+                    String description2="";
+
+
                     JSONObject numerObj = (JSONObject) issue_pagesObject.get(i);
 
                     if (numerObj.has("id")) {
@@ -82,9 +132,7 @@ public class JoinJsonIssueMetadataPage {
                     if (numerObj.has("language")) {
                         language =(String) numerObj.get("language").toString();
                     }
-                    if (numerObj.has("volume-number")) {
-                        volume_number =(String) numerObj.get("volume-number").toString();
-                    }
+
                     if (numerObj.has("page_num")) {
                         page_num = (String) numerObj.get("page_num").toString();
                     }
@@ -113,8 +161,10 @@ public class JoinJsonIssueMetadataPage {
                     }
 
                     if (numerObj.has("journal-title")) {
-                        journal_title2 = (String) numerObj.get("journal-title").toString();
+                        journal_title = (String) numerObj.get("journal-title").toString();
                     }
+
+
 
                     if ((numerObj.has("id") && PSMID.equals(idShort2))){
                         out.println("{" + quote + "language" + quote + ":" + quote + language + quote + "," + '\n'
@@ -130,12 +180,13 @@ public class JoinJsonIssueMetadataPage {
                                 + quote + "asset_id" + quote + ":" + quote + asset_id + quote + "," + '\n'
                                 + quote + "volume-number" + quote + ":" + quote + volume_number + quote + "," + '\n'
                                 + quote + "description" + quote + ":" + quote + description + quote + "," + '\n'
-                                + quote + "journal-title2" + quote + ":" + quote + journal_title2 + quote + "," + '\n'
-                                + quote + "format2" + quote + ":" + quote + format2 + quote + "," + '\n'
+                                + quote + "publication-volume" + quote + ":" + quote + publication_volume + quote + "," + '\n'
+                                + quote + "title" + quote + ":" + quote + title + quote + "," + '\n'
                                 + quote + "url" + quote + ":" + quote + url + quote + "," + '\n'
                                 + quote + "publication-place" + quote + ":" + quote + publication_place + quote + "," + '\n'
                                 + quote + "series-title" + quote + ":" + quote + series_title + quote + "," + '\n'
-                                + quote + "issue-date" + quote + ":" + quote + issue_date + quote + "," + '\n'
+                                //+ quote + "journal-title" + quote + ":" + quote + journal_title + quote + "," + '\n'
+                                //+ quote + "issue-date" + quote + ":" + quote + issue_date + quote + "," + '\n'
                                 + quote + "page-range" + quote + ":" + quote + page_range + quote + "" + '\n'
                                 + "},"
                         );
