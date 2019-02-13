@@ -17,7 +17,7 @@ request.body = JSON.stringify({
     "products": _.map(books, function(p) {
         //var bookId = page.book_id.toString();
         return {
-            "id": p.nodeId + "book",
+            /*"id": p.nodeId + "book",
             "hasModel": "Book",
             "nodeId": p.nodeId,
             "book_id": p.ImageDirectory,
@@ -40,8 +40,8 @@ request.body = JSON.stringify({
             "publisher": p.Office,
             "language": p.Language,
             "publication_volume": p.VolumeNumber,
-            "volume_number": p.IssueNumber,
-            /*"images": b.dataExport.document.images.image,
+            "volume_number": p.IssueNumber,*/
+            "images": b.dataExport.document.images.image,
             "images": _.map(pages, function(page) {
                 if (page.imageText!=null && page.book_id!=null) {
                     return {
@@ -81,7 +81,7 @@ request.body = JSON.stringify({
 
                     }
                 }
-            }),*/
+            }),
         }
     })
 })
