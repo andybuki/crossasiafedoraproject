@@ -75,9 +75,9 @@ public class PagesFedoraConverter {
 
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
-                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/amd_fo_japan/" + book_id +  "/"  +page_id;
+                    //cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/amd_fo_japan/" + book_id +  "/"  +page_id;
                     //cURLink = "curl -i -X PUT --data-binary" + " @/data3/DFZ/dfz/" + book_id + "/" + "Page/XMLContent/" + fileNameXml + "" + " -H " + quote + "Content-Type: application/xhtml+xml" + quote + " -H \"Content-Disposition: attachment; filename=" + fileNameXml  + "" + quote + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/dfz/" + book_id +"book" + "/" + page_id + "/xml";
-                    //cURLink = "curl -i -X PUT --data-binary" + " @/data3/DFZ/dfz2/" + book_id + "/" + "Page/ImageContent/" + fileNameXml2+".tif" + "" + " -H " + quote + "Content-Type: image/tif" + quote + " -H \"Content-Disposition: attachment; filename=" + fileNameXml2+".tif"  + "" + quote + " " + "http://10.46.3.100:8095/fcrepo/rest/DFZ/" + book_id + "/" + page_id + "/image";
+                    cURLink = "curl -i -X PUT --data-binary" + " @/mnt/fedora/raw/amd_fo_japan/images/" + book_id + "/" +  fileNameXml2 + "" + " -H " + quote + "Content-Type: image/jpg" + quote + " -H \"Content-Disposition: attachment; filename=" + fileNameXml2  + "" + quote + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/amd_fo_japan/" + book_id + "/" + page_id + "/image";
                     out.write(cURLink + "\r\n");
 
                     System.out.println(name + " changed to " + newName);
