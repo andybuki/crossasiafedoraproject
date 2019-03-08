@@ -13,15 +13,12 @@ public class ConvertXmlToJsonSection {
 
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("F:\\temp2-NICHT PASSEND\\");
+        File dir = new File("F:\\\\Sections\\");
         PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\section.json"));
         String bookName = "";
 
-
         String quote = "\u005c\u0022";
         int year = 0;
-
-
 
         for (File file : dir.listFiles()) {
             String encoding = "UTF-8";
@@ -40,7 +37,7 @@ public class ConvertXmlToJsonSection {
                 }
                 String everything = sb.toString();
                 String fileName = file.toString();
-                String page_id = fileName.replace("F:\\temp2-NICHT PASSEND\\","").replace(".xml","");
+                String page_id = fileName.replace("F:\\\\Sections\\","").replace(".xml","");
                 String book_id = page_id.substring(4,8);
 
                 if (page_id.contains("-")
@@ -62,9 +59,9 @@ public class ConvertXmlToJsonSection {
 
                             out.println("{"
                                     + quote + "id" + quote + ":" + quote+ page_id.replace("SZFZ","")+"_"+page + quote + "," + '\n'
-                                    + quote + "hasModel" + quote + ":" +   quote +"Section" +  quote + "," + '\n'
-                                    + quote + "collection" + quote + ":" +   quote +"China Comprehensive Gazetteers : 中國綜合方誌庫" +  quote + "," + '\n'
-                                    + quote + "title" + quote + ":" + quote+ title + quote + "," + '\n'
+                                    //+ quote + "hasModel" + quote + ":" +   quote +"Section" +  quote + "," + '\n'
+                                    //+ quote + "collection" + quote + ":" +   quote +"China Comprehensive Gazetteers : 中國綜合方誌庫" +  quote + "," + '\n'
+                                    //+ quote + "title" + quote + ":" + quote+ title + quote + "," + '\n'
 
                                     + quote + "position" + quote + ":" + quote+ page + quote + "," + '\n'
                                     + quote + "book_id" + quote + ":" + quote+ book_id + quote + "," + '\n'
@@ -85,9 +82,9 @@ public class ConvertXmlToJsonSection {
 
                                 out.println("{"
                                         + quote + "id" + quote + ":" + quote+ page_id.replace("SZFZ","")+"_"+page + quote + "," + '\n'
-                                        + quote + "hasModel" + quote + ":" +   quote +"Section" +  quote + "," + '\n'
-                                        + quote + "collection" + quote + ":" +   quote +"China Comprehensive Gazetteers : 中國綜合方誌庫" +  quote + "," + '\n'
-                                        + quote + "title" + quote + ":" + quote+ title + quote + "," + '\n'
+                                        //+ quote + "hasModel" + quote + ":" +   quote +"Section" +  quote + "," + '\n'
+                                        //+ quote + "collection" + quote + ":" +   quote +"China Comprehensive Gazetteers : 中國綜合方誌庫" +  quote + "," + '\n'
+                                        //+ quote + "title" + quote + ":" + quote+ title + quote + "," + '\n'
 
                                         + quote + "position" + quote + ":" + quote+ page + quote + "," + '\n'
                                         + quote + "book_id" + quote + ":" + quote+ book_id + quote + "," + '\n'

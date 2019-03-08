@@ -2,9 +2,9 @@ package org.crossasia.collections.ccg;
 
 
 import com.google.gson.Gson;
-//import org.json.JSONArray;
-//import org.json.JSONObject;
-//import org.json.XML;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.XML;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -18,7 +18,7 @@ public class ConvertXmlToJsonPage3 {
         String encoding = "UTF-8";
         File dir = new File("F:\\SZFZ_OLD\\");
         //PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\pages_SZFZ.json"));
-        PrintStream out = new PrintStream("D:\\SOLR-COLLECTIONS\\CCG\\pages_SZFZ2.json",encoding);
+        PrintStream out = new PrintStream("D:\\SOLR-COLLECTIONS\\CCG\\pages_FINAL.json",encoding);
         String bookName = "";
 
         String quote = "\u005c\u0022";
@@ -44,6 +44,7 @@ public class ConvertXmlToJsonPage3 {
                 String page_id = fileName.replace("F:\\SZFZ_OLD\\", "").replace(".xml", "");
                 String book_id = page_id.split("-")[0].replace("SZFZ", "");
                 String image_text ="";
+                String chapter_title ="";
                 int volume = Integer.parseInt(page_id.split("-")[1]);
                 int page = Integer.parseInt(page_id.split("-")[2]);
                 Map<String,String> myLinkedHashMap = new LinkedHashMap<String, String>();
@@ -59,12 +60,12 @@ public class ConvertXmlToJsonPage3 {
                     if (image instanceof JSONArray){
                         JSONArray image_arr = (JSONArray) image;
                         for (int ii=0; ii<image_arr.length();ii++){
-                            image_text="Page contains # image(s)";
+                            image_text="Page contains " +image_arr.length()+ " images";
                         }
                     } else {
                         JSONObject image_obj = (JSONObject) image;
                         if (image_obj.has("base64_data")) {
-                            image_text="Page contains # image(s)";
+                            image_text="Page contains 1 image";
                         }
                     }
 
@@ -123,7 +124,9 @@ public class ConvertXmlToJsonPage3 {
                                 + quote + "running_title" + quote + ":" + quote+ title + quote + "," + '\n'
                                 + quote + "volume" + quote + ":" + quote+ volume + quote + "," + '\n'
                                 + quote + "position" + quote + ":" + quote+ page + quote + "," + '\n'
+                                + quote + "position_vol" + quote + ":" + quote+ page + quote + "," + '\n'
                                 + quote + "image_info" + quote + ":" + quote+ image_text + quote + "," + '\n'
+                                + quote + "chapter_title" + quote + ":" + quote + chapter_title + quote + "," + '\n'
                                 + quote + "book_id" + quote + ":" + quote+ book_id + quote + "," + '\n'
                                 + quote + "text" + quote + ":" +   quote +text +  quote + "" + '\n'
                                 +"},"
@@ -198,6 +201,7 @@ public class ConvertXmlToJsonPage3 {
                                                 Object multi_text_ob = multitext;
                                                 if (multi_text_ob instanceof JSONArray) {
                                                     JSONArray multitextarray = (JSONArray) multi_text_ob;
+                                                    String colon="";
                                                     for (int x=0; x< multitextarray.length(); x++){
                                                         JSONObject mult_text = (JSONObject) multitextarray.get(x);
                                                         if (mult_text.has("content")){
@@ -205,6 +209,11 @@ public class ConvertXmlToJsonPage3 {
                                                             txt =  (String) mult_text.get("content").toString().replaceAll("　","")+"/";
                                                             title +=  txt;
                                                         }
+                                                        if (mult_text.has("full_occupy")){
+                                                            colon = (String) mult_text.get("full_occupy").toString().replace("\uE002"," : ");
+                                                        }
+
+                                                        title += colon;
                                                     }
                                                 } else {
                                                     JSONObject multitextobj = (JSONObject) multi_text_ob;
@@ -391,7 +400,9 @@ public class ConvertXmlToJsonPage3 {
                                 + quote + "running_title" + quote + ":" + quote+ title + quote + "," + '\n'
                                 + quote + "volume" + quote + ":" + quote+ volume + quote + "," + '\n'
                                 + quote + "position" + quote + ":" + quote+ page + quote + "," + '\n'
+                                + quote + "position_vol" + quote + ":" + quote+ page + quote + "," + '\n'
                                 + quote + "image_info" + quote + ":" + quote+ image_text + quote + "," + '\n'
+                                + quote + "chapter_title" + quote + ":" + quote + chapter_title + quote + "," + '\n'
                                 + quote + "book_id" + quote + ":" + quote+ book_id + quote + "," + '\n'
                                 + quote + "text" + quote + ":" +   quote +text +  quote + "" + '\n'
                                 +"},"

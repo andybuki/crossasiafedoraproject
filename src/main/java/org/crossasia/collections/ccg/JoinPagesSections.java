@@ -13,9 +13,9 @@ public class JoinPagesSections {
     public static void main(String[] args) throws FileNotFoundException {
 
         String quote = "\u005c\u0022";
-        String pages = "D:\\SOLR-COLLECTIONS\\CCG\\SZFZ4.json";
-        String sections = "D:\\SOLR-COLLECTIONS\\CCG\\group_section.json";
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\SZFZ_title_NEW.json"));
+        String pages = "D:\\SOLR-COLLECTIONS\\CCG\\pages_SZFZ5.json";
+        String sections = "D:\\SOLR-COLLECTIONS\\CCG\\group_section3.json";
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\pages_SZFZ6.json"));
         JSONArray jsonArrayPages = new JSONArray(new JSONTokener(new FileInputStream(pages)));
         JSONArray jsonArraySections = new JSONArray(new JSONTokener(new FileInputStream(sections)));
         String id = "";
