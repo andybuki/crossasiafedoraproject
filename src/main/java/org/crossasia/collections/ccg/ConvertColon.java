@@ -11,8 +11,8 @@ import java.io.PrintStream;
 
 public class ConvertColon {
     public static void main(String[] args) throws FileNotFoundException {
-        String pages = "D:\\SOLR-COLLECTIONS\\CCG\\SZFZ_title.json";
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\SZFZ_title2.json"));
+        String pages = "D:\\SOLR-COLLECTIONS\\CCG\\pages_FINAL6.json";
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\pages_FINAL7.json"));
         String quote = "\u005c\u0022";
 
         String id = "";

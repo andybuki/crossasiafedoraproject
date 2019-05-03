@@ -1,65 +1,42 @@
 package org.crossasia.collections.airiti;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.io.*;
 
 public class AiritiJson {
 
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("H:\\airiti\\books\\");
-        PrintStream out = new PrintStream(new FileOutputStream("H:\\airiti\\airiti6.json"));
-        String bookName = "";
-        String page = "";
-        String text = "";
+        String journal = "D:\\SOLR-COLLECTIONS\\airiti_pages.json";
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\airiti\\airiti.json"));
         String quote = "\u005c\u0022";
+        JSONArray jsonArray = new JSONArray(new JSONTokener(new FileInputStream(journal)));
+        String bookName = "";
 
-        for (File file : dir.listFiles()) {
-            String encoding = "UTF-8";
-            Reader reader = new BufferedReader(new InputStreamReader(
-                    new FileInputStream(file), encoding));
-            BufferedReader br = new BufferedReader(new FileReader(file));
+        StringBuilder sb = new StringBuilder();
 
-            try {
-                StringBuilder sb = new StringBuilder();
-                String line = br.readLine();
+        for (int k=0; k<jsonArray.length();k++) {
+            String text = "";
+            JSONObject book = (JSONObject) jsonArray.get(k);
+            String id = (String) book.get("id");
+            String book_id = (String) book.get("book_id");
+            int position = (int) book.get("position");
+            if (book.has("text")){
+                text = (String) book.get("text");
 
-                while (line != null) {
-                    sb.append(line);
-                    sb.append(System.lineSeparator());
-                    line = br.readLine();
-                }
-                String everything = sb.toString();
-                String textReplace =  everything.replace("\r\n"," ").replace("\f","");
-                String fileName = file.toString();
-                String fileName1 = fileName.replace("H:\\airiti\\books\\", "");
-                String fileName2 = fileName1.replace(".txt", "");
-                String[] parts = fileName2.split("_");
-                String pageNumber = parts[0];
-                bookName = parts[2];
-                //String str[] = new String[sb2.length];
-
-                /*out.println("{" + quote + "id" + quote + ":" + quote + pageNumber + "_" + bookName + quote + "," + '\n'
-                        + quote + "book_id" + quote + ":" + quote + bookName + quote + "," + '\n'
-                        + quote + "position" + quote + ":" + pageNumber + "," + '\n' + quote + "text" + quote + ":" + "["
-                );*/
-
-                out.println("{" + quote + "id" + quote + ":" + quote + pageNumber + "_" + bookName + quote + "," + '\n'
-                        + quote + "book_id" + quote + ":" + quote + bookName + quote + "," + '\n'
-                        + quote + "position" + quote + ":" + pageNumber + "," + '\n' + quote + "text" + quote + ":" + quote + textReplace + quote + "},"
-                );
-
-
-                /*for (int i = 0; i < sb2.length; i++) {
-                    str[i] = sb2[i].toString();
-                    out.println(
-                            "" + quote + str[i] + quote + ",");
-                }*/
-
-
-            } finally {
-                br.close();
             }
+            sb.append("{" + quote + "id" + quote + ":" + quote + id +  quote + "," + '\n'
+                    + quote + "book_id" + quote + ":" + quote + book_id + quote + "," + '\n'
+                    + quote + "position" + quote + ":" + position + "," + '\n'
+                    + quote + "hasModel" + quote + ":" +  quote +"Page" + quote + "," + '\n'
+                    + quote + "collection" + quote + ":" + quote + "Airiti" + quote + "," + '\n'
+                    + quote + "text" + quote + ":" + quote + text + quote + "},"
+            );
         }
+        out.println("["+sb.deleteCharAt(sb.length() - 1)+"]");
     }
 
 }

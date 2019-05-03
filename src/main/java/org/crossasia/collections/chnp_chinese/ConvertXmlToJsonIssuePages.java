@@ -21,8 +21,8 @@ public class ConvertXmlToJsonIssuePages {
 
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_error\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_pagesSmall.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\CHNP2\\meta\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CHNP2\\issue.json"));
         Converter converter = new Converter();
         String bookName = "";
         //String page = "";

@@ -1,4 +1,5 @@
 package org.crossasia.collections.chnp_chinese;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
@@ -10,8 +11,8 @@ import java.nio.file.Paths;
 public class ConvertXmlToJsonIssue {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_error\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\issue_error.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\CHNP2\\meta\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CHNP2\\meta.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -41,12 +42,29 @@ public class ConvertXmlToJsonIssue {
                 //String fileName1 = fileName.replace("/Users/andreybuchmann/Downloads/JOBIK/xml2/", "");
 
                 JSONObject jsonObject = XML.toJSONObject(new String(Files.readAllBytes(Paths.get(fileName))));
-                JSONObject dataExport = (JSONObject) jsonObject.get("issue");
-                JSONObject metadata = (JSONObject) dataExport.get("metadataInfo");
-                JSONObject lang = (JSONObject) metadata.get("language");
+                JSONObject dataExport = (JSONObject) jsonObject.get("manuscript");
+                JSONObject metadata = (JSONObject) dataExport.get("msInfo");
+
+                Object lang =  metadata.get("msLanguage");
+
                 String language = "";
-                if (metadata.has("language")) {
-                    language = (String) lang.get("content").toString();
+
+                if (metadata.has("msLanguage")) {
+                    if (lang instanceof JSONObject) {
+                        JSONObject lang2 = (JSONObject) lang;
+                        language = (String) lang2.get("content").toString();
+                    }    else {
+                        JSONArray lang2 = (JSONArray) lang;
+                        for (int k=0; k<lang2.length(); k++ ){
+                            String lange="";
+                            JSONObject lg = (JSONObject) lang2.get(k);
+                            lange = (String) lg.get("content").toString();
+                            language +=lange+" ,";
+                        }
+                        System.out.println("test");
+                    }
+
+
                 }
                 String sourceLibrary = "";
                 String libraryName = "";
@@ -70,15 +88,15 @@ public class ConvertXmlToJsonIssue {
                     issue = (String) metadata.get("is").toString();
                 }
 
-                JSONObject da = (JSONObject) metadata.get("da");
+                JSONObject da = (JSONObject) metadata.get("msDate");
                 String date_original = "";
                 String date = "";
 
-                if (da.has("composed")) {
-                    date_original = (String) da.get("composed").toString();
+                if (da.has("msdComposed")) {
+                    date_original = (String) da.get("msdComposed").toString();
                 }
-                if (da.has("searchableDateStart")) {
-                    date = (String) da.get("searchableDateStart").toString();
+                if (da.has("SearchableDateStart")) {
+                    date = (String) da.get("SearchableDateStart").toString();
                 }
 
                 String code = "";

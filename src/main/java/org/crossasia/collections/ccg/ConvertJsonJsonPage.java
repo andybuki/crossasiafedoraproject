@@ -13,8 +13,8 @@ public class ConvertJsonJsonPage {
     public static void main(String[] args) {
 
         try {
-            String pages = "D:\\SOLR-COLLECTIONS\\CCG\\SZFZ2.json";
-            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\SZFZ3.json"));
+            String pages = "D:\\SOLR-COLLECTIONS\\CCG\\pages_FINAL2.json";
+            PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\pages_FINAL3.json"));
             String quote = "\u005c\u0022";
             JSONArray jsonArray = new JSONArray(new JSONTokener(new FileInputStream(pages)));
             String id = "";
@@ -22,6 +22,7 @@ public class ConvertJsonJsonPage {
             String book_id2 = "";
             String text = "";
             String running_title = "";
+            String chapter_title = "";
             String image_info = "";
             int volume = 0;
             String position_vol = "";
@@ -70,7 +71,7 @@ public class ConvertJsonJsonPage {
                 }
 
                 //List<String> sample = (List<String>) Arrays.asList(boosID);
-
+                // Add counter uncoment
                 /*for (int y=i+1; y<jsonArray.length(); y++) {
                     book_id2 = (String) page3.get("book_id");
                     if (book_id.equals(book_id2)){
@@ -83,7 +84,7 @@ public class ConvertJsonJsonPage {
                 }
                 if (book_id.equals(book_id2)) {
                     count++;
-                    position2 =count;
+                    position =count;
 
 
                 }*/
@@ -99,6 +100,7 @@ public class ConvertJsonJsonPage {
                         + quote + "position_vol" + quote + ":" + quote + position_vol + quote + "," + '\n'
                         + quote + "position" + quote + ":" + quote + position + quote + "," + '\n'
                         + quote + "book_id" + quote + ":" + quote + book_id + quote + "," + '\n'
+                        + quote + "chapter_title" + quote + ":" + quote + chapter_title + quote + "," + '\n'
                         + quote + "text" + quote + ":" + quote + text + quote + "" + '\n'
                         + "},"
                 );

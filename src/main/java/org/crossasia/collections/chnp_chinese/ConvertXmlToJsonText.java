@@ -11,8 +11,8 @@ import java.nio.file.Paths;
 public class ConvertXmlToJsonText {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\text\\");
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\chnp_2016_chinese\\textResult2.json"));
+        File dir = new File("D:\\SOLR-COLLECTIONS\\CHNP2\\page\\");
+        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CHNP2\\text.json"));
 
 
         String quote = "\u005c\u0022";
@@ -41,30 +41,58 @@ public class ConvertXmlToJsonText {
                 //String fileName1 = fileName.replace("/Users/andreybuchmann/Downloads/JOBIK/xml2/", "");
 
                 JSONObject jsonObject = XML.toJSONObject(new String(Files.readAllBytes(Paths.get(fileName))));
-                JSONObject articles = (JSONObject) jsonObject.get("articles");
-                JSONArray article = (JSONArray) articles.get("artInfo");
-                String text = "";
-                String link = "";
-                String id ="";
-                for (int ar=0; ar<article.length(); ar++) {
-                    JSONObject artikul = (JSONObject) article.get(ar);
-                    if (artikul.has("ProductLink")) {
-                        link = (String) artikul.get("ProductLink");
+                JSONObject articles = (JSONObject) jsonObject.get("pageContent");
+
+                Object article =  articles.get("page");
+                if (article instanceof JSONArray) {
+                    JSONArray article2 = (JSONArray) article;
+                    String text = "";
+                    String link = "";
+                    String id = "";
+                    for (int ar = 0; ar < article2.length(); ar++) {
+                        String fileName2 = fileName.toString().replace("D:\\SOLR-COLLECTIONS\\CHNP2\\page\\", "").replace("_PageText.xml", "");
+                        JSONObject artikul = (JSONObject) article2.get(ar);
+                        if (artikul.has("ProductLink")) {
+                            link = (String) artikul.get("ProductLink");
+                        }
+                        if (artikul.has("id")) {
+                            id = (String) artikul.get("id");
+                        }
+                        if (artikul.has("ocrText")) {
+                            text = (String) artikul.get("ocrText").toString().replaceAll("\"", "'").replaceAll(quote, "'").replaceAll(quote, "\"").replaceAll("[\r\n]+", " ");
+                        }
+                        System.out.println(text);
+                        out.println("{"
+                                + quote + "id" + quote + ":" + quote + fileName2 + quote + "," + '\n'
+                                + quote + "book_id" + quote + ":" + quote + id + quote + "," + '\n'
+                                + quote + "text" + quote + ":" + quote + text + quote + "" + '\n'
+                                + "},"
+                        );
                     }
-                    if (artikul.has("id")) {
-                        id = (String) artikul.get("id");
+                } else {
+                    JSONObject article2 = (JSONObject) article;
+                    String fileName2 = fileName.toString().replace("D:\\SOLR-COLLECTIONS\\CHNP2\\page\\", "").replace("_PageText.xml", "");
+                    String text = "";
+                    String link = "";
+                    String id = "";
+                    if (article2.has("ProductLink")) {
+                        link = (String) article2.get("ProductLink");
                     }
-                    if (artikul.has("ocrText")) {
-                        text = (String) artikul.get("ocrText").toString().replaceAll("\"","'").replaceAll(quote,"'").replaceAll(quote,"\"").replaceAll("[\r\n]+", " ");
+                    if (article2.has("id")) {
+                        id = (String) article2.get("id");
                     }
-                    System.out.println(text);
+                    if (article2.has("ocrText")) {
+                        text = (String) article2.get("ocrText").toString().replaceAll("\"", "'").replaceAll(quote, "'").replaceAll(quote, "\"").replaceAll("[\r\n]+", " ");
+                    }
+                    //System.out.println(text);
                     out.println("{"
-                            + quote + "id" + quote + ":" + quote + id + quote + "," + '\n'
-                            + quote + "link" + quote + ":" + quote + link + quote + "," + '\n'
+                            + quote + "id" + quote + ":" + quote + fileName2 + quote + "," + '\n'
+                            + quote + "book_id" + quote + ":" + quote + id + quote + "," + '\n'
                             + quote + "text" + quote + ":" + quote + text + quote + "" + '\n'
                             + "},"
                     );
                 }
+
 
             }catch(JSONException e){
                 e.printStackTrace();

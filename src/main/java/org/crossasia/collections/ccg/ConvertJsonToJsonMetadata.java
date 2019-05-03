@@ -205,7 +205,7 @@ public class ConvertJsonToJsonMetadata {
                     }
 
 
-                    out.println("{" + quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n'
+                    out.println("{" + quote + "id" + quote + ":" + quote+ id+"_book"+ quote + "," + '\n'
                             + quote + "title" + quote + ":" + quote+ title+ quote + "," + '\n'
                             + quote + "book_id" + quote + ":" + quote+ id+ quote + "," + '\n'
                             + quote + "identifier" + quote + ":" + quote+ identifier+ quote + "," + '\n'

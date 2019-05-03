@@ -27,10 +27,10 @@ public class MainSplitter
 
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                from("file:D:\\FEDORA-COLLECTIONS\\CCG\\books")
+                from("file:D:\\FEDORA-COLLECTIONS\\CCG\\pages\\szfz")
                         //.delay(10)
                         .split(method(JsonSplitterPages.class))
-                        .to("file:D:\\FEDORA-COLLECTIONS\\CCG\\books\\book?fileName=${header.books_id}");
+                        .to("file:D:\\FEDORA-COLLECTIONS\\CCG\\pages\\szfz\\pages?fileName=${header.books_id}");
 
 
                 /*from("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json")

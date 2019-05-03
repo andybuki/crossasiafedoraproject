@@ -22,7 +22,7 @@ public class BooksFedoraConverter {
             File[] filesInDir = dir.listFiles();
             int i = 0;
             String quote = "\u005c\u0022";
-            out = new BufferedWriter(new FileWriter(absolutePath+"books.sh"));
+            out = new BufferedWriter(new FileWriter(absolutePath+"xml.sh"));
             //PrintWriter out = new PrintWriter( "/Users/andreybuchmann/Downloads/camel-to-solr-master/camelsolr/data/filename.txt" );
             String cURLink = "";
 
@@ -31,7 +31,7 @@ public class BooksFedoraConverter {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"books.sh")) {
+                if (fileName.equals(absolutePath+"xml.sh")) {
                     System.out.println("text file");
                 } else {
                     Object obj = parser.parse(new FileReader(file));
@@ -51,7 +51,8 @@ public class BooksFedoraConverter {
 
                     Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
 
-                    cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/eastview/" + books_id;
+                    //cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/eastview/" + books_id;
+                    cURLink = "curl -i -X PUT --data-binary" + " @/mnt/fedora/raw/ccg/xml/"  +id+ ".xml" + " -H " + quote + "Content-Type: application/xhtml+xml" + quote + " -H \"Content-Disposition: attachment; filename=" + id+ ".xml" + quote + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/eastview/"  + id + "/xml";
                     out.write(cURLink + "\r\n");
 
                     System.out.println(name + " changed to " + newName);
