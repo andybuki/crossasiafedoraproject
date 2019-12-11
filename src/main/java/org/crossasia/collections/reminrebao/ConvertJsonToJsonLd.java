@@ -1,9 +1,5 @@
 package org.crossasia.collections.reminrebao;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 public class ConvertJsonToJsonLd {
     public static void main( String[] args ) throws Exception {

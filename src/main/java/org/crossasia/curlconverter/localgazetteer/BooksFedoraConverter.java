@@ -1,26 +1,15 @@
 package org.crossasia.curlconverter.localgazetteer;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.util.Map;
-
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.apache.commons.io.FileUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
-
-import static java.awt.SystemColor.text;
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class BooksFedoraConverter {
     private Object obj;

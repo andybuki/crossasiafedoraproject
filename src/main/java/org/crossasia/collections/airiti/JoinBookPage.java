@@ -12,9 +12,9 @@ import java.io.PrintStream;
 public class JoinBookPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "D:\\SOLR-COLLECTIONS\\airiti\\books2.json";
-        String pages = "D:\\SOLR-COLLECTIONS\\airiti\\pages.json";
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\airiti\\books_pages.json"));
+        String books = "/data1/solr/Airiti/books2.json";
+        String pages = "/data1/solr/Airiti/pages.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/Airiti/books_pages3.json"));
 
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray pagesObject = new JSONArray(new JSONTokener(new FileInputStream(pages)));
@@ -32,6 +32,7 @@ public class JoinBookPage {
             String edition ="";
             String responsibility ="";
             String url ="";
+            String erflink ="";
             String keywords ="";
             String publisher ="";
 
@@ -52,8 +53,10 @@ public class JoinBookPage {
                 edition =(String) booksObj.get("edition").toString();
             if (booksObj.has("responsibility"))
                 responsibility =(String) booksObj.get("responsibility").toString();
-            if (booksObj.has("identifier"))
-                url =(String) booksObj.get("identifier").toString();
+            if (booksObj.has("url"))
+                url =(String) booksObj.get("url").toString();
+            if (booksObj.has("erflink"))
+                erflink =(String) booksObj.get("erflink").toString();
             if (booksObj.has("keywords"))
                 keywords =(String) booksObj.get("keywords").toString();
             if (booksObj.has("publisher"))
@@ -99,7 +102,8 @@ public class JoinBookPage {
                             + quote + "subject" + quote + ":" +  quote + subject + quote + "," + '\n'
                             + quote + "edition" + quote + ":" +   quote +edition +  quote + "," + '\n'
                             + quote + "responsibility" + quote + ":" +   quote +responsibility +  quote + "," + '\n'
-                            + quote + "url" + quote + ":" +  quote+ url +  quote+ "," + '\n'
+                            + quote + "url" + quote + ":" +  quote+ url +  "&GoToPage="+position+ quote+"," + '\n'
+                            + quote + "erflink" + quote + ":" +  quote+ erflink + "&GoToPage="+position+ quote+ "," + '\n'
                             + quote + "keywords" + quote + ":" +   keywords +   "," + '\n'
                             + quote + "publisher" + quote + ":" + quote+  publisher + quote+  "," + '\n'
                             //+ quote + "volume" + quote + ":" +   quote +volume +  quote + "," + '\n'

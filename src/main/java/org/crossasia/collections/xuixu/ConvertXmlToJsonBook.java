@@ -1,18 +1,14 @@
 package org.crossasia.collections.xuixu;
-import org.json.simple.JSONObject;
-import org.json.XML;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class ConvertXmlToJsonBook {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("D:\\RAW-COLLECTIONS\\Xuixu\\");
+        File dir = new File("/data3/solr/Xuixu\\");
         PrintStream out = new PrintStream(new FileOutputStream("D:\\RAW-COLLECTIONS\\Xuixu\\solr_books.json"));
         String bookName = "";
         String page = "";

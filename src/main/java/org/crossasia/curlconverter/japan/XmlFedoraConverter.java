@@ -32,22 +32,17 @@ public class XmlFedoraConverter {
                 if (fileName.equals(absolutePath+"books.sh")) {
                     System.out.println("text file");
                 } else {
-
                     String name = file.getName();
                     String name_cut = name.replace(".xml","");
-
                     //cURLink = "curl -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + name + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/amd_fo_japan/" + name;
                     cURLink = "curl -i -X PUT --data-binary" + " @/mnt/fedora/raw/amd_fo_japan/xml/" + name + "" + " -H " + quote + "Content-Type: application/xhtml+xml" + quote + " -H \"Content-Disposition: attachment; filename=" + name  + "" + quote + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/amd_fo_japan/" + name_cut+"/xml";
                     out.write(cURLink + "\r\n");
-
                     //System.out.println(name + " changed to " + newName);
                 }
             }
-
             System.out.println("conversion is done");
         } catch (IOException e) {
             System.out.println("Exception ");
-
         } finally {
             out.close();
         }

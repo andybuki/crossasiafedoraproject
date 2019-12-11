@@ -1,13 +1,13 @@
 package org.crossasia.collections.ccg;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+//import net.sf.json.JSONArray;
+//import net.sf.json.JSONObject;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
 
 public class DeleteDuplicates {
     public static void main(String[] args) throws IOException {
@@ -15,7 +15,7 @@ public class DeleteDuplicates {
         PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\CCG\\pages_FINAL6.json"));
         //File f = new File("D:\\SOLR-COLLECTIONS\\CCG\\group_section3.json");
         String content = new String(Files.readAllBytes(Paths.get("D:\\SOLR-COLLECTIONS\\CCG\\pages_FINAL5.json")), "UTF-8");
-        JSONArray ja2 = JSONArray.fromObject(content);
+        /*JSONArray ja2 = JSONArray.fromObject(content);
 
         JSONArray jArray = ja2;
         JSONArray tempArray = new JSONArray();
@@ -37,7 +37,7 @@ public class DeleteDuplicates {
         }
         jArray = tempArray;
         out.println(jArray);
-        System.out.println(id1);
+        System.out.println(id1);*/
 
     }}
 

@@ -3,42 +3,13 @@ package org.crossasia.collections.localgazetteer;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
-import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.builder.xml.XPathBuilder;
 import org.apache.camel.component.gson.GsonDataFormat;
 import org.apache.camel.component.jms.JmsComponent;
-import org.apache.camel.component.solr.SolrConstants;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.crossasia.domain.Products;
-
-import org.apache.camel.Exchange;
-import org.apache.camel.component.solr.SolrConstants;
 import org.crossasia.utils.Utils;
-import org.json.JSONObject;
-import org.json.XML;
-
-import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.camel.component.ActiveMQComponent;
-import org.apache.camel.CamelContext;
-import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.builder.xml.XPathBuilder;
-import org.apache.camel.component.gson.GsonDataFormat;
-import org.apache.camel.component.jms.JmsComponent;
-import org.apache.camel.impl.DefaultCamelContext;
-import org.crossasia.domain.Products;
-import org.fcrepo.client.FcrepoClient;
-import org.w3c.dom.Document;
-
-import javax.jms.ConnectionFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-
 
 import javax.jms.ConnectionFactory;
 

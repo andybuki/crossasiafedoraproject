@@ -1,15 +1,11 @@
 package org.crossasia.sqlsolr;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.camel.component.ActiveMQComponent;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
-import org.apache.camel.component.jms.JmsComponent;
 import org.crossasia.domain.Book;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.apache.camel.component.jms.JmsComponent;
 
 import javax.jms.ConnectionFactory;
 import java.util.List;

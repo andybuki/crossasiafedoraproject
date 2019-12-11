@@ -12,9 +12,9 @@ import java.io.PrintStream;
 public class JoinBookPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "D:\\SOLR-COLLECTIONS\\diaolong-shiliao\\books.json";
-        String pages = "D:\\SOLR-COLLECTIONS\\diaolong-shiliao\\pages.json";
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\diaolong-shiliao\\books_pages.json"));
+        String books = "/data1/solr/ajax-dl-shiliao/books2.json";
+        String pages = "/data1/solr/ajax-dl-shiliao/books_pages_NEW.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-dl-shiliao/books_pages2.json"));
 
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray pagesObject = new JSONArray(new JSONTokener(new FileInputStream(pages)));
@@ -28,8 +28,8 @@ public class JoinBookPage {
             JSONArray edition =null;
             String responsibility ="";
             String url ="";
-
-            String date = "";
+            String erflink ="";
+            JSONArray date = null;
             JSONArray identifier = null;
             String book_id = "";
             String ISBN = "";
@@ -37,7 +37,7 @@ public class JoinBookPage {
 
 
             String issued = "";
-
+            JSONArray publication_place =null;
 
             JSONArray description = null;
             JSONArray medium = null;
@@ -57,6 +57,10 @@ public class JoinBookPage {
             book_id = (String) booksObj.get("book_id").toString();
             if (booksObj.has("title"))
                 title = (JSONArray) booksObj.get("title");
+            if (booksObj.has("url"))
+                url = (String) booksObj.get("url");
+            if (booksObj.has("erflink"))
+                erflink = (String) booksObj.get("erflink");
             if (booksObj.has("responsibility"))
                 responsibility = (String) booksObj.get("responsibility").toString();
             if (booksObj.has("issued"))
@@ -86,12 +90,16 @@ public class JoinBookPage {
                 keywords  = (JSONArray) booksObj.get("keywords");
             }
 
-            if (booksObj.has("creator"))
-                author =(JSONArray) booksObj.get("creator");
+            if (booksObj.has("publication_place")) {
+                publication_place = (JSONArray) booksObj.get("publication_place");
+            }
+
+            if (booksObj.has("author"))
+                author =(JSONArray) booksObj.get("author");
             if (booksObj.has("alternative"))
                 alternative =(JSONArray) booksObj.get("alternative");
             if (booksObj.has("date"))
-                date =(String) booksObj.get("date").toString();
+                date =(JSONArray) booksObj.get("date");
 
             if (booksObj.has("subject"))
                 subject =(JSONArray) booksObj.get("subject");
@@ -165,6 +173,19 @@ public class JoinBookPage {
                         sb.append(  quote + "edition" + quote + ":" +  edition+  "," + '\n');
                     if (responsibility!=null)
                         sb.append(  quote + "responsibility" + quote + ":" +  quote+ responsibility+ quote+  "," + '\n');
+
+                    if (url!=null)
+                        sb.append(  quote + "url" + quote + ":" +  quote+ url+ quote+  "," + '\n');
+
+                    if (publication_place!=null)
+                        sb.append(  quote + "publication_place" + quote + ":" +  publication_place+  "," + '\n');
+
+                    if (date!=null)
+                        sb.append(  quote + "date" + quote + ":" +  date+  "," + '\n');
+
+                    if (erflink!=null)
+                        sb.append(  quote + "erflink" + quote + ":" +  quote+ erflink+ quote+  "," + '\n');
+
                     if (person!=null)
                         sb.append(  quote + "person" + quote + ":" +  person+  "," + '\n');
                     if (position!=null)

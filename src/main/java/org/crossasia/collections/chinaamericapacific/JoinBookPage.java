@@ -12,7 +12,7 @@ import java.io.PrintStream;
 public class JoinBookPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "D:\\SOLR-COLLECTIONS\\China_America_Pacific\\books.json";
+        String books = "/data1/solr/ChinaAmericaPacific/books.json";
         String pages = "D:\\SOLR-COLLECTIONS\\China_America_Pacific\\pages\\pages.json";
         PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\China_America_Pacific\\books_pages.json"));
 

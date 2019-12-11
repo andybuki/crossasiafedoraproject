@@ -30,8 +30,11 @@ public class JsonJsonPages {
             for (int i=0; i<pagesArray.length(); i++) {
                 JSONObject pagesObj = (JSONObject) pagesArray.get(i);
                 id = (String) pagesObj.get("id");
+                String [] real = (id.split("-"));
+
                 position = (String) pagesObj.get("position");
                 identifier = (String) pagesObj.get("identifier");
+                String real_id = real[0]+"-"+real[1]+"-"+real[2]+"-"+position;
 
                 for (int j=0; j<textArray.length(); j++) {
                     JSONObject textObj = (JSONObject) textArray.get(j);
@@ -40,12 +43,13 @@ public class JsonJsonPages {
                     book_id = (String) textObj.get("book_id");
                     String combain_id = ids+"-"+book_id;
 
-                    if (pagesObj.get("id").equals(combain_id)){
-                        out.println("{" + quote + "id" + quote + ":"   + id  + "," + '\n'
+                    if (real_id.equals(combain_id)){
+                        out.println("{" + quote + "id" + quote + ":"   + real_id  + "," + '\n'
                                 + quote + "book_id" + quote + ":" + quote + ids + quote + "," + '\n'
                                 + quote + "text" + quote + ":" + quote + texts + quote + "," + '\n'
                                 + quote + "position" + quote + ":" + quote + position + quote + "," + '\n'
-                                + quote + "hasModel" + quote + ":" + quote + "Article" + quote + "," + '\n'
+                                + quote + "image" + quote + ":" + quote + pagesObj.get("id")+".jpg" + quote + "," + '\n'
+                                + quote + "hasModel" + quote + ":" + quote + "Page" + quote + "," + '\n'
                                 + quote + "collection" + quote + ":" + quote + "Gale CFER" + quote + "," + '\n'
                                 + quote + "identifier" + quote + ":"  + identifier  + "" + '\n'
                                 + "},"

@@ -12,9 +12,9 @@ import java.io.PrintStream;
 public class JoinBookPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "D:\\SOLR-COLLECTIONS\\diaolong-jiyao\\books.json";
-        String pages = "D:\\SOLR-COLLECTIONS\\diaolong-jiyao\\pages.json";
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\diaolong-jiyao\\books_pages.json"));
+        String books = "/data1/solr/ajax-dl-jiyao/books2.json";
+        String pages = "/data1/solr/ajax-dl-jiyao/pages.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-dl-jiyao/books_pages.json"));
 
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray pagesObject = new JSONArray(new JSONTokener(new FileInputStream(pages)));
@@ -38,7 +38,7 @@ public class JoinBookPage {
 
             String issued = "";
 
-
+            String erflink ="";
             JSONArray description = null;
             JSONArray medium = null;
             JSONArray subject = null;
@@ -70,6 +70,15 @@ public class JoinBookPage {
             if (booksObj.has("isbn")) {
                 ISBN  = (String) booksObj.get("isbn");
             }
+
+            if (booksObj.has("url")) {
+                url  = (String) booksObj.get("url");
+            }
+
+            if (booksObj.has("erflink")) {
+                erflink  = (String) booksObj.get("erflink");
+            }
+
             if (booksObj.has("spatial")) {
                 spatial  = (JSONArray) booksObj.get("spatial");
             }
@@ -175,6 +184,16 @@ public class JoinBookPage {
                     
                     if (text!=null)
                         sb.append(  quote + "text" + quote + ":" +quote+  text+ quote+  "," + '\n');
+
+                    if (date!=null)
+                        sb.append(  quote + "date" + quote + ":" +quote+  date+ quote+  "," + '\n');
+
+                    if (url!=null)
+                        sb.append(  quote + "url" + quote + ":" +quote+  url+ quote+  "," + '\n');
+
+                    if (erflink!=null)
+                        sb.append(  quote + "erflink" + quote + ":" +quote+  erflink+ quote+  "," + '\n');
+
                     if (subject!=null)
                         sb.append(  quote + "subject" + quote + ":" +  subject+  "," + '\n');
 

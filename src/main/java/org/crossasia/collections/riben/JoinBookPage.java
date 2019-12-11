@@ -12,9 +12,9 @@ import java.io.PrintStream;
 public class JoinBookPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "D:\\SOLR-COLLECTIONS\\riben\\books.json";
-        String pages = "D:\\SOLR-COLLECTIONS\\riben\\pages.json";
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\riben\\books_pages.json"));
+        String books = "/data1/solr/ajax-riben/books.json";
+        String pages = "/data1/solr/ajax-riben/pages.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-riben/books_pages2.json"));
 
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray pagesObject = new JSONArray(new JSONTokener(new FileInputStream(pages)));
@@ -28,9 +28,10 @@ public class JoinBookPage {
             String edition ="";
             String responsibility ="";
             String url ="";
+            String erflink ="";
 
             String date = "";
-            String identifier = "";
+            JSONArray identifier = null;
             String book_id = "";
             String source = "";
             String title = "";
@@ -69,7 +70,14 @@ public class JoinBookPage {
             if (booksObj.has("series_title"))
                 series_title =(JSONArray) booksObj.get("series_title");
             if (booksObj.has("identifier"))
-                identifier =(String) booksObj.get("identifier").toString();
+                identifier =(JSONArray) booksObj.get("identifier");
+                if (identifier.get(0).toString().contains("http://")) {
+                    url = identifier.get(0).toString();
+                } else if (identifier.get(1).toString().contains("http://")) {
+                    url = identifier.get(1).toString();
+                }
+             String url2 = url.replace("http://","");
+             erflink =  "http://erf.sbb.spk-berlin.de/han/ribengudianshujiku/"+url2;
 
             for (int j=0; j<pagesObject.length();j++) {
                 String book_id_page="";
@@ -114,7 +122,14 @@ public class JoinBookPage {
                         sb.append(quote + "chapter_title" + quote + ":" +  quote+ chapter_title  +quote + "," + '\n');
                     }
                     if (identifier!=null)
-                        sb.append(  quote + "identifier" + quote + ":" + quote+ identifier+ quote + "," + '\n');
+                        sb.append(  quote + "identifier" + quote + ":" +  identifier+  "," + '\n');
+
+                    if (url!=null)
+                        sb.append(  quote + "url" + quote + ":" + quote+ url+ quote + "," + '\n');
+
+                    if (erflink!=null)
+                        sb.append(  quote + "erflink" + quote + ":" + quote+ erflink+ quote + "," + '\n');
+
                     if (date!=null)
                         sb.append(  quote + "date" + quote + ":" +  date+  "," + '\n');
 

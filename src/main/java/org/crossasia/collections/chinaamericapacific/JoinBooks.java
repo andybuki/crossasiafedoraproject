@@ -8,10 +8,10 @@ import java.io.*;
 
 public class JoinBooks {
     public static void main(String[] args) throws FileNotFoundException {
-        String filePathFolder = "D:\\SOLR-COLLECTIONS\\China_America_Pacific\\books\\";
-        String directoryPath = "D:\\SOLR-COLLECTIONS\\China_America_Pacific\\books";
+        String filePathFolder = "/data1/solr/ChinaAmericaPacific/books/";
+        String directoryPath = "/data1/solr/ChinaAmericaPacific/books/";
         String quote = "\u005c\u0022";
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\China_America_Pacific\\books_pages.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ChinaAmericaPacific/books.json"));
 
         StringBuilder sb = new StringBuilder();
         File folder = new File(filePathFolder);
@@ -34,6 +34,7 @@ public class JoinBooks {
             String id = "";
             String issued = "";
             String nodeId = "";
+            String erflink="http://erf.sbb.spk-berlin.de/han/ChinaAmericaPacific/";
             //String series_title = "";
             JSONArray description = null;
             JSONArray medium = null;
@@ -47,6 +48,9 @@ public class JoinBooks {
                 JSONObject booksObject = (JSONObject) booksArrays.get(i);
                 id = (String) booksObject.get("id");
                 identifier  = (String) booksObject.get("identifier");
+                String identifier2 = identifier.replace("http://","");
+                erflink = erflink+identifier2;
+
                 book_id  = (String) booksObject.get("book_id");
                 if (booksObject.has("issued")) {
                     issued = (String) booksObject.get("issued").toString();
@@ -97,7 +101,10 @@ public class JoinBooks {
                 sb.append(  quote + "issued" + quote + ":" + quote+ issued+ quote + "," + '\n' );
 
                 if (identifier!=null)
-                    sb.append(  quote + "identifier" + quote + ":" + quote+ identifier+ quote + "," + '\n');
+                    sb.append(  quote + "url" + quote + ":" + quote+ identifier+ quote + "," + '\n');
+
+                if (erflink!=null)
+                    sb.append(  quote + "erflink" + quote + ":" + quote+ erflink+ quote + "," + '\n');
                 if (nodeId!=null)
                     sb.append(  quote + "nodeId" + quote + ":" + quote+ nodeId+ quote + "," + '\n');
                 if (date!=null)

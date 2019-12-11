@@ -8,8 +8,6 @@ import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.jena.vocabulary.RDF;
 import org.crossasia.domain.Products;
 import org.crossasia.splitter.mejijapan.JsonSplitterPages;
-import org.crossasia.splitter.reminrebao.JsonSplitterArticles;
-import org.crossasia.utils.Utils;
 
 
 public class MeijiJapanConvertToSolr {

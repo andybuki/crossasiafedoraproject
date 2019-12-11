@@ -12,8 +12,8 @@ public class AiritiJsonMetadata {
 
     public static void main( String[] args ) throws Exception {
 
-        String journal = "D:\\SOLR-COLLECTIONS\\airiti\\books.json";
-        PrintStream out = new PrintStream(new FileOutputStream("D:\\SOLR-COLLECTIONS\\airiti\\books2.json"));
+        String journal = "/data1/solr/Airiti/books2.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/Airiti/books3.json"));
         String quote = "\u005c\u0022";
         JSONArray jsonArray = new JSONArray(new JSONTokener(new FileInputStream(journal)));
         String bookName = "";
