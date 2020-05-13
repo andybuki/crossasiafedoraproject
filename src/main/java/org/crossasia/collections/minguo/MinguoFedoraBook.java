@@ -8,7 +8,7 @@ import java.io.*;
 
 public class MinguoFedoraBook {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException , IOException {
-        File absolutePath = new File("/data1/fedora/ajax-minguo/books/pages_sections/");
+        File absolutePath = new File("/data1/fedora/ajax-minguo/p/pages3/");
         String quote = "\u005c\u0022";
         String encoding = "UTF-8";
 
@@ -126,7 +126,7 @@ public class MinguoFedoraBook {
             }
 
 
-            String solr = "http://b-app69:8995/solr/ajax-minguo/select?q=id:" + id;
+            String solr = "http://solr-master-prod:8995/solr/ajax-minguo/select?q=id:" + id;
 
             sb.append("{\n");
             sb.append("  \"@context\": {\n");
@@ -276,7 +276,7 @@ public class MinguoFedoraBook {
             sb.deleteCharAt(sb.length() - 1);
             //PrintStream out = new PrintStream(new FileOutputStream(file));
             //out.write("/data1/fedora/ajax-minguo/test2/"+book_id+".json");
-            PrintStream out = new PrintStream(new FileOutputStream("/data1/fedora/ajax-minguo/books/pages/"+id+".json"));
+            PrintStream out = new PrintStream(new FileOutputStream("/data1/dllm/ajax-minguo/p/pages_json3/"+id+".json"));
             //out = new FileWriter("/data1/fedora/ajax-minguo/test2/"+book_id+".json");
             out.println("["+sb.toString()+"}]");
 

@@ -12,7 +12,7 @@ import java.io.PrintStream;
 public class Book2ErfLink {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "/data1/solr/ajax-dfz/books_pages1.json";
+        String books = "/data1/dllm/pages_books.json";
         PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-dfz/books_pages1_NEW.json"));
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         StringBuilder sb = new StringBuilder();

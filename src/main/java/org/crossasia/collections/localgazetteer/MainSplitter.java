@@ -20,24 +20,22 @@ public class MainSplitter
         gsonDataFormat.setUnmarshalType(Products.class);
 
         context.getShutdownStrategy().setTimeout(300000);
-          context.addRoutes(new RouteBuilder() {
+        context.addRoutes(new RouteBuilder() {
             @Override
             public void configure() throws Exception
             {
 
                 final Namespaces ns = new Namespaces("rdf", RDF.uri);
                 ns.add("premis", "http://www.loc.gov/premis/rdf/v1#");
-                from("file:/data1/fedora/ajax-minguo/p")
+                from("file:/data1/fedora/ajax-brill-ncdn")
                         //.delay(10)
                         .split(method(JsonSplitterBooks.class))
-                        .to("file:/data1/fedora/ajax-minguo/p/pages?fileName=${header.books_id}");
+                        .to("file:/data1/fedora/ajax-brill-ncdn/books2?fileName=${header.books_id}");
 
 
                 /*from("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json")
                  .process(Utils.javascript("convertBooksXixiu.js"))
                         .to("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json2");*/
-
-
 
 
             }

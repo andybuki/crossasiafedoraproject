@@ -14,7 +14,7 @@ public class MinguoFedoraBookShScript {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "/data1/fedora/ajax-minguo/books/pages/";
+            String absolutePath = "/data1/fedora/ajax-minguo/p/pages_json3/";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
@@ -28,12 +28,13 @@ public class MinguoFedoraBookShScript {
                 JSONParser parser = new JSONParser();
                 ObjectMapper mapper = new ObjectMapper();
                 String fileName = file.toString();
-                if (fileName.equals(absolutePath+"books.sh")) {
+                if (fileName.equals(absolutePath+"file.sh")) {
                     System.out.println("text file");
                 } else {
                     String name = file.getName();
+                    String shortName = file.getName().substring(0,3);
                     String name_cut = name.replace(".xml","");
-                    cURLink = "curl -u fedoraAdmin:fedoraAdmin -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + name + " " + "http://b-lx0005.sbb.spk-berlin.de:8081/fcrepo/rest/ajax-minguo/" + name.replace("_","/");
+                    cURLink = "curl -u fedoraAdmin:fedoraAdmin -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + name + " " + "http://b-lx0005.sbb.spk-berlin.de:8081/fcrepo/rest/ajax-mingoo/" + shortName +"/" + name.replace("_","/").replace(".json","");
                     //cURLink = "curl -i -X PUT --data-binary" + " @/mnt/fedora/raw/amd_fo_japan/xml/" + name + "" + " -H " + quote + "Content-Type: application/xhtml+xml" + quote + " -H \"Content-Disposition: attachment; filename=" + name  + "" + quote + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/amd_fo_japan/" + name_cut+"/xml";
                     out.write(cURLink + "\r\n");
                     //System.out.println(name + " changed to " + newName);
