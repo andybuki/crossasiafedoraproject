@@ -12,10 +12,10 @@ import java.io.PrintStream;
 public class BooksToJson {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String pages = "/data1/solr/ajax-brill-ncdn/books_new.json";
+        String pages = "/data1/solr/ajax-brill-ncdn/books.json";
         StringBuilder sb = new StringBuilder();
         JSONArray jsonArray = new JSONArray(new JSONTokener(new FileInputStream(pages)));
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-brill-ncdn/books_json2.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-brill-ncdn/books2.json"));
         for (int i=0; i<jsonArray.length();i++){
 
             String id ="";
@@ -33,9 +33,8 @@ public class BooksToJson {
             String erflink ="";
             String collection ="";
             String bibliographicCitation ="";
-            JSONArray descriptions =null;
-            String description="";
-            String description2="";
+            JSONArray description =null;
+
 
 
             String book_id="";
@@ -50,12 +49,12 @@ public class BooksToJson {
                 title = (String) jsonObj.get("title").toString();
             }
 
-            if (jsonObj.has("issued")) {
-                date = (String) jsonObj.get("issued").toString().split("-")[0];
+            if (jsonObj.has("date")) {
+                date = (String) jsonObj.get("date").toString();
             }
 
-            if (jsonObj.has("issued")) {
-                wholedate = (String) jsonObj.get("issued").toString();
+            if (jsonObj.has("wholedate")) {
+                wholedate = (String) jsonObj.get("wholedate").toString();
             }
 
             if (jsonObj.has("file_location")) {
@@ -95,17 +94,20 @@ public class BooksToJson {
             }
 
             if (jsonObj.has("description")) {
-                description = (String) jsonObj.get("description");
+                description = (JSONArray) jsonObj.get("description");
             }
 
-            if (jsonObj.has("description2")) {
-                description2 = (String) jsonObj.get("description2");
-            }
 
             if (jsonObj.has("file_location")) {
                 String [] book_ids = jsonObj.get("file_location").toString().split("/");
-                String book_id2 = book_ids[2]+"_"+book_ids[3];
-                book_id = book_id2;
+                if (book_ids.length>4) {
+                    String book_id2 = book_ids[2]+"_"+book_ids[3]+"_"+book_ids[4];
+                    book_id = book_id2;
+                } else {
+                    String book_id2 = book_ids[2]+"_"+book_ids[3];
+                    book_id = book_id2;
+                }
+
             }
 
             sb.append("{"+ '\n');
@@ -157,7 +159,7 @@ public class BooksToJson {
                 sb.append(quote + "publication_volume" + quote + ":" + quote+ publication_volume +quote + "," + '\n');
 
             if (description!= null)
-                sb.append(quote + "description" + quote + ":" + "["+ quote+ description +quote +"," +quote+ description2 +quote+"]" + "," + '\n');
+                sb.append(quote + "description" + quote + ":" +  description  + "," + '\n');
 
             sb.append(quote + "hasModel" + quote + ":" + quote + "Book" + quote + "," + '\n');
             sb.append(quote + "collection" + quote + ":" + quote + "North China Daily News" + quote + "" + '\n');

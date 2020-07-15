@@ -15,7 +15,7 @@ public class TextToJson {
         String pages = "/data3/brill.ncdn/pages4.json";
         StringBuilder sb = new StringBuilder();
         JSONArray jsonArray = new JSONArray(new JSONTokener(new FileInputStream(pages)));
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-brill-ncdn/pages4_json.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("/data3/brill.ncdn/pages5.json"));
         for (int i=0; i<jsonArray.length();i++){
 
             String id ="";
@@ -41,8 +41,17 @@ public class TextToJson {
 
             if (jsonObj.has("id")) {
                 String [] book_ids = jsonObj.get("id").toString().split("/");
-                String book_id2 = book_ids[1]+"_"+book_ids[2];
-                book_id = book_id2;
+                System.out.println(id.contains("MunicipalGazette"));
+
+                if (id.contains("MunicipalGazette")==true) {
+                    String book_id2 = book_ids[1]+"_"+book_ids[2]+"_"+book_ids[3];
+                    book_id = book_id2;
+                } else {
+                    String book_id2 = book_ids[1]+"_"+book_ids[2];
+                    book_id = book_id2;
+                }
+
+
             }
 
             sb.append("{"+ '\n');

@@ -30,7 +30,7 @@ public class MainSplitter
                 from("file:/data1/fedora/ajax-brill-ncdn")
                         //.delay(10)
                         .split(method(JsonSplitterBooks.class))
-                        .to("file:/data1/fedora/ajax-brill-ncdn/books2?fileName=${header.books_id}");
+                        .to("file:/data1/fedora/ajax-brill-ncdn/pages?fileName=${header.books_id}");
 
 
                 /*from("file:D:\\RAW-COLLECTIONS\\Xuxiu\\json")

@@ -1,4 +1,4 @@
-package org.crossasia.collections.brill_nscp;
+package org.crossasia.collections.brill_ncso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,19 +9,19 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
-public class BooksPlusPagesJson {
+public class NcsoPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String pages = "/data3/brill.ncdn/pages5.json";
-        String books = "/data1/solr/ajax-brill-ncdn/books2.json";
+        String pages = "/data/solr/ajax-brill-ncso/pages.json";
+        String books = "/data/solr/ajax-brill-ncso/books2.json";
         StringBuilder sb = new StringBuilder();
         JSONArray jsonArrayBooks = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray jsonArrayPages = new JSONArray(new JSONTokener(new FileInputStream(pages)));
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-brill-ncdn/pages4.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/ajax-brill-ncso/books_pages.json"));
         for (int i=0; i<jsonArrayBooks.length();i++){
 
             String id ="";
-            String title ="";
+
             String date ="";
             String wholedate ="";
             String file_location ="";
@@ -45,9 +45,7 @@ public class BooksPlusPagesJson {
                 id = (String) jsonObjBooks.get("id").toString();
             }
 
-            if (jsonObjBooks.has("title")) {
-                title = (String) jsonObjBooks.get("title").toString();
-            }
+
 
             if (jsonObjBooks.has("date")) {
                 date = (String) jsonObjBooks.get("date").toString().split("-")[0];
@@ -110,6 +108,7 @@ public class BooksPlusPagesJson {
                 String book_page_id ="";
                 String position ="";
                 String text ="";
+                String title ="";
 
                 if (jsonObjPages.has("book_id")) {
                     book_page_id = (String) jsonObjPages.get("book_id").toString();
@@ -121,6 +120,10 @@ public class BooksPlusPagesJson {
 
                 if (jsonObjPages.has("position")) {
                     position = (String) jsonObjPages.get("position").toString();
+                }
+
+                if (jsonObjPages.has("title")) {
+                    title = (String) jsonObjPages.get("title").toString();
                 }
 
                 if (jsonObjPages.has("text")) {
@@ -145,21 +148,19 @@ public class BooksPlusPagesJson {
                     if (date!= "")
                         sb.append(quote + "date" + quote + ":" + quote+ date +quote + "," + '\n');
 
-                    if (wholedate!= "")
-                        sb.append(quote + "wholedate" + quote + ":" + quote+ wholedate +quote + "," + '\n');
-
 
                     if (medium!= "")
                         sb.append(quote + "medium" + quote + ":" + quote+ medium +quote + "," + '\n');
 
 
-                    if (subject!= "")
-                        sb.append(quote + "subject" + quote + ":" + quote+ subject +quote + "," + '\n');
-
-
-
                     if (text!= "")
                         sb.append(quote + "text" + quote + ":" + quote+ text +quote + "," + '\n');
+
+                    if (publication_name!= "")
+                        sb.append(quote + "publication_name" + quote + ":" + quote+ publication_name +quote + "," + '\n');
+
+                    if (publication_volume!= "")
+                        sb.append(quote + "publication_volume" + quote + ":" + quote+ publication_volume +quote + "," + '\n');
 
 
                     if (url!= "")
@@ -172,12 +173,9 @@ public class BooksPlusPagesJson {
                     if (doi!= "")
                         sb.append(quote + "doi" + quote + ":" + quote+ doi +quote + "," + '\n');
 
-
-                    if (description!= null)
-                        sb.append(quote + "description" + quote + ":" +  description  + "," + '\n');
-
+                    sb.append(quote + "language" + quote + ":" +   quote+ "eng"+ quote+ "," + '\n');
                     sb.append(quote + "hasModel" + quote + ":" + quote + "Page" + quote + "," + '\n');
-                    sb.append(quote + "collection" + quote + ":" + quote + "North China Daily News" + quote + "" + '\n');
+                    sb.append(quote + "collection" + quote + ":" + quote + "North China Standard Online" + quote + "" + '\n');
 
                     sb.append("},");
 

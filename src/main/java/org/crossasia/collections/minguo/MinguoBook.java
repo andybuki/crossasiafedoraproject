@@ -11,7 +11,7 @@ import java.io.PrintStream;
 
 public class MinguoBook {
     public static void main(String[] args) throws IOException {
-        PrintStream out = new PrintStream(new FileOutputStream("/data3/solr/minguo//books.txt"));
+        PrintStream out = new PrintStream(new FileOutputStream("/data3/solr/minguo/books.txt"));
         String books = "/data3/solr/minguo//books_date.json";
         String quote = "\u005c\u0022";
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
