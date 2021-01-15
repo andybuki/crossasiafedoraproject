@@ -12,9 +12,9 @@ import java.io.PrintStream;
 public class JoinBookPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "/data1/solr/ajax-gujin/books2.json";
-        String pages = "/data1/solr/ajax-gujin/pages.json";
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-gujin/books_pages.json"));
+        String books = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-gujin/books2.json";
+        String pages = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-gujin/pages.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-gujin/books_pages2.json"));
 
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray pagesObject = new JSONArray(new JSONTokener(new FileInputStream(pages)));
@@ -26,7 +26,7 @@ public class JoinBookPage {
             //String author ="";
 
             JSONArray edition =null;
-            String responsibility ="";
+            JSONArray responsibility =null;
             String url ="";
             String erflink ="";
             JSONArray date = null;
@@ -61,8 +61,10 @@ public class JoinBookPage {
                 url = (String) booksObj.get("url");
             if (booksObj.has("erflink"))
                 erflink = (String) booksObj.get("erflink");
+
             if (booksObj.has("responsibility"))
-                responsibility = (String) booksObj.get("responsibility").toString();
+                responsibility = (JSONArray) booksObj.get("responsibility");
+
             if (booksObj.has("issued"))
                 issued = (String) booksObj.get("issued").toString();
             if (booksObj.has("language")) {
@@ -119,7 +121,7 @@ public class JoinBookPage {
                 String page_id="";
                 String text="";
                 String image_url="";
-                String image_file = "";
+                String xml_file = "";
                 JSONObject pagesObj = (JSONObject) pagesObject.get(j);
                 id = (String) pagesObj.get("id").toString();
                 if (pagesObj.has("running_title"))
@@ -136,8 +138,10 @@ public class JoinBookPage {
                     text = (String) pagesObj.get("text").toString().replaceAll("\"","");
                 if (pagesObj.has("image_url"))
                     image_url = (String) pagesObj.get("image_url").toString();
-                if (pagesObj.has("image_file"))
-                    image_file = (String) pagesObj.get("image_file").toString();
+
+                if (pagesObj.has("xml_file"))
+                    xml_file = (String) pagesObj.get("xml_file").toString();
+
                 book_id_page = (String) pagesObj.get("book_id").toString();
 
 
@@ -161,7 +165,11 @@ public class JoinBookPage {
 
                     if (publisher!=null)
                         sb.append(  quote + "publisher" + quote + ":" +  publisher+ "," + '\n');
-                    if (chapter_title!=null)
+
+                    if (xml_file!="")
+                        sb.append(  quote + "xml_file" + quote + ":" + quote+ xml_file+ quote+"," + '\n');
+
+                    if (chapter_title!="")
                         sb.append(  quote + "chapter_title" + quote + ":" + quote+ chapter_title+ quote+"," + '\n');
 
                     if (keywords!=null)
@@ -172,9 +180,9 @@ public class JoinBookPage {
                     if (edition!=null)
                         sb.append(  quote + "edition" + quote + ":" +  edition+  "," + '\n');
                     if (responsibility!=null)
-                        sb.append(  quote + "responsibility" + quote + ":" +  quote+ responsibility+ quote+  "," + '\n');
+                        sb.append(  quote + "responsibility" + quote + ":" +   responsibility+   "," + '\n');
 
-                    if (url!=null)
+                    if (url!="")
                         sb.append(  quote + "url" + quote + ":" +  quote+ url+ quote+  "," + '\n');
 
                     if (publication_place!=null)
@@ -183,19 +191,17 @@ public class JoinBookPage {
                     if (date!=null)
                         sb.append(  quote + "date" + quote + ":" +  date+  "," + '\n');
 
-                    if (erflink!=null)
+                    if (erflink!="")
                         sb.append(  quote + "erflink" + quote + ":" +  quote+ erflink+ quote+  "," + '\n');
 
                     if (person!=null)
                         sb.append(  quote + "person" + quote + ":" +  person+  "," + '\n');
-                    if (position!=null)
+                    if (position!="")
                         sb.append(  quote + "position" + quote + ":" +  position+  "," + '\n');
 
-                    if (note!=null)
-                        sb.append(  quote + "note" + quote + ":" +  note+  "," + '\n');
-                    
-                    if (text!=null)
+                    if (text!="")
                         sb.append(  quote + "text" + quote + ":" +quote+  text+ quote+  "," + '\n');
+
                     if (subject!=null)
                         sb.append(  quote + "subject" + quote + ":" +  subject+  "," + '\n');
 
@@ -205,8 +211,8 @@ public class JoinBookPage {
                     if (alternative!=null)
                         sb.append(  quote + "alternative" + quote + ":" +  alternative+  "," + '\n');
 
-                    if (language!=null)
-                        sb.append(  quote + "language" + quote + ":" +  language+  "," + '\n');
+
+                    sb.append(  quote + "language" + quote + ":" + quote +"chi"+ quote+ "," + '\n');
 
                     sb.append(  quote + "hasModel" + quote + ":" + quote+ "Page"+ quote + "," + '\n' );
                     sb.append(  quote + "collection" + quote + ":" + quote+ "Gujin tushu jicheng"+ quote + "" + '\n' );

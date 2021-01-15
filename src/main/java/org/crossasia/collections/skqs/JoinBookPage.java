@@ -12,9 +12,9 @@ import java.io.PrintStream;
 public class JoinBookPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "/data1/solr/ajax-skqs/books.json";
-        String pages = "/data1/solr/ajax-skqs/pages2.json";
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-skqs/books_pages2.json"));
+        String books = "/data/solr/ajax-skqs/books2.json";
+        String pages = "/data/solr/ajax-skqs/pages.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/ajax-skqs/books_pages.json"));
 
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray pagesObject = new JSONArray(new JSONTokener(new FileInputStream(pages)));
@@ -139,6 +139,7 @@ public class JoinBookPage {
 
                 String image_url="";
                 String xml_file = "";
+
                 JSONObject pagesObj = (JSONObject) pagesObject.get(j);
                 id = (String) pagesObj.get("id").toString();
 
@@ -154,6 +155,9 @@ public class JoinBookPage {
                 if (pagesObj.has("chapter_title"))
                     chapter_title = (String) pagesObj.get("chapter_title").toString();
 
+                if (pagesObj.has("xml_file"))
+                    xml_file = (String) pagesObj.get("xml_file").toString();
+
                 book_id_page = (String) pagesObj.get("book_id").toString();
 
 
@@ -167,8 +171,9 @@ public class JoinBookPage {
                     }
 
                     if (identifier!=null)
-                        sb.append(  quote + "identifier" + quote + ":" + identifier+  "," + '\n');
-                    if (date!=null)
+                        //sb.append(  quote + "identifier" + quote + ":" + identifier+  "," + '\n');
+
+                    if (date!="")
                         sb.append(  quote + "date" + quote + ":" +  date+  "," + '\n');
 
                     if (title!=null)
@@ -177,23 +182,25 @@ public class JoinBookPage {
                     if (edition!=null)
                         sb.append(  quote + "edition" + quote + ":" + edition+ "," + '\n');
 
+                    if (xml_file!="")
+                        sb.append(  quote + "xml_file" + quote + ":" + quote + xml_file+".xml"+ quote + "," + '\n');
 
-                    if (url!=null)
+                    if (url!="")
                         sb.append(  quote + "url" + quote + ":" + quote + url+ quote + "," + '\n');
 
-                    if (erflink!=null)
+                    if (erflink!="")
                         sb.append(  quote + "erflink" + quote + ":" + quote + erflink+ quote + "," + '\n');
 
-                    if (position!=null)
+                    if (position!="")
                         sb.append(  quote + "position" + quote + ":" +  position+  "," + '\n');
 
                     if (publication_place!=null)
-                        sb.append(  quote + "publication_place" + quote + ":" +  publication_place+  "," + '\n');
+                        //sb.append(  quote + "publication_place" + quote + ":" +  publication_place+  "," + '\n');
 
-                    if (chapter_title!=null)
+                    if (chapter_title!="")
                         sb.append(  quote + "chapter_title" + quote + ":" + quote+ chapter_title+ quote+ "," + '\n');
 
-                    if (text!=null)
+                    if (text!="")
                         sb.append(  quote + "text" + quote + ":" +quote+  text+ quote+  "," + '\n');
 
                     if (subject!=null)
@@ -202,7 +209,7 @@ public class JoinBookPage {
                     if (responsibility!=null)
                         sb.append(  quote + "responsibility" + quote + ":" +  responsibility+  "," + '\n');
 
-                    if (language!=null)
+                    if (language!="")
                         sb.append(  quote + "language" + quote + ":" + quote+ language+ quote+ "," + '\n');
 
                     sb.append(  quote + "hasModel" + quote + ":" + quote+ "Page"+ quote + "," + '\n' );

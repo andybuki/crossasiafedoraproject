@@ -23,6 +23,7 @@ public class SbckBook {
             JSONArray author = null;
             JSONArray creatorTranscription = null;
             JSONArray edition =null;
+            JSONArray responsibility =null;
             String id ="";
             JSONArray identifier = null;
             JSONArray date = null;
@@ -44,8 +45,11 @@ public class SbckBook {
             if (booksObj.has("bibliographic_citation"))
                 bibliographicCitation =(JSONArray) booksObj.get("bibliographic_citation");
 
-            if (booksObj.has("creator"))
-                author =(JSONArray) booksObj.get("creator");
+            if (booksObj.has("author"))
+                author =(JSONArray) booksObj.get("author");
+
+            if (booksObj.has("responsibility"))
+                responsibility =(JSONArray) booksObj.get("responsibility");
 
             if (booksObj.has("creator_transcription"))
                 creatorTranscription =(JSONArray) booksObj.get("creator_transcription");
@@ -58,8 +62,8 @@ public class SbckBook {
             if (booksObj.has("identifier"))
                 identifier =(JSONArray) booksObj.get("identifier");
 
-            if (booksObj.has("issuedm")) {
-                date  = (JSONArray) booksObj.get("issuedm");
+            if (booksObj.has("issued")) {
+                date  = (JSONArray) booksObj.get("issued");
             }
 
             if (booksObj.has("identifier")) {
@@ -137,6 +141,9 @@ public class SbckBook {
 
             if (edition!=null)
                 sb.append(  quote + "edition" + quote + ":" +  edition+ "," + '\n');
+
+            if (responsibility!=null)
+                sb.append(  quote + "responsibility" + quote + ":" +  responsibility+ "," + '\n');
 
             if (identifier!=null)
                 sb.append(  quote + "identifier" + quote + ":" +  identifier+  "," + '\n');

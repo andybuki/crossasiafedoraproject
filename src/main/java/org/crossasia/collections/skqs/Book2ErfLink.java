@@ -12,8 +12,8 @@ import java.io.PrintStream;
 public class Book2ErfLink {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "/data1/solr/ajax-skqs/books5.json";
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-skqs/books3.json"));
+        String books = "/data/solr/ajax-skqs/books.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/ajax-skqs/books2.json"));
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         StringBuilder sb = new StringBuilder();
         for (int i=0; i<booksObject.length(); i++) {
@@ -126,14 +126,11 @@ public class Book2ErfLink {
             if (booksObj.has("book_id"))
                 //book_id = (String) booksObj.get("book_id").toString();
 
-
-
-
             if (booksObj.has("creator"))
                 creator = (JSONArray) booksObj.get("creator");
 
-            if (booksObj.has("bibliographic_citation"))
-                bibliographic_citation = (JSONArray) booksObj.get("bibliographic_citation");
+            if (booksObj.has("bibliographicCitation"))
+                bibliographic_citation = (JSONArray) booksObj.get("bibliographicCitation");
 
             if (booksObj.has("temporal"))
                 temporal = (JSONArray) booksObj.get("temporal");
@@ -180,8 +177,8 @@ public class Book2ErfLink {
 
             if (booksObj.has("author"))
                 author =(JSONArray) booksObj.get("author");
-            if (booksObj.has("date"))
-                date =(String) booksObj.get("date").toString();
+            if (booksObj.has("issued"))
+                date =(String) booksObj.get("issued").toString();
 
             if (booksObj.has("subject"))
                 subject =(JSONArray) booksObj.get("subject");
@@ -350,7 +347,7 @@ public class Book2ErfLink {
                 sb.append(  quote + "keywords" + quote + ":" +  keywords+  "," + '\n');
 
             if (bibliographic_citation!=null)
-                sb.append(  quote + "bibliographic_citation" + quote + ":" +  bibliographic_citation+  "," + '\n');
+                sb.append(  quote + "bibliographicCitation" + quote + ":" +  bibliographic_citation+  "," + '\n');
 
             if (title_responsibility!=null)
                 sb.append(  quote + "title_responsibility" + quote + ":" +  title_responsibility+  "," + '\n');

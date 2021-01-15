@@ -12,9 +12,10 @@ import java.io.PrintStream;
 public class JoinBookChapter {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "/data1/solr/ajax-loc-gaz/2/book/books2.json";
-        String section = "/data1/solr/ajax-loc-gaz/2/section/sections.json";
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-loc-gaz/2/section/books_chapter2.json"));
+        String books = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-loc-gaz/books2.json";
+        
+        String section = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-loc-gaz/books_chapter2.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-loc-gaz/books_chapterNew2.json"));
 
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray sectionObject = new JSONArray(new JSONTokener(new FileInputStream(section)));
@@ -96,7 +97,7 @@ public class JoinBookChapter {
                             + quote + "author" + quote + ":" +   author +   "," + '\n'
                             + quote + "date" + quote + ":" +   quote +date +quote+ "," + '\n'
                             + quote + "collection" + quote + ":" +   quote +"Local Gazetteer" +  quote + "," + '\n'
-                            + quote + "spatial" + quote + ":" +   quote +spatial +  quote + "," + '\n'
+                            + quote + "spatial" + quote + ":" +   spatial +   "," + '\n'
                             + quote + "subject" + quote + ":" +   subject +   "," + '\n'
                             + quote + "edition" + quote + ":" +   quote +edition +  quote + "," + '\n'
                             + quote + "responsibility" + quote + ":" +   quote +responsibility +  quote + "," + '\n'

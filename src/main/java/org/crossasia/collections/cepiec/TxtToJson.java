@@ -5,7 +5,7 @@ public class TxtToJson {
     public static void main(String[] args) throws IOException {
 
         File dir = new File("/data/solr/cepiec/");
-        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/cepiec2.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/cepiec3.json"));
         String id ="";
         String publication_name="";
         String issued ="";

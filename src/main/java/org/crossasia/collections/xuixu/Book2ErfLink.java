@@ -400,10 +400,10 @@ public class Book2ErfLink {
             if (publication_volume!=null)
                 sb.append(  quote + "publication-volume" + quote + ":" + quote+ publication_volume+ quote+ "," + '\n');
 
-            if (page_range!=null)
+            if (page_range!="")
                 sb.append(  quote + "page-range" + quote + ":" + quote+ page_range+ quote+ "," + '\n');
 
-            if (text!=null)
+            if (text!="")
                 sb.append(  quote + "text" + quote + ":" + quote+ text+ quote+ "," + '\n');
 
             sb.append(  quote + "hasModel" + quote + ":" + quote+ "Book"+ quote + "," + '\n' );

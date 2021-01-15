@@ -12,9 +12,9 @@ import java.io.PrintStream;
 public class JoinBookPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "/data3/solr/xuixu/books.json";
-        String pages = "/data3/solr/xuixu/pages3.json";
-        PrintStream out = new PrintStream(new FileOutputStream("/data3/solr/xuixu/books_pages2.json"));
+        String books = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-xuxiu/books.json";
+        String pages = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-xuxiu/pages2.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-xuxiu/books_pages2.json"));
 
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray pagesObject = new JSONArray(new JSONTokener(new FileInputStream(pages)));
@@ -31,11 +31,12 @@ public class JoinBookPage {
 
             String date = "";
             JSONArray identifier = null;
+            JSONArray publisher = null;
             String book_id = "";
 
             String source = "";
             String title = "";
-
+            String erflink = "";
 
             String issued = "";
 
@@ -73,8 +74,18 @@ public class JoinBookPage {
                 language  = (String) booksObj.get("language");
             }
 
+
+
+            if (booksObj.has("erflink")) {
+                erflink  = (String) booksObj.get("erflink");
+            }
+
             if (booksObj.has("author"))
                 author =(JSONArray) booksObj.get("author");
+
+            if (booksObj.has("publisher"))
+                publisher =(JSONArray) booksObj.get("publisher");
+
             if (booksObj.has("date"))
                 date =(String) booksObj.get("date").toString();
 
@@ -122,6 +133,9 @@ public class JoinBookPage {
                 if (pagesObj.has("page_id"))
                     page_id = (String) pagesObj.get("page_id").toString();
 
+                if (pagesObj.has("xml_file"))
+                    xml_file = (String) pagesObj.get("xml_file").toString();
+
                 if (pagesObj.has("chapter_title"))
                     chapter_title = (String) pagesObj.get("chapter_title").toString();
 
@@ -149,19 +163,28 @@ public class JoinBookPage {
                         sb.append(  quote + "edition" + quote + ":" + edition+ "," + '\n');
 
 
-                    if (url!=null)
+                    if (url!="")
                         sb.append(  quote + "url" + quote + ":" + quote + url+ quote + "," + '\n');
 
-                    if (position!=null)
+                    if (erflink!="")
+                        sb.append(  quote + "erflink" + quote + ":" + quote + erflink+ quote + "," + '\n');
+
+                    if (xml_file!="")
+                        sb.append(  quote + "xml_file" + quote + ":" + quote + xml_file+ quote + "," + '\n');
+
+                    if (position!="")
                         sb.append(  quote + "position" + quote + ":" +  position+  "," + '\n');
 
                     if (publication_place!=null)
                         sb.append(  quote + "publication_place" + quote + ":" +  publication_place+  "," + '\n');
 
-                    if (chapter_title!=null)
+                    if (publisher!=null)
+                        sb.append(  quote + "publisher" + quote + ":" +  publisher+  "," + '\n');
+
+                    if (chapter_title!="")
                         sb.append(  quote + "chapter_title" + quote + ":" + quote+ chapter_title+ quote+ "," + '\n');
 
-                    if (text!=null)
+                    if (text!="")
                         sb.append(  quote + "text" + quote + ":" +quote+  text+ quote+  "," + '\n');
 
                     if (subject!=null)
@@ -170,7 +193,7 @@ public class JoinBookPage {
                     if (responsibility!=null)
                         sb.append(  quote + "responsibility" + quote + ":" +  responsibility+  "," + '\n');
 
-                    if (language!=null)
+                    if (language!="")
                         sb.append(  quote + "language" + quote + ":" + quote+ language+ quote+ "," + '\n');
 
                     sb.append(  quote + "hasModel" + quote + ":" + quote+ "Page"+ quote + "," + '\n' );

@@ -11,8 +11,8 @@ import java.io.PrintStream;
 
 public class MinguoBook {
     public static void main(String[] args) throws IOException {
-        PrintStream out = new PrintStream(new FileOutputStream("/data3/solr/minguo/books.txt"));
-        String books = "/data3/solr/minguo//books_date.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-minguo/booksNew.json"));
+        String books = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-minguo/books.json";
         String quote = "\u005c\u0022";
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
 
@@ -35,7 +35,7 @@ public class MinguoBook {
             String medium = "";
             JSONArray subject = null;
             JSONArray language = null;
-            String series_title = null;
+            String series_title = "";
             JSONArray person = null;
             JSONArray spatial = null;
             JSONArray identifier = null;
@@ -45,6 +45,9 @@ public class MinguoBook {
             JSONArray note = null;
             String publisher = "";
             String publication_place = "";
+            String erflink = "";
+            String erf = "";
+            String collection = "";
 
             JSONObject booksObj = (JSONObject) booksObject.get(i);
             id = (String) booksObj.get("id").toString();
@@ -57,6 +60,16 @@ public class MinguoBook {
 
             if (booksObj.has("series_title")) {
                 series_title  = (String) booksObj.get("series_title");
+            }
+
+            if (booksObj.has("collection")) {
+                collection  = (String) booksObj.get("collection");
+            }
+
+            if (booksObj.has("url")) {
+
+                erf = (String) booksObj.get("url").toString().replace("http://", "");
+                erflink = "http://erf.sbb.spk-berlin.de/han/NLCminguo/" + erf;
             }
 
             if (booksObj.has("responsibility")) {
@@ -85,6 +98,9 @@ public class MinguoBook {
             if (booksObj.has("subject"))
                 subject =(JSONArray) booksObj.get("subject");
 
+            if (booksObj.has("language"))
+                language =(JSONArray) booksObj.get("language");
+
             if (booksObj.has("description")) {
                 description  = (JSONArray) booksObj.get("description");
             }
@@ -92,105 +108,45 @@ public class MinguoBook {
             if (booksObj.has("url")) {
                 url  = (String) booksObj.get("url");
             }
-            String book="Book";
-            String lang ="chi";
-            String collection ="Early Twentieth Century Chinese Books (1912-1949)";
-            sb.append(  id + '|' );
-            sb.append( book_id + '|');
-            if (identifier!=null)
-                sb.append( "{"+identifier.toString().replace("[","").replace("]","")+"}"+ '|');
-            else
-                sb.append("|");
 
-            if (series_title!=null)
-                sb.append(title + '|');
-            else
-                sb.append("|");
-            if (series_title!=null)
-                sb.append(series_title + "|");
-            else
-                sb.append("|");
-
-            if (responsibility!=null)
-                sb.append( responsibility + "|");
-            else
-                sb.append("|");
-            if (author!=null)
-                sb.append(  "{"+author.toString().replace("[","").replace("]","")+"}"+ "|");
-            else
-                sb.append("{}|");
-            if (publication_place!=null)
-                sb.append( publication_place + "|" );
-            else
-                sb.append("|");
-            if (publisher!=null)
-                sb.append(      publisher + "|" );
-            else
-                sb.append("|");
-            if (date!=null)
-                sb.append(          date + "|" );
-            else
-                sb.append("|");
-            if (edition!=null)
-                sb.append(         edition + "|" );
-            else
-                sb.append("|");
-            if (extent!=null)
-                sb.append(          extent + "|");
-            else
-                sb.append("|");
-            if (subject!=null)
-                sb.append(          "{"+subject.toString().replace("[","").replace("]","")+"}"+ "|");
-            else
-                sb.append("{}|");
-            if (description!=null)
-                sb.append(          "{"+description.toString().replace("[","").replace("]","")+"}"+ "|");
-            else
-                sb.append("{}|");
-            if (url!=null)
-                sb.append(          url + "|" );
-            else
-                sb.append("|");
-            sb.append(    lang + "|");
-            sb.append(          book + "|");
-            sb.append(          collection  + '\n');
-
-            /*sb.append("{"+ '\n');
+            sb.append("{"+ '\n');
             sb.append(  quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n' );
             sb.append(  quote + "book_id" + quote + ":" + quote+ book_id+ quote + "," + '\n' );
             if (identifier!=null)
                 sb.append(  quote + "identifier" + quote + ":" +  identifier+  "," + '\n');
-            if (title!=null)
+            if (title!="")
                 sb.append(  quote + "title" + quote + ":" + quote+ title+ quote+"," + '\n');
-            if (series_title!=null)
+            if (series_title!="")
                 sb.append(  quote + "series_title" + quote + ":" + quote+ series_title+ quote+"," + '\n');
-            if (responsibility!=null)
+            if (responsibility!="")
                 sb.append(  quote + "responsibility" + quote + ":" + quote+ responsibility+ quote+"," + '\n');
             if (author!=null)
                 sb.append(  quote + "author" + quote + ":" +  author+ "," + '\n');
-            if (publication_place!=null)
+            if (publication_place!="")
                 sb.append(  quote + "publication_place" + quote + ":" + quote+ publication_place+ quote+"," + '\n');
-            if (publisher!=null)
+            if (publisher!="")
                 sb.append(  quote + "publisher" + quote + ":" + quote+ publisher+quote+ "," + '\n');
-            if (date!=null)
+            if (date!="")
                 sb.append(  quote + "date" + quote + ":" + quote+ date+quote+ "," + '\n');
-            if (edition!=null)
+            if (edition!="")
                 sb.append(  quote + "edition" + quote + ":" + quote+ edition+quote+ "," + '\n');
-            if (extent!=null)
+            if (extent!="")
                 sb.append(  quote + "extent" + quote + ":" + quote+ extent+quote+ "," + '\n');
             if (subject!=null)
                 sb.append(  quote + "subject" + quote + ":" + subject+  "," + '\n');
             if (description!=null)
                 sb.append(  quote + "description" + quote + ":" +   description+  "," + '\n');
-            if (url!=null)
-                sb.append(  quote + "url" + quote + ":" + quote+  url.replace("\r\n","")+ quote+  "," + '\n');
+            if (url!="")
+                sb.append(  quote + "url" + quote + ":" + quote+  url+ quote+  "," + '\n');
+            if (erflink!="")
+                sb.append(  quote + "erflink" + quote + ":" + quote+  erflink+ quote+  "," + '\n');
             if (language!=null)
-                sb.append(  quote + "language" + quote + ":" + quote+ "chi"+ quote+ "," + '\n');
+                sb.append(  quote + "language" + quote + ":" + language+ "," + '\n');
 
             sb.append(  quote + "hasModel" + quote + ":" + quote+ "Book"+ quote + "," + '\n' );
-            sb.append(  quote + "collection" + quote + ":" + quote+ "Minguo"+ quote + "" + '\n' );
+            sb.append(  quote + "collection" + quote + ":" + quote+ collection + quote + "" + '\n' );
 
-            sb.append("},");*/
+            sb.append("},");
 
         }
         out.println(sb);
