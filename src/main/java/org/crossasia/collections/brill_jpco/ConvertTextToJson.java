@@ -4,8 +4,8 @@ import java.io.*;
 public class ConvertTextToJson {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("/data/solr/OLD/ajax-brill-jpco/txt/");
-        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/OLD/ajax-brill-jpco/txt/page.json"));
+        File dir = new File("/data/solr/OLD/ajax-brill-ncho/ncho/");
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/OLD/ajax-brill-ncho/real_page.json"));
         String bookName = "";
         String page = "";
         String text = "";

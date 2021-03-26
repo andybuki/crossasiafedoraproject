@@ -1,4 +1,4 @@
-package org.crossasia.collections.east_india;
+package org.crossasia.collections.amdjapan;
 import org.json.JSONObject;
 import org.json.XML;
 
@@ -6,11 +6,11 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ConvertXmlToJsonBookEastIndia {
+public class ConvertXmlToJsonBook {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("/data/solr/ajax_amd_as_japan/");
-        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/ajax_amd_as_japan.json"));
+        File dir = new File("/data/solr/ajax_amd_as_china_sea/");
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/ajax_amd_as_china_sea2.json"));
         String bookName = "";
         String page = "";
         String text = "";
@@ -53,6 +53,7 @@ public class ConvertXmlToJsonBookEastIndia {
                 String copyright = (String) document.get( "Copyright" ).toString();
                 String author = (String) document.get( "Author" ).toString();
                 String date = (String) document.get( "Date" ).toString();
+                String collection = (String) document.get( "Collection" ).toString();
                 String publication_place = (String) document.get( "PlaceofPublication" ).toString();
                 String publication_name = (String) document.get( "Publisher" ).toString();
                 String reference = (String) document.get( "Reference" ).toString();
@@ -102,7 +103,8 @@ public class ConvertXmlToJsonBookEastIndia {
                         + quote + "hasModel" + quote + ":" +   quote +"Book" +  quote + "," + '\n'
                         + quote + "nodeId" + quote + ":" +   quote +id +  quote + "," + '\n'
                         + quote + "book_id" + quote + ":" +   quote +book_id +  quote + "," + '\n'
-                        + quote + "identifier" + quote + ":" +   quote +identifier +  quote + "," + '\n'
+                        + quote + "url" + quote + ":" +   quote +identifier +  quote + "," + '\n'
+                        + quote + "erflink" + quote + ":" +   quote + "http://erf.sbb.spk-berlin.de/han/amdaschinasea/"+identifier.replace("http://","") +  quote + "," + '\n'
                         + quote + "title" + quote + ":" +   quote +title +  quote + "," + '\n'
                         + quote + "author" + quote + ":" +   quote +author +  quote + "," + '\n'
                         + quote + "date" + quote + ":" +   quote +date +  quote + "," + '\n'
@@ -116,7 +118,7 @@ public class ConvertXmlToJsonBookEastIndia {
                         //+ quote + "medium" + quote + ":"  +"["+ quote +"text"+ quote +"," + quote +"Records (Documents)"+ quote +"," + quote +medium+ quote+"]"  + "," + '\n'
                         //+ quote + "subject" + quote + ":"  +"["+ quote +sbf.toString().replaceAll( " \" ","" )+ quote +"," + quote +sbf2.toString().replaceAll( " ","" )+ quote +"]"  + "," + '\n'
                         //+ quote + "keywords" + quote + ":" + "["+  quote +sbf3.toString().replaceAll( " \" ","" ) +  quote +"]" +"," + '\n'
-                        + quote + "collection" + quote + ":" +   quote +"East India" +  quote + "," + '\n'
+                        + quote + "collection" + quote + ":" +   quote +"Area Studies: China and Southeast Asia"+  quote + "," + '\n'
                         + quote + "source" + quote + ":" +   quote +copyright +  quote + "," + '\n'
                         + quote + "keywords" + quote + ":" +   quote +topics +  quote + "," + '\n'
                         + quote + "person" + quote + ":" +   quote +people +  quote + "," + '\n'

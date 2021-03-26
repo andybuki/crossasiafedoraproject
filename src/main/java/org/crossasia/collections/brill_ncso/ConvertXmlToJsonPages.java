@@ -13,8 +13,8 @@ import java.io.PrintStream;
 public class ConvertXmlToJsonPages {
     public static void main( String[] args ) throws Exception {
 
-        File dir = new File("/data/solr/NCSO/");
-        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/real_pages.json"));
+        File dir = new File("/data/solr/OLD/ajax-brill-ncho/ncho2/");
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/OLD/ajax-brill-ncho/real_pages_SMALL3.json"));
         String text = "";
         String title ="";
 
@@ -35,13 +35,30 @@ public class ConvertXmlToJsonPages {
 
                 //Node nNode = nList.item(temp);
                 String id = nList.item(0).getFirstChild().getNodeValue().split(";")[1].replace(".pdf","").replace("/","_");
-                String book_id = nList.item(4).getFirstChild().getNodeValue().replace("/","_");
-                String position = nList.item(0).getFirstChild().getNodeValue().split(";")[1].replace(".pdf","").split("_")[1];
+                String book_id="";
+                if (nList.item(4).getFirstChild().getNodeValue().replace("/","_").contains("Book")) {
+                    book_id = nList.item(4).getFirstChild().getNodeValue().replace("/","_").replace("NCH_","");
+                } else {
+                    book_id = nList.item(4).getFirstChild().getNodeValue().replace("/","_").replace("NCH_","");
+                }
+
+                System.out.println(id);
+                String position="";
+                if (nList.item(0).getFirstChild().getNodeValue().contains("CAM")) {
+                  String [] p = id.split("-");
+                  position = p[p.length-1];
+                }else {
+                    position = nList.item(0).getFirstChild().getNodeValue().split(";")[1].replace(".pdf","").split("_")[1];
+                    String [] p =  position.split("/");
+                    int post = (Integer.parseInt(p[0]));
+                    position = post+"";
+                }
+
                 String pos = StringUtils.stripStart(position, "0");
 
                 title = nList.item(5).getFirstChild().getNodeValue();
                 if (nList.getLength()>14)
-                    text = nList.item(15).getFirstChild().getNodeValue().replace("\"","").replace("\\","");
+                    text = nList.item(15).getFirstChild().getNodeValue().replace("\"","").replace("\\","").replaceAll("\n","");
                 //System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
                 sb.append("{"+ '\n');
@@ -59,7 +76,7 @@ public class ConvertXmlToJsonPages {
 
 
                 if (text!= "")
-                    sb.append(quote + "text" + quote + ":" + quote+ text +quote + "," + '\n');
+                    sb.append(quote + "text" + quote + ":" + quote+ text.replaceAll("[\r\n]+", " ") +quote + "," + '\n');
 
                 sb.append("},");
 

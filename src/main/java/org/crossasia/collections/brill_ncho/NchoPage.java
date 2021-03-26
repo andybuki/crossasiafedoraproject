@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class NchoPage {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String pages = "/data/solr/OLD/ajax-brill-ncho/pages_sort4.json";
-        String books = "/data/solr/OLD/ajax-brill-ncho/books.json";
+        String pages = "/data/solr/OLD/ajax-brill-ncho/real_pages_SMALL3.json";
+        String books = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-brill-ncho/books.json";
         StringBuilder sb = new StringBuilder();
         JSONArray jsonArrayBooks = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray jsonArrayPages = new JSONArray(new JSONTokener(new FileInputStream(pages)));
-        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/OLD/ajax-brill-ncho/books_pages4.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/OLD/ajax-brill-ncho/books_pages6.json"));
         ArrayList<String> arrayList = new ArrayList<>();
         ArrayList<Integer> countList = new ArrayList<>();
         int count = 0;
@@ -119,22 +119,23 @@ public class NchoPage {
                 if (jsonObjPages.has("id")) {
                     pages_ids = (String) jsonObjPages.get("id").toString();
                 }
+                book_page_id = (String) jsonObjPages.get("book_id").toString();
 
-                 String [] array_id = pages_ids.split("_");
+                 /*String [] array_id = pages_ids.split("_");
                  if (book_id.contains("Book_0")) {
                      book_page_id = array_id[0]+"_"+array_id[1];
                  } else {
                      book_page_id = array_id[0]+"_"+array_id[1]+"_"+array_id[2];
-                 }
+                 }*/
 
-                if (jsonObjPages.has("id")) {
+                /*if (jsonObjPages.has("id")) {
                     if (book_id.equals(book_page_id)){
                         //position=  array_id[array_id.length-1].replaceFirst("^0+(?!$)", "");
                         position=+1;
                     } else {
                         position=1;
                     }
-                }
+                }*/
 
                 if (book_id.equals(book_page_id)){
 
@@ -180,7 +181,7 @@ public class NchoPage {
 
                     sb.append(quote + "language" + quote + ":" +   quote+ "eng"+ quote+ "," + '\n');
                     sb.append(quote + "hasModel" + quote + ":" + quote + "Page" + quote + "," + '\n');
-                    sb.append(quote + "collection" + quote + ":" + quote + "Japan Chronicle Online" + quote + "" + '\n');
+                    sb.append(quote + "collection" + quote + ":" + quote + "The North China Herald Online" + quote + "" + '\n');
 
                     sb.append("},");
 
