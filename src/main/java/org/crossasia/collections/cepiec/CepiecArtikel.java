@@ -13,13 +13,16 @@ import java.io.PrintStream;
 public class CepiecArtikel {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String pages = "/data/solr/ajax-cepiec/links.json";
-        String books = "/data/solr/ajax-cepiec/cepiec3.json";
+        String pages = "/data/solr/ajax-cepiec/tjimglist_NEW.json";
+        String books = "/data/solr/ajax-cepiec/cepiec.json";
         StringBuilder sb = new StringBuilder();
         JSONArray jsonArrayBooks = new JSONArray(new JSONTokener(new FileInputStream(books)));
         JSONArray jsonArrayPages = new JSONArray(new JSONTokener(new FileInputStream(pages)));
-        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/ajax-cepiec/articles.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/ajax-cepiec/newBatch.json"));
+        int k =jsonArrayBooks.length();
+        int l =jsonArrayPages.length();
         for (int i=0; i<jsonArrayBooks.length();i++){
+
 
             String id ="";
             String small_id [];
@@ -51,7 +54,7 @@ public class CepiecArtikel {
 
             if (jsonObjBooks.has("id")) {
                 small_id = jsonObjBooks.get("id").toString().split("_");
-                id_new = small_id[0]+small_id[1]+small_id[2].substring(0,1);
+                id_new = small_id[0]+small_id[1]+small_id[2].substring(1,3);
             }
 
             if (jsonObjBooks.has("date")) {
@@ -119,6 +122,8 @@ public class CepiecArtikel {
                 String spatial ="";
                 String author ="";
                 String version ="";
+                String title_id = "";
+                String publication_title="";
 
                 if (jsonObjPages.has("id")) {
                     pages_ids = (String) jsonObjPages.get("id").toString();
@@ -135,6 +140,9 @@ public class CepiecArtikel {
                 if (jsonObjPages.has("author")) {
                     author = (String) jsonObjPages.get("author").toString();
                 }
+                if (jsonObjPages.has("publication_title")) {
+                    publication_title = (String) jsonObjPages.get("publication_title").toString();
+                }
 
                 if (jsonObjPages.has("version")) {
                     //version = (String) jsonObjPages.get("version").toString();
@@ -144,13 +152,17 @@ public class CepiecArtikel {
                     spatial = (String) jsonObjPages.get("spatial").toString();
                 }
 
+                if (jsonObjPages.has("title_id")) {
+                    title_id = (String) jsonObjPages.get("title_id").toString();
+                }
+
                 if (jsonObjPages.has("id")) {
                     String x = String.valueOf(jsonObjPages.get("id").toString().charAt(jsonObjPages.get("id").toString().length()-1));
                     String result = StringUtils.substring(jsonObjPages.get("id").toString(), 0, jsonObjPages.get("id").toString().length() - 2);
                     page_id = result+x;
                 }
 
-                if (id_new.equals(page_id)){
+                if (id.equals(pages_ids)){
 
                     sb.append("{"+ '\n');
                     if (id!= "")
@@ -187,6 +199,9 @@ public class CepiecArtikel {
                     if (author!= "")
                         sb.append(quote + "author" + quote + ":" + quote+ author +quote + "," + '\n');
 
+                    if (publication_title!= "")
+                        sb.append(quote + "publication_title" + quote + ":" + quote+ publication_title +quote + "," + '\n');
+
                     if (publication_name!= "")
                         sb.append(quote + "publication_name" + quote + ":" + quote+ publication_name +quote + "," + '\n');
 
@@ -207,9 +222,10 @@ public class CepiecArtikel {
                     sb.append(quote + "hasModel" + quote + ":" + quote + "Article" + quote + "," + '\n');
                     sb.append(quote + "collection" + quote + ":" + quote + "Dagongbao (Tianjin ban)" + quote + "" + '\n');
                     sb.append("},");
+                    System.out.println("OK");
                 }
                 else {
-                    System.out.println("No" + id);
+                    System.out.println("No passed: " + id);
                 }
             }
         }

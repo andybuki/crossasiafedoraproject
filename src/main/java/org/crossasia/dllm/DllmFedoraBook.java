@@ -8,11 +8,9 @@ import java.io.*;
 
 public class DllmFedoraBook {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException , IOException {
-        File absolutePath = new File("/data1/dllm/gesplitted3/");
+        File absolutePath = new File("/data/dlmnt/fedora/books_raw/");
         String quote = "\u005c\u0022";
         String encoding = "UTF-8";
-
-
 
             File dir = new File(String.valueOf(absolutePath));
             File[] filesInDir = dir.listFiles();
@@ -117,8 +115,6 @@ public class DllmFedoraBook {
                     String[] spl = date_written.split("-");
                     date_written_right = Integer.parseInt(spl[0]);
                 }
-
-
 
                 if (jsonObj.has("name_location"))
                     name_location = (String) jsonObj.get("name_location").toString();
@@ -635,7 +631,7 @@ public class DllmFedoraBook {
                 sb.deleteCharAt(sb.length() - 1);
                 //PrintStream out = new PrintStream(new FileOutputStream(file));
                 //out.write("/data1/fedora/ajax-minguo/test2/"+book_id+".json");
-                PrintStream out = new PrintStream(new FileOutputStream("/data1/dllm/books/"+id+".json"));
+                PrintStream out = new PrintStream(new FileOutputStream("/data/dlmnt/fedora/books/"+id+".json"));
                 //out = new FileWriter("/data1/fedora/ajax-minguo/test2/"+book_id+".json");
                 out.println("["+sb.toString()+"}]");
 

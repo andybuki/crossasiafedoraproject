@@ -11,7 +11,7 @@ import java.io.*;
 
 public class AdamJapanFedoraBook {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-        File dir = new File("/data1/fedora/ajax-fo-japan/pages");
+        File dir = new File("/data/fedora/ajax-fo-china-japan/");
         String quote = "\u005c\u0022";
 
         for (File file : dir.listFiles()) {
@@ -376,7 +376,7 @@ public class AdamJapanFedoraBook {
 
                 //type = (String) booksObj.get("pcdm:Object").toString();
 
-                String solr = "http://b-app69:8995/solr/ajax-fo-china-japan/select?q=id:" + id;
+                String solr = "http://solr-master-prod.sbb.spk-berlin.de:8995/solr/ajax-fo-china-japan/select?q=id:" + id;
 
                 sb.append("{\n");
                 sb.append("  \"@context\": {\n");

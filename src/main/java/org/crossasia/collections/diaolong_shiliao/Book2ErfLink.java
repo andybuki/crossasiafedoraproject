@@ -12,8 +12,8 @@ import java.io.PrintStream;
 public class Book2ErfLink {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String books = "/data1/solr/ajax-dl-shiliao/books_NEW.json";
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/solr/ajax-dl-shiliao/books2.json"));
+        String books = "/data/solr/rep-diaolong-qdsl/books.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/data/solr/rep-diaolong-qdsl/booksNEW.json"));
         JSONArray booksObject = new JSONArray(new JSONTokener(new FileInputStream(books)));
         StringBuilder sb = new StringBuilder();
         for (int i=0; i<booksObject.length(); i++) {
@@ -81,7 +81,9 @@ public class Book2ErfLink {
             JSONArray creator_transcription= null;
 
             JSONObject booksObj = (JSONObject) booksObject.get(i);
+
             id = (String) booksObj.get("id").toString();
+
             if (booksObj.has("title_transcription")) {
                 title_transcription = (JSONArray) booksObj.get("title_transcription");
             }
@@ -137,8 +139,9 @@ public class Book2ErfLink {
 
             if (booksObj.has("creator"))
                 author =(JSONArray) booksObj.get("creator");
-            if (booksObj.has("date"))
-                date =(JSONArray) booksObj.get("date");
+
+            if (booksObj.has("date_original"))
+                date =(JSONArray) booksObj.get("date_original");
 
             if (booksObj.has("subject"))
                 subject =(JSONArray) booksObj.get("subject");
@@ -240,7 +243,6 @@ public class Book2ErfLink {
                } else {
                    url = (String) urls.get(2);
                }
-
             }
 
             if (booksObj.has("identifier")) {
@@ -267,20 +269,17 @@ public class Book2ErfLink {
                 String u2 = (String) urls.get(1);
                 String u3 = (String) urls.get(2);
 
-                if (u1.startsWith("type=\"Diaolong\"")) {
-                    String url2 = urls.get(0).toString().replace("type=\"Diaolong\" ","");
+                if (u1.startsWith("type=QingDaiShiLiao")) {
+                    String url2 = urls.get(0).toString().replace("type=","");
                     book_id =  url2;
-                } else if (u2.startsWith("type=\"Diaolong\""))  {
-                    String url2 = urls.get(1).toString().replace("type=\"Diaolong\" ","");
+                } else if (u2.startsWith("type=QingDaiShiLiao"))  {
+                    String url2 = urls.get(1).toString().replace("type=","");
                     book_id =  url2;
                 } else {
-                    String url2 = urls.get(2).toString().replace("type=\"Diaolong\" ","");
+                    String url2 = urls.get(2).toString().replace("type=","");
                     book_id =  url2;
                 }
             }
-
-
-
 
             sb.append("{"+ '\n');
             sb.append(  quote + "id" + quote + ":" + quote+ id+ quote + "," + '\n' );
@@ -303,10 +302,10 @@ public class Book2ErfLink {
                 sb.append(  quote + "creator_transcription" + quote + ":" +  creator_transcription+  "," + '\n');
 
             if (bibliographic_citation!=null)
-                sb.append(  quote + "bibliographic_citation" + quote + ":" +  bibliographic_citation+  "," + '\n');
+                sb.append(  quote + "bibliographicCitation" + quote + ":" +  bibliographic_citation+  "," + '\n');
 
             if (note!=null)
-                sb.append(  quote + "note" + quote + ":" +  note+  "," + '\n');
+                sb.append(  quote + "responsibility" + quote + ":" +  note+  "," + '\n');
 
             if (edition!=null)
                 sb.append(  quote + "edition" + quote + ":" +  edition+  "," + '\n');
@@ -318,34 +317,34 @@ public class Book2ErfLink {
             if (url!=null)
                 sb.append(  quote + "url" + quote + ":" + quote+ url+ quote + "," + '\n');
 
-            if (extent!=null)
+            /*if (extent!=null)
                 sb.append(  quote + "extent" + quote + ":" + quote+ extent+ quote + "," + '\n');
 
             if (thumbnail_path!=null)
-                sb.append(  quote + "thumbnail_path" + quote + ":" + quote+ thumbnail_path+ quote + "," + '\n');
+                sb.append(  quote + "thumbnail_path" + quote + ":" + quote+ thumbnail_path+ quote + "," + '\n');*/
 
             if (issued!=null)
-                sb.append(  quote + "issued" + quote + ":" + quote+ issued+ quote + "," + '\n');
+                sb.append(  quote + "date" + quote + ":" + issued + "," + '\n');
 
             if (publisher!=null)
                 sb.append(  quote + "publisher" + quote + ":" +  publisher+  "," + '\n');
 
-            if (medium!=null)
-                sb.append(  quote + "medium" + quote + ":" + quote+ medium+ quote + "," + '\n');
+            /*if (medium!=null)
+                sb.append(  quote + "medium" + quote + ":" + quote+ medium+ quote + "," + '\n');*/
 
 
             if (erflink!=null)
                 sb.append(  quote + "erflink" + quote + ":" + quote+ erflink+ quote + "," + '\n');
 
             if (date!=null)
-                sb.append(  quote + "date" + quote + ":" +    date+    "," + '\n');
+                sb.append(  quote + "issued" + quote + ":" +    date+    "," + '\n');
 
 
-            if (responsibility!=null)
+            /*if (responsibility!=null)
                 sb.append(  quote + "responsibility" + quote + ":" +quote+  responsibility+ quote+ "," + '\n');
 
             if (ISBN!=null)
-                sb.append(  quote + "ISBN" + quote + ":" + quote+ ISBN+ quote+ "," + '\n');
+                sb.append(  quote + "ISBN" + quote + ":" + quote+ ISBN+ quote+ "," + '\n');*/
 
             if (title!=null)
                 sb.append(  quote + "title" + quote + ":" + title+ "," + '\n');
@@ -371,41 +370,41 @@ public class Book2ErfLink {
             if (language!=null)
                 sb.append(  quote + "language" + quote + ":" +  language+  "," + '\n');
 
-            if (assetid_page!=null)
+            /*if (assetid_page!=null)
                 sb.append(  quote + "asset-id-object" + quote + ":" + quote+ assetid_page+ quote+ "," + '\n');
 
             if (format!=null)
                 sb.append(  quote + "format" + quote + ":" + quote+ format+ quote+ "," + '\n');
 
-            if (date_original!=null)
-                sb.append(  quote + "date-original" + quote + ":" + quote+ date_original+ quote+ "," + '\n');
+            /*if (date_original!=null)
+                sb.append(  quote + "date-original" + quote + ":" + quote+ date_original+ quote+ "," + '\n');*/
 
-            if (journal_title!=null)
+            /*if (journal_title!=null)
                 sb.append(  quote + "journal-title" + quote + ":" + quote+ journal_title+ quote+ "," + '\n');
 
-            if (asset_id!=null)
-                sb.append(  quote + "asset-id-page" + quote + ":" + quote+ asset_id+ quote+ "," + '\n');
+            /*if (asset_id!=null)
+                sb.append(  quote + "asset-id-page" + quote + ":" + quote+ asset_id+ quote+ "," + '\n');*/
 
-            if (volume_number!=null)
+            /*if (volume_number!=null)
                 sb.append(  quote + "volume-number" + quote + ":" + quote+ volume_number+ quote+ "," + '\n');
 
             if (description!=null)
                 sb.append(  quote + "description" + quote + ":" + quote+ description+ quote+ "," + '\n');
 
-            if (publication_place!=null)
+            /*if (publication_place!=null)
                 sb.append(  quote + "publication_place" + quote + ":" +  publication_place+  "," + '\n');
 
             if (publication_volume!=null)
                 sb.append(  quote + "publication-volume" + quote + ":" + quote+ publication_volume+ quote+ "," + '\n');
 
-            if (page_range!=null)
-                sb.append(  quote + "page-range" + quote + ":" + quote+ page_range+ quote+ "," + '\n');
+            /*if (page_range!=null)
+                sb.append(  quote + "page-range" + quote + ":" + quote+ page_range+ quote+ "," + '\n');*/
 
-            if (text!=null)
-                sb.append(  quote + "text" + quote + ":" + quote+ text+ quote+ "," + '\n');
+            /*if (text!=null)
+                sb.append(  quote + "text" + quote + ":" + quote+ text+ quote+ "," + '\n');*/
 
             sb.append(  quote + "hasModel" + quote + ":" + quote+ "Book"+ quote + "," + '\n' );
-            sb.append(  quote + "physical_description" + quote + ":" + "["+quote+"electronic"+quote +"]"+ "," + '\n' );
+            //sb.append(  quote + "physical_description" + quote + ":" + "["+quote+"electronic"+quote +"]"+ "," + '\n' );
             sb.append(  quote + "collection" + quote + ":" + quote+  "Qingdai shiliao" +quote + '\n' );
 
             sb.append("},");

@@ -17,7 +17,7 @@ public class BooksFedoraConverter {
     public static void main(String[] argv) throws IOException, ParseException {
         BufferedWriter out = null;
         try {
-            String absolutePath = "/data1/fedora/ajax-meiji-japan/fedora/";
+            String absolutePath = "/data/fedora/ajax-fo-china-japan2/";
             File dir = new File(absolutePath);
             File[] filesInDir = dir.listFiles();
             int i = 0;
@@ -52,7 +52,7 @@ public class BooksFedoraConverter {
 
                     /*
                     * BOOKS */
-                    cURLink = "curl -u fedoraAdmin:fedoraAdmin -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8080/fcrepo/rest/meijijapan/" + id;
+                    cURLink = "curl -u fedoraAdmin:fedoraAdmin -i -X PUT -H" + quote + "Content-Type: application/ld+json" + quote + " " + "--data-binary @" + newName + " " + "http://b-lx0005.sbb.spk-berlin.de:8082/fcrepo/rest/ajax-fo-china-japan/" + id;
 
                      //"Content-Disposition: attachment; filename=115144_Folder_12.xml" --data-binary @115144_Folder_12.xml http://10.46.3.100:8081/fcrepo/rest/Adam_Matthew/115144_Folder_12book/file
                     //cURLink = "curl -i -X PUT -H" + quote + "Content-Type: text/html"+quote+ " -H" +quote+"Content-Disposition: attachment; filename="+newName+ quote+"--data-binary @"+newName+ " "+"http://10.46.3.100:8089/fcrepo/rest/China_America_Pacific/"+id+"/file";

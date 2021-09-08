@@ -15,10 +15,10 @@ public class NchoPagePosition {
 
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String pages = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-brill-ncho/books_pages4.json";
+        String pages = "/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-brill-ncho/books_pages6.json";
         StringBuilder sb = new StringBuilder();
         JSONArray jsonArrayPages = new JSONArray(new JSONTokener(new FileInputStream(pages)));
-        PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-brill-ncho/books_pages_p4.json"));
+        PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/solr/ajax-brill-ncho/books_pages_p6NEW.json"));
         String book_id="";
         ArrayList<String> arrayList = new ArrayList<>();
         ArrayList<Integer> countList = new ArrayList<>();

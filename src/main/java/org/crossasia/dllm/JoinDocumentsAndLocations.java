@@ -8,15 +8,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 
-public class JoinDocumentsAncillary {
+public class JoinDocumentsAndLocations {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String documents = "/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/LAST_CHANGES/documents_full_new.json";
-        PrintStream out = new PrintStream(new FileOutputStream("/data1/dllm/documents_final_new2.json"));
+        String documents = "/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/LAST_CHANGES/pages_books.json";
+        String locations = "/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/LAST_CHANGES/locations.json";
+        PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/dllm/presentation/LAST_CHANGES/documents_locations2.json"));
 
         JSONArray documentsObject = new JSONArray(new JSONTokener(new FileInputStream(documents)));
+        JSONArray locationsObject = new JSONArray(new JSONTokener(new FileInputStream(locations)));
+
 
         StringBuilder sb = new StringBuilder();
         for (int i=0; i<documentsObject.length(); i++) {
@@ -28,7 +33,9 @@ public class JoinDocumentsAncillary {
             int number_of_fascicles=0;
             int number_of_folios=0;
             int has_colophon=0;
+            String has_colophon_str ="";
             int is_illustrated=0;
+            String is_illustrated_str ="";
             String bundle_id="";
             int position_in_bundle=0;
             int pages_count=0;
@@ -42,10 +49,10 @@ public class JoinDocumentsAncillary {
             String private_remarks_lo ="";
 
             int is_color=0;
-
+            String is_color_str ="";
 
             int is_complete=0;
-
+            String is_complete_str ="";
             String materials ="";
             String materials_lao="";
 
@@ -69,6 +76,9 @@ public class JoinDocumentsAncillary {
             String conditions_lao ="";
             String preferred_date_systems ="";
             String preferred_date_systems_lao ="";
+            String date_original ="";
+            String date_original_lao ="";
+
 
             JSONArray term_roman=null;
             JSONArray term_lao=null;
@@ -108,7 +118,11 @@ public class JoinDocumentsAncillary {
             JSONArray plmp_title_lao = null;
             LinkedHashSet<String> plmp_title_lao_new = null;
             
-            
+            JSONArray pages =null;
+            String pages_position="";
+            String pages_image_file="";
+            String pages_id="";
+            String pages_document_id="";
 
             JSONObject documentsObj = (JSONObject) documentsObject.get(i);
 
@@ -264,6 +278,7 @@ public class JoinDocumentsAncillary {
 
             }
 
+
             if (documentsObj.has("code_number"))
                 code_number = (String) documentsObj.get("code_number").toString();
 
@@ -285,11 +300,23 @@ public class JoinDocumentsAncillary {
             if (documentsObj.has("number_of_folios"))
                 number_of_folios = (int) documentsObj.get("number_of_folios");
 
-            if (documentsObj.has("has_colophon"))
+            if (documentsObj.has("has_colophon")) {
                 has_colophon = (int) documentsObj.get("has_colophon");
+                if (has_colophon==0) {
+                    has_colophon_str ="no";
+                } else {
+                    has_colophon_str ="yes";
+                }
+            }
 
-            if (documentsObj.has("is_illustrated"))
+            if (documentsObj.has("is_illustrated")) {
                 is_illustrated = (int) documentsObj.get("is_illustrated");
+                if (is_illustrated==0) {
+                    is_illustrated_str ="no";
+                } else {
+                    is_illustrated_str ="yes";
+                }
+            }
 
             if (documentsObj.has("locations_id"))
                 locations_id = (int) documentsObj.get("locations_id");
@@ -297,8 +324,14 @@ public class JoinDocumentsAncillary {
             if (documentsObj.has("locations_parent_id"))
                 locations_parent_id = (int) documentsObj.get("locations_parent_id");
 
-            if (documentsObj.has("is_complete"))
+            if (documentsObj.has("is_complete")) {
                 is_complete = (int) documentsObj.get("is_complete");
+                if (is_complete==0) {
+                    is_complete_str ="no";
+                } else {
+                    is_complete_str ="yes";
+                }
+            }
 
             if (documentsObj.has("bundle_id"))
                 bundle_id = (String) documentsObj.get("bundle_id").toString();
@@ -321,8 +354,14 @@ public class JoinDocumentsAncillary {
             if (documentsObj.has("private_remarks_lo"))
                 private_remarks_lo = (String) documentsObj.get("private_remarks_lo").toString();
 
-            if (documentsObj.has("is_color"))
+            if (documentsObj.has("is_color")) {
                 is_color = (int) documentsObj.get("is_color");
+                if (is_color==0) {
+                    is_color_str ="no";
+                } else {
+                    is_color_str ="yes";
+                }
+            }
 
             if (documentsObj.has("materials"))
                 materials = (String) documentsObj.get("materials").toString();
@@ -377,92 +416,212 @@ public class JoinDocumentsAncillary {
 
             if (documentsObj.has("preferred_date_systems"))
                 preferred_date_systems = (String) documentsObj.get("preferred_date_systems").toString();
+            int date_written_right =0;
+            if (preferred_date_systems.equals("Buddhist Era (BE)")) {
+                date_written_right = (Integer.parseInt(date_written) + 543);
+                date_original = date_written_right+" (Buddhist Era)";
+                date_original_lao = date_written_right+" (ພຸດທະສັກກະລາດ (ພສ))";
+
+            } else if (preferred_date_systems.equals("Cunlasakkalat (CS)")) {
+                date_written_right = (Integer.parseInt(date_written)) - 638;
+                date_original = date_written_right+" (Cunlasakkalat)";
+                date_original_lao = date_written_right+" (ບໍ່ປາກົດປີລິດຈະນາ)";
+
+            } else if (preferred_date_systems.equals("Undated")) {
+                date_original = "(Undated)";
+                date_original_lao = "(ບໍ່ປາກົດປີລິດຈະນາ)";
+            } else {
+                date_original = date_written+" (Christian Era)";
+                date_original_lao = date_written+" (ຄິດຕະສັກກະລາດ (ຄສ))";
+            }
 
             if (documentsObj.has("preferred_date_systems_lao"))
                 preferred_date_systems_lao = (String) documentsObj.get("preferred_date_systems_lao").toString();
 
+            if (documentsObj.has("pages"))
+                pages = (JSONArray) documentsObj.get("pages");
+
+
+
+
+
+            ///------------------------------------------//
+            for (int j = 0; j<locationsObject.length(); j++) {
+                JSONObject locationsObj = (JSONObject) locationsObject.get(j);
+                int documents_count = 0;
+                int is_top_level = 0;
+                String parent_parent_id ="";
+                String parent_id = "";
+                int id_loc =0;
+
+                String parent_parent_name ="";
+                String parent_name ="";
+                String full_location_name_lao ="";
+                String parent_parent_name_lao ="";
+                String parent_name_lao ="";
+                String full_location_name ="";
+                String loc_name= "";
+                String loc_name_lao= "";
+
+                if (locationsObj.has("documents_count"))
+                    documents_count = (int) locationsObj.get("documents_count");
+                if (locationsObj.has("is_top_level"))
+                    is_top_level = (int) locationsObj.get("is_top_level");
+                if (locationsObj.has("parent_parent_id"))
+                    parent_parent_id = (String) locationsObj.get("parent_parent_id").toString();
+                if (locationsObj.has("parent_id"))
+                    parent_id = (String) locationsObj.get("parent_id").toString();
+                if (locationsObj.has("id"))
+                    id_loc = (int) locationsObj.get("id");
+
+                if (locationsObj.has("parent_parent_name"))
+                    parent_parent_name = (String) locationsObj.get("parent_parent_name").toString();
+
+                if (locationsObj.has("parent_name"))
+                    parent_name = (String) locationsObj.get("parent_name").toString();
+
+                if (locationsObj.has("full_location_name_lao"))
+                    full_location_name_lao = (String) locationsObj.get("full_location_name_lao").toString();
+                if (locationsObj.has("parent_parent_name_lao"))
+                    parent_parent_name_lao = (String) locationsObj.get("parent_parent_name_lao").toString();
+                if (locationsObj.has("parent_name_lao"))
+                    parent_name_lao = (String) locationsObj.get("parent_name_lao").toString();
+                if (locationsObj.has("full_location_name"))
+                    full_location_name = (String) locationsObj.get("full_location_name").toString();
+                if (locationsObj.has("name"))
+                    loc_name = (String) locationsObj.get("name").toString();
+                if (locationsObj.has("name_lao"))
+                    loc_name_lao = (String) locationsObj.get("name_lao").toString();
+
+                if (locations_id ==id_loc) {
+
 
                     sb.append("{"+ '\n');
-                    sb.append(  quote + "id" + quote + ":" +  id+  "," + '\n' );
+                    if (id <10) {
+                        sb.append(quote + "documents_id" + quote + ":" + quote + "dllm_0000" + id + quote + "," + '\n');
+                    } else if (id >10 && id<100) {
+                        sb.append(quote + "documents_id" + quote + ":" + quote + "dllm_000" + id + quote + "," + '\n');
+                    } else if (id >100 && id<1000) {
+                        sb.append(quote + "documents_id" + quote + ":" + quote + "dllm_00" + id + quote + "," + '\n');
+                    } else if (id >1000 && id<10000) {
+                        sb.append(quote + "documents_id" + quote + ":" + quote + "dllm_0" + id + quote + "," + '\n');
+                    } else {
+                        sb.append(quote + "documents_id" + quote + ":" + quote + "dllm_" + id + quote + "," + '\n');
+                    }
 
                     if (code_number!="") {
-                        sb.append(quote + "code_number" + quote + ":" + quote+ code_number + quote  + "," + '\n');
+                        sb.append(quote + "documents_code_number" + quote + ":" + quote+ code_number + quote  + "," + '\n');
                     }
 
                     if (roll!="") {
-                        sb.append(quote + "roll" + quote + ":" + quote+ roll + quote  + "," + '\n');
+                        sb.append(quote + "documents_roll" + quote + ":" + quote+ roll + quote  + "," + '\n');
                     }
 
                     if (date_written!="") {
-                        sb.append(quote + "date_written" + quote + ":" + quote+ date_written + quote  + "," + '\n');
+                        sb.append(quote + "documents_date_written" + quote + ":" + quote+ date_written + quote  + "," + '\n');
                     }
 
+                    sb.append(quote + "date_original" + quote + ":" + quote+ date_original + quote  + "," + '\n');
+                    sb.append(quote + "date_original_lao" + quote + ":" + quote+ date_original_lao + quote  + "," + '\n');
+
                     //if (number_of_fascicles!=0) {
-                        sb.append(quote + "number_of_fascicles" + quote + ":" + number_of_fascicles   + "," + '\n');
+                    sb.append(quote + "documents_number_of_fascicles" + quote + ":" + number_of_fascicles   + "," + '\n');
                     //}
 
                     //if (number_of_folios!=0) {
-                        sb.append(quote + "number_of_folios" + quote + ":" + number_of_folios   + "," + '\n');
+                    sb.append(quote + "documents_number_of_folios" + quote + ":" + number_of_folios   + "," + '\n');
+                    sb.append(quote + "dc:extent" + quote + ":" + quote + number_of_fascicles +" fascicle(s), " +
+                            + number_of_folios + " folio(s) "
+                            +"("+ pages_count + " img.)" + quote
+                            + "," + '\n');
+
+
+
+                    //locations
+                    //sb.append(quote + "documents_count" + quote + ":" + documents_count   + "," + '\n');
+                    sb.append(quote + "locations_is_top_level" + quote + ":" + is_top_level   + "," + '\n');
+                    //sb.append(quote + "id_loc" + quote + ":" + id_loc   + "," + '\n');
+                    sb.append(quote + "locations_parent_parent_id" + quote + ":" + parent_parent_id   + "," + '\n');
+                    //sb.append(quote + "parent_id" + quote + ":" + parent_id   + "," + '\n');
+
+                    sb.append(quote + "locations_parent_parent_name" + quote + ":" + quote+ parent_parent_name+ quote  + "," + '\n');
+                    sb.append(quote + "locations_parent_name" + quote + ":" + quote+ parent_name+ quote  + "," + '\n');
+                    sb.append(quote + "full_location_name_lao" + quote + ":" + quote+ full_location_name_lao+ quote  + "," + '\n');
+                    sb.append(quote + "locations_parent_parent_name_lao" + quote + ":" + quote+ parent_parent_name_lao+ quote  + "," + '\n');
+                    sb.append(quote + "locations_parent_name_lao" + quote + ":" + quote+ parent_name_lao+ quote  + "," + '\n');
+                    sb.append(quote + "full_location_name" + quote + ":" + quote+ full_location_name+ quote  + "," + '\n');
+                    sb.append(quote + "location_name" + quote + ":" + quote+ loc_name+ quote  + "," + '\n');
+                    sb.append(quote + "location_name_lao" + quote + ":" + quote+ loc_name_lao+ quote  + "," + '\n');
+
+                    //locations
+
                     //}
 
                     //if (has_colophon!=0) {
-                        sb.append(quote + "has_colophon" + quote + ":" + has_colophon   + "," + '\n');
+                    sb.append(quote + "documents_has_colophon" + quote + ":" + quote+ has_colophon_str  +quote + "," + '\n');
                     //}
 
                     //if (is_illustrated!=0) {
-                        sb.append(quote + "is_illustrated" + quote + ":" + is_illustrated   + "," + '\n');
+                    sb.append(quote + "documents_is_illustrated" + quote + ":" + quote+ is_illustrated_str +  quote + "," + '\n');
                     //}
 
                     //if (is_color!=0) {
-                        sb.append(quote + "is_color" + quote + ":" + is_color   + "," + '\n');
+                    sb.append(quote + "documents_is_color" + quote + ":" + quote + is_color_str +quote  + "," + '\n');
                     //}
 
                     if (bundle_id!="") {
-                        sb.append(quote + "bundle_id" + quote + ":" + quote+ bundle_id+ quote  + "," + '\n');
+                        sb.append(quote + "documents_bundle_id" + quote + ":" + quote+ bundle_id+ quote  + "," + '\n');
                     }
 
                     //if (locations_id!=0) {
-                        sb.append(quote + "locations_id" + quote + ":" +  locations_id  + "," + '\n');
+                    sb.append(quote + "locations_id" + quote + ":" +  locations_id  + "," + '\n');
                     //}
 
                     //if (locations_parent_id!=0) {
-                                sb.append(quote + "locations_parent_id" + quote + ":" +  locations_parent_id  + "," + '\n');
+                    sb.append(quote + "locations_parent_id" + quote + ":" +  locations_parent_id  + "," + '\n');
                     //}
 
                     //if (position_in_bundle!=0) {
-                                sb.append(quote + "position_in_bundle" + quote + ":" + position_in_bundle   + "," + '\n');
+                    sb.append(quote + "documents_position_in_bundle" + quote + ":" + position_in_bundle   + "," + '\n');
                     //}
 
                     //if (is_complete!=0) {
-                        sb.append(quote + "is_complete" + quote + ":" + is_complete   + "," + '\n');
+                    sb.append(quote + "documents_is_complete" + quote + ":"+quote + is_complete_str +quote   + "," + '\n');
                     //}
 
                     //if (pages_count!=0) {
-                        sb.append(quote + "pages_count" + quote + ":" + pages_count   + "," + '\n');
+                    sb.append(quote + "documents_pages_count" + quote + ":" + pages_count   + "," + '\n');
                     //}
 
+                    sb.append(quote + "description" + quote + ":" + quote+ "Bundle ID: " + bundle_id +", " +
+                            "position in bundle: " + position_in_bundle + "; " +
+                            "roll: " + roll + quote +
+                       "," + '\n');
+
+
+
                     if (materials!="") {
-                        sb.append(quote + "materials" + quote + ":" + quote+ materials + quote  + "," + '\n');
+                        sb.append(quote + "materials_name" + quote + ":" + quote+ materials + quote  + "," + '\n');
                     }
 
                     if (materials_lao!="") {
-                        sb.append(quote + "materials_lao" + quote + ":" + quote+ materials_lao + quote  + "," + '\n');
+                        sb.append(quote + "materials_name_lao" + quote + ":" + quote+ materials_lao + quote  + "," + '\n');
                     }
 
                     if (public_remarks_en!="") {
-                        sb.append(quote + "public_remarks_en" + quote + ":" + quote+ public_remarks_en + quote  + "," + '\n');
+                        //sb.append(quote + "public_remarks_english" + quote + ":" + quote+ public_remarks_en + quote  + "," + '\n');
                     }
 
                     if (public_remarks_lo!="") {
-                        sb.append(quote + "public_remarks_lo" + quote + ":" + quote+ public_remarks_lo + quote  + "," + '\n');
+                        //sb.append(quote + "public_remarks_lao" + quote + ":" + quote+ public_remarks_lo + quote  + "," + '\n');
                     }
 
                     if (private_remarks_en!="") {
-                        sb.append(quote + "private_remarks_en" + quote + ":" + quote+ private_remarks_en + quote  + "," + '\n');
+                        sb.append(quote + "documents_private_remarks_en" + quote + ":" + quote+ private_remarks_en + quote  + "," + '\n');
                     }
 
                     if (private_remarks_lo!="") {
-                        sb.append(quote + "private_remarks_lo" + quote + ":" + quote+ private_remarks_lo + quote  + "," + '\n');
+                        sb.append(quote + "documents_private_remarks_lo" + quote + ":" + quote+ private_remarks_lo + quote  + "," + '\n');
                     }
 
                     if (location!="") {
@@ -470,58 +629,58 @@ public class JoinDocumentsAncillary {
                     }
 
                     if (location_place!="") {
-                        sb.append(quote + "location_place" + quote + ":" + quote+ location_place + quote  + "," + '\n');
+                        sb.append(quote + "location_types_name" + quote + ":" + quote+ location_place + quote  + "," + '\n');
                     }
 
                     if (name_location!="") {
-                        sb.append(quote + "name_location" + quote + ":" + quote+ name_location + quote  + "," + '\n');
+                        //sb.append(quote + "name_location" + quote + ":" + quote+ name_location + quote  + "," + '\n');
                     }
 
                     if (name_location_lao!="") {
-                        sb.append(quote + "name_location_lao" + quote + ":" + quote+ name_location_lao + quote  + "," + '\n');
+                        //sb.append(quote + "name_location_lao" + quote + ":" + quote+ name_location_lao + quote  + "," + '\n');
                     }
 
                     if (location_place_lao!="") {
-                        sb.append(quote + "location_place_lao" + quote + ":" + quote+ location_place_lao + quote  + "," + '\n');
+                        sb.append(quote + "location_types_name_lao" + quote + ":" + quote+ location_place_lao + quote  + "," + '\n');
                     }
 
                     //if (location_lft!=0) {
-                        sb.append(quote + "location_lft" + quote + ":" + location_lft   + "," + '\n');
+                    sb.append(quote + "locations_lft" + quote + ":" + location_lft   + "," + '\n');
                     //}
 
                     //if (location_rgt!=0) {
-                        sb.append(quote + "location_rgt" + quote + ":" + location_rgt   + "," + '\n');
+                    sb.append(quote + "locations_rgt" + quote + ":" + location_rgt   + "," + '\n');
                     //}
 
                     //if (location_code!=0) {
-                        sb.append(quote + "location_code" + quote + ":" + location_code   + "," + '\n');
+                    sb.append(quote + "locations_dllm_loc_code" + quote + ":" + location_code   + "," + '\n');
                     //}
 
                     if (location_lat!=0.0) {
-                        sb.append(quote + "location_lat" + quote + ":" + location_lat   + "," + '\n');
+                        sb.append(quote + "locations_gps_lat" + quote + ":" + location_lat   + "," + '\n');
                     }
 
                     if (location_lon!=0.0) {
-                        sb.append(quote + "location_lon" + quote + ":" + location_lon   + "," + '\n');
+                        sb.append(quote + "locations_gps_lon" + quote + ":" + location_lon   + "," + '\n');
                     }
 
                     if (term_roman_new != null)
-                        sb.append(quote + "term_roman" + quote + ":" +  term_roman_new + "," + '\n');
+                        sb.append(quote + "ancillary_terms_roman" + quote + ":" +  term_roman_new + "," + '\n');
 
                     if (term_lao_new != null)
-                        sb.append(quote + "term_lao" + quote + ":" +  term_lao_new + "," + '\n');
+                        sb.append(quote + "ancillary_terms_lao" + quote + ":" +  term_lao_new + "," + '\n');
 
                     if (remark_english_new != null)
-                        sb.append(quote + "remark_english" + quote + ":" +  remark_english_new + "," + '\n');
+                        sb.append(quote + "public_remarks_english" + quote + ":" +  remark_english_new + "," + '\n');
 
                     if (remark_lao_new != null)
-                        sb.append(quote + "remark_lao" + quote + ":" +  remark_lao_new + "," + '\n');
+                        sb.append(quote + "public_remarks_lao" + quote + ":" +  remark_lao_new + "," + '\n');
 
                     if (categories_new != null)
-                        sb.append(quote + "categories" + quote + ":" +  categories_new + "," + '\n');
+                        sb.append(quote + "categories_name" + quote + ":" +  categories_new + "," + '\n');
 
                     if (categories_lao_new != null)
-                        sb.append(quote + "categories_lao" + quote + ":" +  categories_lao_new + "," + '\n');
+                        sb.append(quote + "categories_name_lao" + quote + ":" +  categories_lao_new + "," + '\n');
 
                     if (languages_new != null)
                         sb.append(quote + "languages" + quote + ":" +  languages_new + "," + '\n');
@@ -542,26 +701,26 @@ public class JoinDocumentsAncillary {
                         sb.append(quote + "title_search_lao" + quote + ":" +  title_search_lao_new + "," + '\n');
 
                     if (title_roman_new != null)
-                        sb.append(quote + "title_roman" + quote + ":" +  title_roman_new + "," + '\n');
+                        sb.append(quote + "dllm_title_roman" + quote + ":" +  title_roman_new + "," + '\n');
 
                     if (title_lao_new != null)
-                        sb.append(quote + "title_lao" + quote + ":" +  title_lao_new + "," + '\n');
+                        sb.append(quote + "dllm_title_lao" + quote + ":" +  title_lao_new + "," + '\n');
 
                     if (plmp_title_lao_new != null)
                         sb.append(quote + "plmp_title_lao" + quote + ":" +  plmp_title_lao_new + "," + '\n');
 
 
                     //if (location_documents_count!=0) {
-                        sb.append(quote + "location_documents_count" + quote + ":" + location_documents_count   + "," + '\n');
+                    sb.append(quote + "location_documents_count" + quote + ":" + location_documents_count   + "," + '\n');
                     //}
 
 
                     if (legibilities!="") {
-                        sb.append(quote + "legibilities" + quote + ":" + quote+ legibilities + quote  + "," + '\n');
+                        sb.append(quote + "legibilities_name" + quote + ":" + quote+ legibilities + quote  + "," + '\n');
                     }
 
                     if (legibilities_lao!="") {
-                        sb.append(quote + "legibilities_lao" + quote + ":" + quote+ legibilities_lao + quote  + "," + '\n');
+                        sb.append(quote + "legibilities_name_lao" + quote + ":" + quote+ legibilities_lao + quote  + "," + '\n');
                     }
 
                     if (additional_date_infos_roman!="") {
@@ -573,25 +732,67 @@ public class JoinDocumentsAncillary {
                     }
 
                     if (conditions!="") {
-                        sb.append(quote + "conditions" + quote + ":" + quote+ conditions + quote  + "," + '\n');
+                        sb.append(quote + "conditions_name" + quote + ":" + quote+ conditions + quote  + "," + '\n');
                     }
 
                     if (conditions_lao!="") {
-                        sb.append(quote + "conditions_lao" + quote + ":" + quote+ conditions_lao + quote  + "," + '\n');
+                        sb.append(quote + "conditions_name_lao" + quote + ":" + quote+ conditions_lao + quote  + "," + '\n');
                     }
 
                     if (preferred_date_systems!="") {
-                        sb.append(quote + "preferred_date_systems" + quote + ":" + quote+ preferred_date_systems + quote  + "," + '\n');
+                        sb.append(quote + "documents_preferred_date_system" + quote + ":" + quote+ preferred_date_systems + quote  + "," + '\n');
+
                     }
 
                     if (preferred_date_systems_lao!="") {
-                        sb.append(quote + "preferred_date_systems_lao" + quote + ":" + quote+ preferred_date_systems_lao + quote  + "," + '\n');
+                        sb.append(quote + "documents_preferred_date_system_lao" + quote + ":" + quote+ preferred_date_systems_lao + quote  + "," + '\n');
                     }
 
+
+                    sb.append(  quote + "pages" + quote + ":" + "[" +   '\n' );
+
+
+                    for (int k = 0; k < pages.length(); k ++) {
+                        JSONObject pagesObj = (JSONObject) pages.get(k);
+
+                        if (pagesObj.has("pages_position"))
+                            pages_position = (String) pagesObj.get("pages_position").toString();
+
+                        if (pagesObj.has("pages_image_file"))
+                            pages_image_file = (String) pagesObj.get("pages_image_file").toString();
+
+                        if (pagesObj.has("pages_id"))
+                            pages_id = (String) pagesObj.get("pages_id").toString();
+
+                        if (pagesObj.has("pages_document_id"))
+                            pages_document_id = (String) pagesObj.get("pages_document_id").toString();
+
+                        sb.append("{");
+                        sb.append(  quote + "pages_position" + quote + ":" + quote+ pages_position+ quote + "," + '\n' );
+                        sb.append(  quote + "pages_image_file" + quote + ":" + quote+ pages_image_file+ quote + "," + '\n' );
+                        sb.append(  quote + "pages_id" + quote + ":" + quote+ pages_id+ quote + "," + '\n' );
+                        sb.append(  quote + "pages_document_id" + quote + ":" + quote+ pages_document_id+ quote + "" + '\n' );
+                        sb.append("},");
+                    }
+
+                    sb.append( "],"+    '\n' );
                     sb.append(  quote + "hasModel" + quote + ":" + quote+ "Document"+ quote + "," + '\n' );
                     sb.append(  quote + "collection" + quote + ":" + quote+ "Dllm"+ quote + "" + '\n' );
 
+
+
                     sb.append("},");
+
+
+
+                }
+
+            }
+
+
+
+
+
 
             }
 
