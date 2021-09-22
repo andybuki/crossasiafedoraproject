@@ -24,6 +24,7 @@ public class DlntmFedoraPagesModify {
 
             String id = "";
             String file_name = "";
+            String original_file_name = "";
 
             if (jsonObjPage.has("id")) {
                 id = (String) jsonObjPage.get("id").toString();
@@ -32,6 +33,11 @@ public class DlntmFedoraPagesModify {
             if (jsonObjPage.has("uploaded_file_id")) {
                 file_name = (String) jsonObjPage.get("uploaded_file_id").toString();
             }
+
+            if (jsonObjPage.has("original_file_name")) {
+                original_file_name = (String) jsonObjPage.get("original_file_name").toString();
+            }
+            original_file_name = original_file_name.replace(".jpg","");
 
             sb.append(addFedoraHeader());
             System.out.println(id);
@@ -44,8 +50,9 @@ public class DlntmFedoraPagesModify {
             sb.append(addFedoraFooter());
 
             sb.deleteCharAt(sb.length() - 1);
-            PrintStream out = new PrintStream(new FileOutputStream("/data/dlmnt/fedora/pages/"+id+"_"+file_name+".json"));
-            out.println("["+sb.toString()+"}]");
+            PrintStream out = new PrintStream(new FileOutputStream("/mnt/b-isiprod-udl.pk.de/itr/archive/fedora/dlntm/pages/"+id+"_"+file_name+".json"));
+            //PrintStream out = new PrintStream(new FileOutputStream("/data/dlmnt/fedora/pages/"+id+"_"+file_name+"_"+original_file_name+".json"));
+            out.println(sb.toString()+"}");
         }
     }
 }

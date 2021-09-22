@@ -21,14 +21,12 @@ public class Condition {
             condition_th = (String) jsonObj.get("condition_th").toString();
         }
 
-        conditions.add(QUOTE+condition+QUOTE);
-        conditions.add(QUOTE+condition_th+QUOTE);
-
         if (condition!= "") {
-            conditionBuilder.append(QUOTE + "dllm:conditions" + QUOTE + ":" +  conditions  + "," + '\n');
-            return conditionBuilder;
-        } else {
-            return new StringBuilder();
+            conditionBuilder.append(QUOTE + "dllm:conditions" + QUOTE + ":" + QUOTE+  condition +QUOTE + "," + '\n');
         }
+        if (condition_th!="") {
+            conditionBuilder.append(QUOTE + "dllm:conditions_th" + QUOTE + ":" + QUOTE+ condition_th +QUOTE + "," + '\n');
+        }
+        return conditionBuilder;
     }
 }

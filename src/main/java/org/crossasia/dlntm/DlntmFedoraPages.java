@@ -54,7 +54,7 @@ public class DlntmFedoraPages {
             }
         }
         sb.deleteCharAt(sb.length() - 1);
-        out.println("["+sb.toString()+"}]");
+        out.println(""+sb.toString()+"}");
 
     }
 

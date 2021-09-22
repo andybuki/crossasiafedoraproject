@@ -12,7 +12,6 @@ public class Alternative {
 
         JSONArray alternative_label_ro  = null;
         JSONArray alternative_label_th = null;
-        JSONArray alternatives = new JSONArray();
 
         StringBuilder alternativeBuilder = new StringBuilder();
 
@@ -24,22 +23,13 @@ public class Alternative {
             alternative_label_th = (JSONArray) jsonObj.get("alternative_label_th");
         }
 
-        if (alternative_label_ro!=null) {
-            for (int k = 0; k < alternative_label_ro.length(); k++) {
-                alternatives.put(alternative_label_ro.get(k));
-            }
-        } else alternatives = null;
-        if (alternative_label_th!=null) {
-            for (int l =0; l<alternative_label_th.length(); l++) {
-                alternatives.put(alternative_label_th.get(l));
-            }
-        } else alternatives = null;
 
-        if (alternatives!=null) {
-            alternativeBuilder.append(QUOTE + "dc:alternative" + QUOTE + ":" +  alternatives+  "," + '\n');
-            return alternativeBuilder;
-        } else {
-            return new StringBuilder();
+        if (alternative_label_ro!=null) {
+            alternativeBuilder.append(QUOTE + "dc:alternative" + QUOTE + ":" +  alternative_label_ro+  "," + '\n');
+
+        }  if (alternative_label_th!=null) {
+            alternativeBuilder.append(QUOTE + "dllm:alternative_th" + QUOTE + ":" +  alternative_label_th+  "," + '\n');
         }
+        return alternativeBuilder;
     }
 }

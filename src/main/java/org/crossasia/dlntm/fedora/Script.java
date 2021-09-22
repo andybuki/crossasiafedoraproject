@@ -24,20 +24,15 @@ public class Script {
             scripts_lao = (JSONArray) jsonObj.get("script_th");
         }
 
-        if (scripts!=null) {
-            for (int k = 0;  k< scripts_lao.length(); k++ ){
-                for (int l =0; l<scripts_lao.length(); l++) {
-                    allScripts.put(scripts.get(k));
-                    allScripts.put(scripts_lao.get(l));
-                }
-            }
+
+        if (scripts != null ) {
+            scriptsBuilder.append(QUOTE + "dllm:script" + QUOTE + ":" + scripts + "," + '\n');
         }
 
-        if (scripts != null || scripts_lao!=null) {
-            scriptsBuilder.append(QUOTE + "dllm:script" + QUOTE + ":" +  allScripts+  "," + '\n');
-            return scriptsBuilder;
-        } else {
-            return new StringBuilder();
-        }
+        if (scripts_lao!=null)
+            scriptsBuilder.append(QUOTE + "dllm:script_th" + QUOTE + ":" +  scripts_lao+  "," + '\n');
+
+        return scriptsBuilder;
+
     }
 }

@@ -34,11 +34,10 @@ public class DateOriginal {
         nameBuilder_th.append(year + " ");
         nameBuilder_th.append(date_system_th);
 
-        dates.add(QUOTE+nameBuilder+QUOTE);
-        dates.add(QUOTE+nameBuilder_th+QUOTE);
 
         if (dates!= null) {
-            dateOriginalBuilder.append(QUOTE + "dllm:date_original" + QUOTE + ":" +  dates  + "," + '\n');
+            dateOriginalBuilder.append(QUOTE + "dllm:date_original" + QUOTE + ":" + QUOTE+ nameBuilder +QUOTE  + "," + '\n');
+            dateOriginalBuilder.append(QUOTE + "dllm:date_original_th" + QUOTE + ":" + QUOTE+  nameBuilder_th +QUOTE  + "," + '\n');
             return dateOriginalBuilder;
         } else {
             return new StringBuilder();

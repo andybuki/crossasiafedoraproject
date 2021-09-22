@@ -33,14 +33,14 @@ public class FullLocationName {
         if (jsonObj.has("address_ro")) {
             address_ro = (JSONArray) jsonObj.get("address_ro");
         }
-
-        if (province_ro!=null) {
-            for (int k = 0;  k< province_ro.length(); k++ ){
-                full_location_name.put(province_ro.get(k));
+        if (address_ro!=null) {
+            for (int m =0; m<address_ro.length(); m++) {
+                full_location_name.put(address_ro.get(m));
             }
         } else {
             full_location_name = null;
         }
+
         if (district_ro!=null) {
             for (int l =0; l<district_ro.length(); l++) {
                 full_location_name.put(district_ro.get(l));
@@ -48,9 +48,10 @@ public class FullLocationName {
         } else {
             full_location_name = null;
         }
-        if (address_ro!=null) {
-            for (int m =0; m<address_ro.length(); m++) {
-                full_location_name.put(address_ro.get(m));
+
+        if (province_ro!=null) {
+            for (int k = 0;  k< province_ro.length(); k++ ){
+                full_location_name.put(province_ro.get(k));
             }
         } else {
             full_location_name = null;
@@ -68,7 +69,7 @@ public class FullLocationName {
                     QUOTE+ nameBuilder+ QUOTE+ "," + '\n');
             return fullLocationNameBuilder;
         } else if (in_private_collection==true) {
-            fullLocationNameBuilder.append(QUOTE + "dllm:full_location_name" + QUOTE + ":" + QUOTE + "In private possession" + QUOTE  +   "," + '\n');
+            fullLocationNameBuilder.append(QUOTE + "dllm:full_location_name" + QUOTE + ":" + QUOTE + "In private collection" + QUOTE  +   "," + '\n');
             return fullLocationNameBuilder;
         } else {
             return new StringBuilder();

@@ -33,6 +33,7 @@ import static org.crossasia.dlntm.fedora.LocationsId.addLocationsId;
 import static org.crossasia.dlntm.fedora.Longitude.addLongitude;
 import static org.crossasia.dlntm.fedora.ManuscriptsCount.addManuscriptsCount;
 import static org.crossasia.dlntm.fedora.Material.addMaterials;
+import static org.crossasia.dlntm.fedora.NumberOfDigitalImages.addNumberOfDigitalImages;
 import static org.crossasia.dlntm.fedora.NumberOfFascicles.addNumberOfFascicles;
 import static org.crossasia.dlntm.fedora.NumberOfFolios.addNumberOfFolios;
 import static org.crossasia.dlntm.fedora.Place.addPlaces;
@@ -71,6 +72,7 @@ public class DlntmFedoraBook {
 
                 sb.append(addNumberOfFascicles());
                 sb.append(addNumberOfFolios());
+                sb.append(addNumberOfDigitalImages());
                 sb.append(addExtent());
                 sb.append(addHasColophon());
                 sb.append(addTitles());
@@ -107,7 +109,7 @@ public class DlntmFedoraBook {
 
                 sb.deleteCharAt(sb.length() - 1);
                 PrintStream out = new PrintStream(new FileOutputStream("/data/dlmnt/fedora/books/"+id+".json"));
-                out.println("["+sb.toString()+"}]");
+                out.println(""+sb.toString()+"}");
             }
         }
     }

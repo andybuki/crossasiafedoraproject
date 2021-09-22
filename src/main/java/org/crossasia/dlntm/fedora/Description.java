@@ -1,7 +1,5 @@
 package org.crossasia.dlntm.fedora;
 
-import org.json.JSONArray;
-
 import java.io.FileNotFoundException;
 
 import static org.crossasia.dlntm.DlntmFedoraBook.jsonObj;
@@ -12,8 +10,6 @@ public class Description {
 
         String remarks = "";
         String thai_remarks = "";
-        JSONArray remarksList = new JSONArray();
-
         StringBuilder remarksBuilder = new StringBuilder();
 
         if (jsonObj.has("remarks")) {
@@ -24,21 +20,12 @@ public class Description {
             thai_remarks = (String) jsonObj.get("thai_remarks");
         }
 
-        if (remarks!="") {
-                remarksList.put(remarks);
-        } else  {
-            remarksList = null;}
+        if (remarks != "" ) {
+            remarksBuilder.append(QUOTE + "dc:description" + QUOTE + ":" + QUOTE+ remarks+ QUOTE+ "," + '\n');
 
-        if (thai_remarks!="" && remarksList!=null) {
-                remarksList.put(thai_remarks);
-        } else {
-            remarksList = null;}
-
-        if (remarksList != null ) {
-            remarksBuilder.append(QUOTE + "dc:description" + QUOTE + ":" +  remarksList+  "," + '\n');
-            return remarksBuilder;
-        } else {
-            return new StringBuilder();
+        } if (thai_remarks != "" ) {
+            remarksBuilder.append(QUOTE + "dllm:description_th" + QUOTE + ":" + QUOTE+ thai_remarks+ QUOTE+ "," + '\n');
         }
+        return remarksBuilder;
     }
 }

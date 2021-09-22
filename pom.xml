@@ -536,7 +536,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
         <configuration>
-          <mainClass>org.crossasia.collections.localgazetteer.MainApp</mainClass>
+          <mainClass>org.crossasia.solr.collections.localgazetteer.MainApp</mainClass>
           <includePluginDependencies>false</includePluginDependencies>
         </configuration>
       </plugin>

@@ -28,10 +28,9 @@ public class FullLocationNameLao {
         if (jsonObj.has("address_th")) {
             address_th = (JSONArray) jsonObj.get("address_th");
         }
-
-        if (province_th!=null) {
-            for (int k = 0;  k< province_th.length(); k++ ) {
-                full_location_name_lao.put(province_th.get(k));
+        if (address_th!=null) {
+            for (int m =0; m<address_th.length(); m++) {
+                full_location_name_lao.put(address_th.get(m));
             }
         } else {full_location_name_lao = null;}
 
@@ -41,12 +40,11 @@ public class FullLocationNameLao {
             }
         } else {full_location_name_lao = null;}
 
-        if (address_th!=null) {
-            for (int m =0; m<address_th.length(); m++) {
-                full_location_name_lao.put(address_th.get(m));
+        if (province_th!=null) {
+            for (int k = 0;  k< province_th.length(); k++ ) {
+                full_location_name_lao.put(province_th.get(k));
             }
         } else {full_location_name_lao = null;}
-
 
         if (full_location_name_lao!=null) {
             for (int i=0; i<full_location_name_lao.length(); i++) {

@@ -12,7 +12,7 @@ public class Language {
 
         JSONArray languages = null;
         JSONArray languages_lao = null;
-        JSONArray languagesList = new JSONArray();
+
 
         StringBuilder languageBuilder = new StringBuilder();
 
@@ -24,20 +24,13 @@ public class Language {
             languages_lao = (JSONArray) jsonObj.get("language_th");
         }
 
-        if (languages!=null) {
-            for (int k = 0;  k< languages.length(); k++ ){
-                for (int l =0; l<languages_lao.length(); l++) {
-                    languagesList.put(languages.get(k));
-                    languagesList.put(languages_lao.get(l));
-                }
-            }
+        if (languages != null ) {
+            languageBuilder.append(QUOTE + "dc:language" + QUOTE + ":" +  languages+  "," + '\n');
         }
 
-        if (languages != null || languages_lao!=null) {
-            languageBuilder.append(QUOTE + "dc:language" + QUOTE + ":" +  languagesList+  "," + '\n');
-            return languageBuilder;
-        } else {
-            return new StringBuilder();
+        if (languages_lao!=null) {
+            languageBuilder.append(QUOTE + "dllm:language_th" + QUOTE + ":" +  languages_lao+  "," + '\n');
         }
+    return languageBuilder;
     }
 }

@@ -12,8 +12,6 @@ public class Category {
 
         JSONArray categories = null;
         JSONArray categories_lao = null;
-        JSONArray categoriesList = new JSONArray();
-
         StringBuilder categoryBuilder = new StringBuilder();
 
         if (jsonObj.has("category")) {
@@ -24,22 +22,13 @@ public class Category {
             categories_lao = (JSONArray) jsonObj.get("category_th");
         }
 
-        if (categories!=null) {
-            for (int k = 0; k < categories.length(); k++) {
-                categoriesList.put(categories.get(k));
-            }
-        } else categoriesList = null;
-        if (categories_lao!=null) {
-                for (int l =0; l<categories_lao.length(); l++) {
-                    categoriesList.put(categories_lao.get(l));
-                }
-        } else categoriesList = null;
 
-        if (categories != null || categories_lao!=null) {
-            categoryBuilder.append(QUOTE + "dc:subject" + QUOTE + ":" +  categoriesList+  "," + '\n');
-            return categoryBuilder;
-        } else {
-            return new StringBuilder();
+        if (categories != null ) {
+            categoryBuilder.append(QUOTE + "dc:subject" + QUOTE + ":" +  categories+  "," + '\n');
+
+        } if ( categories_lao!=null) {
+            categoryBuilder.append(QUOTE + "dllm:subject_th" + QUOTE + ":" +  categories_lao+  "," + '\n');
         }
+        return categoryBuilder;
     }
 }

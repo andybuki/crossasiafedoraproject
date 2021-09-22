@@ -35,12 +35,6 @@ public class Index {
             }
         }
 
-        if (label_ro!=null) {
-            for (int l = 0; l < label_ro.length(); l++) {
-                indexList.put(label_ro.get(l));
-            }
-        }
-
         if (pntmp_label!=null) {
             for (int m = 0; m < pntmp_label.length(); m++) {
                 indexList.put(pntmp_label.get(m));
@@ -48,11 +42,15 @@ public class Index {
         }
 
 
-        if (indexList != null ) {
-            indexBuilder.append(QUOTE + "dllm:index" + QUOTE + ":" +  indexList+  "," + '\n');
-            return indexBuilder;
-        } else {
-            return new StringBuilder();
+        if (label_ro != null ) {
+            indexBuilder.append(QUOTE + "dllm:index" + QUOTE + ":" + label_ro + "," + '\n');
         }
+
+        if (indexList != null) {
+            indexBuilder.append(QUOTE + "dllm:index_th" + QUOTE + ":" + indexList + "," + '\n');
+        }
+
+        return indexBuilder;
+
     }
 }

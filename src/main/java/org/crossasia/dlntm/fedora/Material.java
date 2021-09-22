@@ -22,17 +22,18 @@ public class Material {
         if (jsonObj.has("material_th"))
             material_th = (JSONArray) jsonObj.get("material_th");
 
-        if (material!=null) {
+        /*if (material!=null) {
             for (int k = 0;  k< material.length(); k++ ){
                 for (int l =0; l<material_th.length(); l++) {
                     materials.put(material.get(k));
                     materials.put(material_th.get(l));
                 }
             }
-        }
+        }*/
 
         if (material != null || material_th!=null) {
-            materialsBuilder.append(QUOTE + "dllm:material" + QUOTE + ":" +  materials+  "," + '\n');
+            materialsBuilder.append(QUOTE + "dllm:material" + QUOTE + ":" +  material+  "," + '\n');
+            materialsBuilder.append(QUOTE + "dllm:material_th" + QUOTE + ":" +  material_th+  "," + '\n');
             return materialsBuilder;
         } else {
             return new StringBuilder();

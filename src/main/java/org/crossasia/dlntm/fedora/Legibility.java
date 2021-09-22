@@ -21,14 +21,15 @@ public class Legibility {
             legibility_th = (String) jsonObj.get("legibility_th").toString();
         }
 
-        legibilities.add(QUOTE+legibility+QUOTE);
-        legibilities.add(QUOTE+legibility_th+QUOTE);
 
         if (legibility!= "") {
-            legibilityBuilder.append(QUOTE + "dllm:legibilities" + QUOTE + ":" +  legibilities  + "," + '\n');
-            return legibilityBuilder;
-        } else {
-            return new StringBuilder();
+            legibilityBuilder.append(QUOTE + "dllm:legibilities" + QUOTE + ":" + QUOTE + legibility + QUOTE + "," + '\n');
+
         }
+        if (legibility_th !="")
+            legibilityBuilder.append(QUOTE + "dllm:legibilities_th" + QUOTE + ":" + QUOTE + legibility_th + QUOTE + "," + '\n');
+
+        return legibilityBuilder;
+
     }
 }

@@ -81,25 +81,15 @@ public class Place {
         } else {full_location_name_lao =null;}
 
 
-        JSONArray place = new JSONArray();
-
-        if (full_location_name !=null) {
-            for (int x = 0; x < full_location_name.length(); x++) {
-                place.put(full_location_name.get(x));
-            }
-        } else {place =null;}
-
-        if (full_location_name_lao !=null) {
-            for (int y =0; y < full_location_name_lao.length(); y++) {
-                place.put(full_location_name_lao.get(y));
-            }
-        } else {place =null;}
-
-        if (place != null ) {
-            placesBuilder.append(QUOTE + "dc:place" + QUOTE + ":" +  place+  "," + '\n');
-            return placesBuilder;
-        } else {
-            return new StringBuilder();
+        if (full_location_name != null ) {
+            placesBuilder.append(QUOTE + "dc:place" + QUOTE + ":" +  full_location_name+  "," + '\n');
         }
+        if (full_location_name_lao != null ) {
+            placesBuilder.append(QUOTE + "dllm:place_th" + QUOTE + ":" +  full_location_name_lao+  "," + '\n');
+        }
+        if (full_location_name == null ) {
+            placesBuilder.append(QUOTE + "dc:place" + QUOTE + ":" +QUOTE+"Private collection"+QUOTE +"," + '\n');
+        }
+        return placesBuilder;
     }
 }

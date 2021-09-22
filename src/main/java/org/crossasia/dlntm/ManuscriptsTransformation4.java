@@ -12,8 +12,8 @@ import java.io.PrintStream;
 public class ManuscriptsTransformation4 {
     public static void main(String[] args) throws FileNotFoundException {
         String quote = "\u005c\u0022";
-        String manuscripts = "/data/dlmnt/manuscripts_NEW.json";
-        String pages = "/data/dlmnt/files_uploaded.json";
+        String manuscripts = "/data/dlmnt/manuscripts.json";
+        String pages = "/data/dlmnt/folios.json";
 
         StringBuilder sb = new StringBuilder();
         JSONArray jsonArrayBooks = new JSONArray(new JSONTokener(new FileInputStream(manuscripts)));
@@ -79,6 +79,7 @@ public class ManuscriptsTransformation4 {
             JSONArray script = null;
             JSONArray ancillary_term = null;
             JSONArray author = null;
+            JSONArray jsonUploaded_Name = null;
 
             JSONArray category_th = null;
             JSONArray language_th = null;
@@ -86,6 +87,10 @@ public class ManuscriptsTransformation4 {
             JSONArray script_th = null;
             JSONArray ancillary_term_th = null;
             JSONArray author_th = null;
+
+            String uploaded_file_id ="";
+            String position ="";
+            String original_file_name ="";
 
 
             JSONObject jsonObjBooks = (JSONObject) jsonArrayBooks.get(i);
@@ -144,6 +149,10 @@ public class ManuscriptsTransformation4 {
 
             if (jsonObjBooks.has("label")) {
                 label = (JSONArray) jsonObjBooks.get("label");
+            }
+
+            if (jsonObjBooks.has("upload")) {
+                jsonUploaded_Name = (JSONArray) jsonObjBooks.get("upload");
             }
 
             if (jsonObjBooks.has("label_ro")) {
@@ -309,6 +318,18 @@ public class ManuscriptsTransformation4 {
                 author_th = (JSONArray) jsonObjBooks.get("author_th");
             }
 
+            if (jsonObjBooks.has("uploaded_file_id")) {
+                uploaded_file_id = (String) jsonObjBooks.get("uploaded_file_id");
+            }
+
+            if (jsonObjBooks.has("position")) {
+                position = (String) jsonObjBooks.get("position");
+            }
+            if (jsonObjBooks.has("original_file_name")) {
+                original_file_name = (String) jsonObjBooks.get("original_file_name");
+            }
+
+
 ///////////////////////////////////////////////////////////////
 
 
@@ -317,30 +338,14 @@ public class ManuscriptsTransformation4 {
                 int manuscript_id=0;
 
                 JSONObject jsonObjPages = (JSONObject) jsonArrayPages.get(j);
-
-                if (jsonObjPages.has("manuscript_id")) {
-                    manuscript_id = (int) jsonObjPages.get("manuscript_id");
-                }
-                String uploaded_file_id ="";
-                String position ="";
-                String original_file_name ="";
-
-                JSONArray jsonUploaded_Name = jsonObjPages.getJSONArray("uploaded_name");
-                for (int k = 0; k<jsonUploaded_Name.length(); k++) {
-                    JSONObject jsonObjUploaded_Name = (JSONObject) jsonArrayPages.get(k);
-
-                    if (jsonObjUploaded_Name.has("uploaded_file_id")) {
-                        uploaded_file_id = (String) jsonObjUploaded_Name.get("uploaded_file_id");
-                    }
-
-                    if (jsonObjUploaded_Name.has("position")) {
-                        position = (String) jsonObjUploaded_Name.get("position");
-                    }
-                    if (jsonObjUploaded_Name.has("original_file_name")) {
-                        original_file_name = (String) jsonObjUploaded_Name.get("original_file_name");
-                    }
+                int number_of_folios =0;
+                if (jsonObjPages.has("id")) {
+                    manuscript_id = (int) jsonObjPages.get("id");
                 }
 
+                if (jsonObjPages.has("number_of_folios")) {
+                    number_of_folios = (int) jsonObjPages.get("number_of_folios");
+                }
 
                 if (id == manuscript_id) {
 
@@ -381,6 +386,9 @@ public class ManuscriptsTransformation4 {
                         sb.append(quote + "pntmp_title_id" + quote + ":" + pntmp_title_id + "," + '\n');
                     if (date_system != "")
                         sb.append(quote + "date_system" + quote + ":" + quote + date_system + quote + "," + '\n');
+                    if (number_of_folios != 0)
+                        sb.append(quote + "number_of_folios" + quote + ":" +  number_of_folios  + "," + '\n');
+
                     if (year != 0)
                         sb.append(quote + "year" + quote + ":" + year + "," + '\n');
 
